@@ -25,11 +25,12 @@ public static class AnnotatableExtensions
         annotatable.RemoveAnnotations(typeof(T));
     }
 
-    private static readonly object _lock = new();
-
     public static void SetAnnotation<A>(this IAnnotatable annotatable, A annotation)
     {
-        lock (_lock)
+        // Lock on the instance itself rather than a global static lock.
+        // This allows parallel processing of different objects while maintaining
+        // thread-safety for operations on the same object.
+        lock (annotatable)
         {
             annotatable.RemoveAnnotations<A>();
             if (annotation != null)
