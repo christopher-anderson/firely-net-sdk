@@ -1,0 +1,3501 @@
+{
+  "resourceType": "Bundle",
+  "id": "hedis-core-ima-rexcld-01",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "https://ncqa.org/Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "aa99adc7-0587-6d17-1c52-5ac1facec412",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-patient"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ],
+          "lastUpdated": "2025-09-19T09:48:01.8512764-04:00"
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "MB",
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "display": "Member Number"
+                }
+              ]
+            },
+            "system": "https://www.xxx.com/fhir/memberidentifier",
+            "value": "1234"
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "code": "2106-3",
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "display": "White"
+                }
+              },
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "code": "1002-5",
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "display": "American Indian or Alaska Native"
+                }
+              },
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "code": "2028-9",
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "display": "Asian"
+                }
+              },
+              {
+                "url": "detailed",
+                "valueCoding": {
+                  "code": "1586-7",
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "display": "Shoshone"
+                }
+              },
+              {
+                "url": "detailed",
+                "valueCoding": {
+                  "code": "2036-2",
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "display": "Filipino"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "Mixed"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "code": "2135-2",
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "display": "Hispanic or Latino"
+                }
+              },
+              {
+                "url": "detailed",
+                "valueCoding": {
+                  "code": "2184-0",
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "display": "Dominican"
+                }
+              },
+              {
+                "url": "detailed",
+                "valueCoding": {
+                  "code": "2148-5",
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "display": "Mexican"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "Hispanic or Latino"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+            "valueCode": "F"
+          },
+          {
+            "url": "https://ncqa.org/fhir/StructureDefinition/ext-patient.written.language-datasource",
+            "valueCoding": {
+              "code": "CMS Databases",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-language-datasource",
+              "display": "cms Databases"
+            }
+          },
+          {
+            "url": "https://ncqa.org/fhir/StructureDefinition/ext-patient.spoken.language-datasource",
+            "valueCoding": {
+              "code": "CMS Databases",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-language-datasource",
+              "display": "cms Databases"
+            }
+          },
+          {
+            "url": "https://ncqa.org/fhir/StructureDefinition/ext-patient.other.language-datasource",
+            "valueCoding": {
+              "code": "CMS Databases",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-language-datasource",
+              "display": "cms Databases"
+            }
+          },
+          {
+            "url": "https://ncqa.org/fhir/StructureDefinition/ext-patient.race-datasource",
+            "valueCoding": {
+              "code": "CMS/State Databases (Enrollment Files)",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-raceandethnicity-datasource",
+              "display": "CMS/State Databases (Enrollment Files)"
+            }
+          },
+          {
+            "url": "https://ncqa.org/fhir/StructureDefinition/ext-patient.ethnicity-datasource",
+            "valueCoding": {
+              "code": "CMS/State Databases (Enrollment Files)",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-raceandethnicity-datasource",
+              "display": "CMS/State Databases (Enrollment Files)"
+            }
+          },
+          {
+            "url": "https://ncqa.org/fhir/StructureDefinition/ext-patient-other-communication",
+            "extension": [
+              {
+                "url": "language",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "code": "unknown",
+                      "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+                      "display": "Unknown"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "preferred",
+                "valueBoolean": true
+              }
+            ]
+          },
+          {
+            "url": "https://ncqa.org/fhir/StructureDefinition/ext-patient.sex-parameter-for-clinical-use",
+            "extension": [
+              {
+                "url": "value",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "code": "female-typical",
+                      "system": "http://terminology.hl7.org/CodeSystem/sex-parameter-for-clinical-use",
+                      "display": "Apply female-typical setting or reference range"
+                    }
+                  ]
+                }
+              },
+              {
+                "url": "period",
+                "valuePeriod": {
+                  "start": "2023-09-19"
+                }
+              }
+            ]
+          }
+        ],
+        "active": true,
+        "communication": [
+          {
+            "language": {
+              "coding": [
+                {
+                  "code": "nl",
+                  "system": "urn:ietf:bcp:47",
+                  "display": "Dutch"
+                }
+              ],
+              "text": "Nederlands"
+            },
+            "preferred": true,
+            "_preferred": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/patient-preferenceType",
+                  "valueCoding": {
+                    "code": "verbal",
+                    "system": "http://hl7.org/fhir/language-preference-type",
+                    "display": "verbal"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "name": [
+          {
+            "use": "old",
+            "family": "Shaw",
+            "given": [
+              "Amy",
+              "V."
+            ],
+            "period": {
+              "start": "2016-12-06",
+              "end": "2020-07-22"
+            }
+          },
+          {
+            "family": "Baxter",
+            "given": [
+              "Amy",
+              "V."
+            ],
+            "suffix": [
+              "PharmD"
+            ],
+            "period": {
+              "start": "2020-07-22"
+            }
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "555-555-5555",
+            "use": "home"
+          },
+          {
+            "system": "email",
+            "value": "amy.shaw@example.com"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1987-02-20",
+        "deceasedDateTime": "2023-03-01",
+        "address": [
+          {
+            "use": "old",
+            "line": [
+              "49 Meadow St"
+            ],
+            "city": "Mounds",
+            "state": "OK",
+            "postalCode": "74047",
+            "country": "US",
+            "period": {
+              "start": "2016-12-06",
+              "end": "2020-07-22"
+            }
+          },
+          {
+            "line": [
+              "183 Mountain View St"
+            ],
+            "city": "Mounds",
+            "state": "OK",
+            "postalCode": "74048",
+            "country": "US",
+            "period": {
+              "start": "2020-07-22"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "aa99adc7-0587-6d17-1c52-5ac1facec412"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Parameters/ac326bba-df04-1564-256c-1ee67a367def.all-params",
+      "resource": {
+        "resourceType": "Parameters",
+        "id": "ac326bba-df04-1564-256c-1ee67a367def.all-params",
+        "parameter": [
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Chemical Dependency - Inpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_numerator_hpv.json Module.BirthDate",
+            "valueString": "01/30/2012"
+          },
+          {
+            "name": "coverage_generator.json Module.BenefitHit",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_generator.json Module.Pharmacy Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_numerator_hpvtest1.json Module.BirthDate",
+            "valueString": "01/30/2012"
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Pharmacy",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_benefit.json Module.Medical",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_enroll.json Module.Chemical Dependency - Outpatient / EDBenefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_enroll.json Module.Medicare Good",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_benefit.json Module.Mental Health - Outpatient/ED",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_initial_population.json Module.InitialPopulation",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Medical Benefit",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_generator.json Module.Chemical Dependency - Outpatient / ED Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_denominator.json Module.InitialPopulation",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Chemical Dependency - Intensive Outpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_benefit.json Module.Mental Health - Inpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_continuous_enrollment.json Module.Start Date",
+            "valueString": "01/30/2024"
+          },
+          {
+            "name": "coverage_generator.json Module.Mental Health - Outpatient / ED Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Dental",
+            "valueBoolean": false
+          },
+          {
+            "name": "hospice_check.json Module.Measurement_Period_End",
+            "valueString": "12/31/2023"
+          },
+          {
+            "name": "ima_numerator_hpv.json Module.NumeratorHPV",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima.json Module.Prior_Year_Start",
+            "valueString": "01/01/2022"
+          },
+          {
+            "name": "coverage_enroll.json Module.PayerHit",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_benefit.json Module.Chemical Dependency - Inpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_benefit.json Module.Pharmacy",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_continuous_enrollment.json Module.End Date",
+            "valueString": "01/30/2025"
+          },
+          {
+            "name": "coverage_generator.json Module.Start Date",
+            "valueString": "01/30/2024"
+          },
+          {
+            "name": "ima.json Module.Measurement_Period_Start",
+            "valueString": "01/01/2023"
+          },
+          {
+            "name": "ima_initial_population.json Module.PayerHit",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_enroll.json Module.Chemical Dependency - Inpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Mental Health - Inpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Exchange Good?",
+            "valueBoolean": true
+          },
+          {
+            "name": "hospice_check.json Module.Has_Hospice",
+            "valueBoolean": true
+          },
+          {
+            "name": "hospice_required_exclusion.json Module.RequiredExclusion",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima_numerator_men.json Module.BirthDate",
+            "valueString": "01/30/2012"
+          },
+          {
+            "name": "choose_good.json Module.Exchange",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_enroll.json Module.Exchange Good",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_benefit.json Module.Choose True",
+            "valueBoolean": true
+          },
+          {
+            "name": "hospice_check.json Module.Hospice_Date",
+            "valueString": "04/10/2024"
+          },
+          {
+            "name": "coverage_enroll.json Module.Mental Health - Intensive Outpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "hospice_required_exclusion.json Module.Hospice_Date",
+            "valueString": "04/10/2024"
+          },
+          {
+            "name": "coverage_generator.json Module.PayerHit",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima_denominator.json Module.Denominator",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Mental Health - Intensive Outpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_numerator_hpvtest1.json Module.NumeratorHPV",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_benefit.json Module.Dental",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Chemical Dependency - Inpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_enroll.json Module.Mental Health - Outpatient / ED Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_numerator_tdap.json Module.BirthDate",
+            "valueString": "01/30/2012"
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Medical",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_generator.json Module.Longest Gap Length",
+            "valueString": "[15 Days]"
+          },
+          {
+            "name": "ima_initial_population.json Module.ContinuousEnrollment",
+            "valueBoolean": true
+          },
+          {
+            "name": "measurement_year.json Module.Measurement_Period_Start",
+            "valueString": "01/01/2023"
+          },
+          {
+            "name": "ima_continuous_enrollment.json Module.PayerHit",
+            "valueBoolean": true
+          },
+          {
+            "name": "hospice_required_exclusion.json Module.Has_Hospice",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima_numerator_tdap.json Module.NumeratorTDAP",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Commercial Good?",
+            "valueBoolean": true
+          },
+          {
+            "name": "measurement_year.json Module.Measurement_Period_End",
+            "valueString": "12/31/2023"
+          },
+          {
+            "name": "coverage_enroll.json Module.BenefitHit",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_good.json Module.Medicaid",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Mental Health - Inpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_numerator_men.json Module.NumeratorMEN",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima_continuous_enrollment.json Module.BenefitHit",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_generator.json Module.Medicaid Good?",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima_denominator.json Module.RequiredExclusion",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_generator.json Module.Dental Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_enroll.json Module.Medical Benefit",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_benefit.json Module.Chemical Dependency - Intensive Outpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "hospice_required_exclusion.json Module.Measurement_Period_Start",
+            "valueString": "01/01/2023"
+          },
+          {
+            "name": "coverage_enroll.json Module.Pharmacy Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima.json Module.Prior_Year_End",
+            "valueString": "12/31/2022"
+          },
+          {
+            "name": "ima.json Module.Measurement_Period_End",
+            "valueString": "12/31/2023"
+          },
+          {
+            "name": "ima_continuous_enrollment.json Module.ContinuousEnrollment",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_enroll.json Module.Commercial Good",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Mental Health - Intensive Outpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_benefit.json Module.Chemical Dependency - Outpatient / ED",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Number of Gaps",
+            "valueString": "1"
+          },
+          {
+            "name": "coverage_enroll.json Module.Dental Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Medicare Good?",
+            "valueBoolean": false
+          },
+          {
+            "name": "hospice_check.json Module.Measurement_Period_Start",
+            "valueString": "01/01/2023"
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Mental Health - Outpatient/ED",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Chemical Dependency - Intensive Outpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_good.json Module.Medicare",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_enroll.json Module.Medicaid Good",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima_initial_population.json Module.Measurement Period End",
+            "valueString": "12/31/2023"
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Chemical Dependency - Outpatient / ED",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Did Chose True",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_enroll.json Module.Mental Health - Inpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_good.json Module.Commercial",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_benefit.json Module.Mental Health - Intensive Outpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_enroll.json Module.Chemical Dependency - Intensive Outpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.End Date",
+            "valueString": "01/30/2025"
+          },
+          {
+            "name": "hospice_required_exclusion.json Module.Measurement_Period_End",
+            "valueString": "12/31/2023"
+          },
+          {
+            "name": "ima.json Module.RExclD",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima.json Module.Denominator",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima.json Module.ContinuousEnrollment",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima.json Module.NumeratorHPV",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima.json Module.NumeratorCMB2",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima.json Module.NumeratorCMB1",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima.json Module.NumeratorTDAP",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima.json Module.Initial_Population",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima.json Module.NumeratorMen",
+            "valueBoolean": true
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "ac326bba-df04-1564-256c-1ee67a367def.all-params"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Parameters/ac326bba-df04-1564-256c-1ee67a367def.scorekey",
+      "resource": {
+        "resourceType": "Parameters",
+        "id": "ac326bba-df04-1564-256c-1ee67a367def.scorekey",
+        "parameter": [
+          {
+            "name": "RExclD",
+            "valueBoolean": true
+          },
+          {
+            "name": "Denominator",
+            "valueBoolean": false
+          },
+          {
+            "name": "ContinuousEnrollment",
+            "valueBoolean": true
+          },
+          {
+            "name": "NumeratorHPV",
+            "valueBoolean": true
+          },
+          {
+            "name": "NumeratorCMB2",
+            "valueBoolean": false
+          },
+          {
+            "name": "NumeratorCMB1",
+            "valueBoolean": false
+          },
+          {
+            "name": "NumeratorTDAP",
+            "valueBoolean": false
+          },
+          {
+            "name": "Initial_Population",
+            "valueBoolean": false
+          },
+          {
+            "name": "NumeratorMen",
+            "valueBoolean": true
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "ac326bba-df04-1564-256c-1ee67a367def.scorekey"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Coverage/bc40a82d-47a9-df67-a184-0302d4b2b86c",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "bc40a82d-47a9-df67-a184-0302d4b2b86c",
+        "meta": {
+          "lastUpdated": "2024-07-28T00:00:00+00:00",
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ],
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-coverage",
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage|1.1.0"
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "POS",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-coverage-type"
+            }
+          ]
+        },
+        "subscriber": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "subscriberId": "aa99adc7-0587-6d17-1c52-5ac1facec412",
+        "beneficiary": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "self",
+              "system": "http://terminology.hl7.org/CodeSystem/subscriber-relationship"
+            }
+          ]
+        },
+        "period": {
+          "start": "2024-01-30T00:00:00+00:00",
+          "end": "2024-07-28T00:00:00+00:00"
+        },
+        "payor": [
+          {
+            "reference": "Organization/ad6e5d48-c584-6b97-a790-2ee02c5a49eb"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "bc40a82d-47a9-df67-a184-0302d4b2b86c"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Coverage/5d5db9b8-61bd-f445-35c3-61f269857717",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "5d5db9b8-61bd-f445-35c3-61f269857717",
+        "meta": {
+          "lastUpdated": "2024-07-28T00:00:00+00:00",
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ],
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-coverage",
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage|1.1.0"
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "MCPOL",
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+            }
+          ]
+        },
+        "subscriber": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "subscriberId": "aa99adc7-0587-6d17-1c52-5ac1facec412",
+        "beneficiary": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "self",
+              "system": "http://terminology.hl7.org/CodeSystem/subscriber-relationship"
+            }
+          ]
+        },
+        "period": {
+          "start": "2024-01-30T00:00:00+00:00",
+          "end": "2024-07-28T00:00:00+00:00"
+        },
+        "payor": [
+          {
+            "reference": "Organization/ad6e5d48-c584-6b97-a790-2ee02c5a49eb"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "5d5db9b8-61bd-f445-35c3-61f269857717"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Coverage/d9b5901f-8105-3ef3-f91a-974d2cd28c72",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "d9b5901f-8105-3ef3-f91a-974d2cd28c72",
+        "meta": {
+          "lastUpdated": "2025-01-30T00:00:00+00:00",
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ],
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-coverage",
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage|1.1.0"
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "POS",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-coverage-type"
+            }
+          ]
+        },
+        "subscriber": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "subscriberId": "aa99adc7-0587-6d17-1c52-5ac1facec412",
+        "beneficiary": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "self",
+              "system": "http://terminology.hl7.org/CodeSystem/subscriber-relationship"
+            }
+          ]
+        },
+        "period": {
+          "start": "2024-08-18T00:00:00+00:00",
+          "end": "2025-01-30T00:00:00+00:00"
+        },
+        "payor": [
+          {
+            "reference": "Organization/ad6e5d48-c584-6b97-a790-2ee02c5a49eb"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "d9b5901f-8105-3ef3-f91a-974d2cd28c72"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Coverage/6941bedf-41cd-c86e-25f9-71f076cef2fe",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "6941bedf-41cd-c86e-25f9-71f076cef2fe",
+        "meta": {
+          "lastUpdated": "2025-01-30T00:00:00+00:00",
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ],
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-coverage",
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage|1.1.0"
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "MCPOL",
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+            }
+          ]
+        },
+        "subscriber": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "subscriberId": "aa99adc7-0587-6d17-1c52-5ac1facec412",
+        "beneficiary": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "self",
+              "system": "http://terminology.hl7.org/CodeSystem/subscriber-relationship"
+            }
+          ]
+        },
+        "period": {
+          "start": "2024-08-18T00:00:00+00:00",
+          "end": "2025-01-30T00:00:00+00:00"
+        },
+        "payor": [
+          {
+            "reference": "Organization/ad6e5d48-c584-6b97-a790-2ee02c5a49eb"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "6941bedf-41cd-c86e-25f9-71f076cef2fe"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Claim/d8554ce1-abcf-477c-61f1-3b73cfd370d2",
+      "resource": {
+        "resourceType": "Claim",
+        "id": "d8554ce1-abcf-477c-61f1-3b73cfd370d2",
+        "meta": {
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "0e30aba5-b3a8-426d-8e8e-23bfbea7e3da",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "institutional",
+              "system": "http://terminology.hl7.org/CodeSystem/claim-type"
+            }
+          ]
+        },
+        "use": "claim",
+        "patient": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "billablePeriod": {
+          "start": "2023-05-12T00:00:00+00:00",
+          "end": "2023-05-12T00:15:00+00:00"
+        },
+        "created": "2023-05-12T00:15:00+00:00",
+        "provider": {
+          "reference": "Organization/96807a8e-1823-4d46-8a39-d3b35c01418f"
+        },
+        "priority": {
+          "coding": [
+            {
+              "code": "normal",
+              "system": "http://terminology.hl7.org/CodeSystem/processpriority"
+            }
+          ]
+        },
+        "careTeam": [
+          {
+            "sequence": 1,
+            "provider": {
+              "reference": "Practitioner/2a8e4554-02d0-e817-168c-cc9c42dae081"
+            }
+          }
+        ],
+        "diagnosis": [
+          {
+            "sequence": 1,
+            "diagnosisCodeableConcept": {
+              "coding": [
+                {
+                  "code": "Z76.89",
+                  "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                  "display": "Persons encountering health services in other specified circumstances"
+                }
+              ]
+            }
+          }
+        ],
+        "insurance": [
+          {
+            "sequence": 1,
+            "focal": true,
+            "coverage": {
+              "reference": "Coverage/bc40a82d-47a9-df67-a184-0302d4b2b86c"
+            }
+          }
+        ],
+        "item": [
+          {
+            "sequence": 1,
+            "careTeamSequence": [
+              1
+            ],
+            "diagnosisSequence": [
+              1
+            ],
+            "productOrService": {
+              "coding": [
+                {
+                  "code": "G9475",
+                  "system": "http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets"
+                }
+              ]
+            },
+            "servicedPeriod": {
+              "start": "2023-05-12T00:00:00+00:00",
+              "end": "2023-05-12T00:15:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "d8554ce1-abcf-477c-61f1-3b73cfd370d2"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Organization/96807a8e-1823-4d46-8a39-d3b35c01418f",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "96807a8e-1823-4d46-8a39-d3b35c01418f",
+        "meta": {
+          "lastUpdated": "2022-12-12T09:14:11+00:00",
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-organization",
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization|1.1.0"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "npi",
+                  "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+                  "display": "National Provider Identifier"
+                }
+              ],
+              "text": "National Provider Identifier"
+            },
+            "system": "http://hl7.org/fhir/sid/us-npi",
+            "value": "6667778880"
+          }
+        ],
+        "active": true,
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "prov",
+                "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+                "display": "Healthcare Provider"
+              }
+            ]
+          }
+        ],
+        "name": "Acme Labs",
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "(+1) 734-677-7777"
+          },
+          {
+            "system": "email",
+            "value": "hq@acme.org"
+          }
+        ],
+        "address": [
+          {
+            "line": [
+              "3300 Washtenaw Avenue, Suite 227"
+            ],
+            "city": "Amherst",
+            "state": "MA",
+            "postalCode": "01002",
+            "country": "USA"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "96807a8e-1823-4d46-8a39-d3b35c01418f"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Condition/d4145afe-049c-44d7-9dde-7ed126ae8ad7",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "d4145afe-049c-44d7-9dde-7ed126ae8ad7",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-condition-encounter-diagnosis"
+          ],
+          "tag": [
+            {
+              "code": "ehr",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "EHR"
+            }
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/condition-assertedDate",
+            "valueDateTime": "2015-10-31"
+          }
+        ],
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "encounter-diagnosis",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "39065001",
+              "system": "http://snomed.info/sct/731000124108",
+              "display": "Burn of ear"
+            }
+          ],
+          "text": "Burnt Ear"
+        },
+        "subject": {
+          "reference": "Patient/hedis-core-patient-01",
+          "display": "Amy Shaw"
+        },
+        "encounter": {
+          "reference": "Encounter/hedis-core-encounter-01"
+        },
+        "onsetDateTime": "2015-10-31",
+        "abatementDateTime": "2015-12-01",
+        "recordedDate": "2015-11-01"
+      },
+      "request": {
+        "method": "POST",
+        "url": "d4145afe-049c-44d7-9dde-7ed126ae8ad7"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Encounter/79aa686c-7654-f565-ccf5-d57b5754455f",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "79aa686c-7654-f565-ccf5-d57b5754455f",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-encounter"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "https://www.ncqa.org/synthea",
+            "value": "79aa686c-7654-f565-ccf5-d57b5754455f"
+          }
+        ],
+        "status": "finished",
+        "class": {
+          "code": "AMB",
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "G9475",
+                "system": "http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "code": "PPRF",
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    "display": "primary performer"
+                  }
+                ]
+              }
+            ],
+            "period": {
+              "start": "2023-05-12T00:00:00+00:00",
+              "end": "2023-05-12T00:15:00+00:00"
+            },
+            "individual": {
+              "reference": "Practitioner/2a8e4554-02d0-e817-168c-cc9c42dae081",
+              "display": "null null"
+            }
+          }
+        ],
+        "period": {
+          "start": "2023-05-12T00:00:00+00:00",
+          "end": "2023-05-12T00:15:00+00:00"
+        },
+        "diagnosis": [
+          {
+            "condition": {
+              "reference": "Condition/d4145afe-049c-44d7-9dde-7ed126ae8ad7"
+            }
+          }
+        ],
+        "serviceProvider": {
+          "reference": "Organization/96807a8e-1823-4d46-8a39-d3b35c01418f"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "79aa686c-7654-f565-ccf5-d57b5754455f"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Claim/347f4385-b232-7b17-baa7-b9d0d3da03da",
+      "resource": {
+        "resourceType": "Claim",
+        "id": "347f4385-b232-7b17-baa7-b9d0d3da03da",
+        "meta": {
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "6db4d44d-b586-4093-b6c3-8f603969de43",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "institutional",
+              "system": "http://terminology.hl7.org/CodeSystem/claim-type"
+            }
+          ]
+        },
+        "use": "claim",
+        "patient": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "billablePeriod": {
+          "start": "2024-12-10T00:00:00+00:00",
+          "end": "2024-12-10T00:15:00+00:00"
+        },
+        "created": "2024-12-10T00:15:00+00:00",
+        "provider": {
+          "reference": "Organization/96807a8e-1823-4d46-8a39-d3b35c01418f"
+        },
+        "priority": {
+          "coding": [
+            {
+              "code": "normal",
+              "system": "http://terminology.hl7.org/CodeSystem/processpriority"
+            }
+          ]
+        },
+        "careTeam": [
+          {
+            "sequence": 1,
+            "provider": {
+              "reference": "Practitioner/6c5e309c-7036-9670-9ea4-6f2888471276"
+            }
+          }
+        ],
+        "diagnosis": [
+          {
+            "sequence": 1,
+            "diagnosisCodeableConcept": {
+              "coding": [
+                {
+                  "code": "428301000124106",
+                  "system": "http://snomed.info/sct/731000124108"
+                }
+              ]
+            }
+          }
+        ],
+        "insurance": [
+          {
+            "sequence": 1,
+            "focal": true,
+            "coverage": {
+              "reference": "Coverage/bc40a82d-47a9-df67-a184-0302d4b2b86c"
+            }
+          }
+        ],
+        "item": [
+          {
+            "sequence": 1,
+            "careTeamSequence": [
+              1
+            ],
+            "diagnosisSequence": [
+              1
+            ],
+            "productOrService": {
+              "coding": [
+                {
+                  "code": "99342",
+                  "system": "http://www.ama-assn.org/go/cpt"
+                }
+              ]
+            },
+            "servicedPeriod": {
+              "start": "2024-12-10T00:00:00+00:00",
+              "end": "2024-12-10T00:15:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "347f4385-b232-7b17-baa7-b9d0d3da03da"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Condition/b392b94f-08ff-4b96-b297-86128bf8e392",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "b392b94f-08ff-4b96-b297-86128bf8e392",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-condition-encounter-diagnosis"
+          ],
+          "tag": [
+            {
+              "code": "ehr",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "EHR"
+            }
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/condition-assertedDate",
+            "valueDateTime": "2015-10-31"
+          }
+        ],
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "encounter-diagnosis",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "39065001",
+              "system": "http://snomed.info/sct/731000124108",
+              "display": "Burn of ear"
+            }
+          ],
+          "text": "Burnt Ear"
+        },
+        "subject": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Amy Shaw"
+        },
+        "onsetDateTime": "2015-10-31",
+        "abatementDateTime": "2015-12-01",
+        "recordedDate": "2015-11-01"
+      },
+      "request": {
+        "method": "POST",
+        "url": "b392b94f-08ff-4b96-b297-86128bf8e392"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Encounter/e9ef2a30-31bc-2c53-7eb6-04176f481654",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "e9ef2a30-31bc-2c53-7eb6-04176f481654",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-encounter"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "https://www.ncqa.org/synthea",
+            "value": "e9ef2a30-31bc-2c53-7eb6-04176f481654"
+          }
+        ],
+        "status": "finished",
+        "class": {
+          "code": "AMB",
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "99342",
+                "system": "http://www.ama-assn.org/go/cpt"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "code": "PPRF",
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    "display": "primary performer"
+                  }
+                ]
+              }
+            ],
+            "period": {
+              "start": "2025-05-05T00:00:00+00:00",
+              "end": "2025-05-05T00:15:00+00:00"
+            },
+            "individual": {
+              "reference": "Practitioner/6c5e309c-7036-9670-9ea4-6f2888471276",
+              "display": "null null"
+            }
+          }
+        ],
+        "period": {
+          "start": "2025-05-05T00:00:00+00:00",
+          "end": "2025-05-05T00:15:00+00:00"
+        },
+        "diagnosis": [
+          {
+            "condition": {
+              "reference": "Condition/b392b94f-08ff-4b96-b297-86128bf8e392"
+            }
+          }
+        ],
+        "serviceProvider": {
+          "reference": "Organization/96807a8e-1823-4d46-8a39-d3b35c01418f"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "e9ef2a30-31bc-2c53-7eb6-04176f481654"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Claim/da7d16c5-63c2-7341-09bb-896f97e1b1c5",
+      "resource": {
+        "resourceType": "Claim",
+        "id": "da7d16c5-63c2-7341-09bb-896f97e1b1c5",
+        "meta": {
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "f50529cd-de20-4853-85f8-5292f1517964",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "institutional",
+              "system": "http://terminology.hl7.org/CodeSystem/claim-type"
+            }
+          ]
+        },
+        "use": "claim",
+        "patient": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "billablePeriod": {
+          "start": "2021-12-26T00:00:00+00:00",
+          "end": "2021-12-26T00:15:00+00:00"
+        },
+        "created": "2021-12-26T00:15:00+00:00",
+        "provider": {
+          "reference": "Organization/96807a8e-1823-4d46-8a39-d3b35c01418f"
+        },
+        "priority": {
+          "coding": [
+            {
+              "code": "normal",
+              "system": "http://terminology.hl7.org/CodeSystem/processpriority"
+            }
+          ]
+        },
+        "careTeam": [
+          {
+            "sequence": 1,
+            "provider": {
+              "reference": "Practitioner/f57a4503-7ec8-762b-9d03-9e6e653ad72c"
+            }
+          }
+        ],
+        "diagnosis": [
+          {
+            "sequence": 1,
+            "diagnosisCodeableConcept": {
+              "coding": [
+                {
+                  "code": "Z76.89",
+                  "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                  "display": "Persons encountering health services in other specified circumstances"
+                }
+              ]
+            }
+          }
+        ],
+        "procedure": [
+          {
+            "sequence": 1,
+            "procedureCodeableConcept": {
+              "coding": [
+                {
+                  "code": "428931000",
+                  "system": "http://snomed.info/sct/731000124108"
+                }
+              ]
+            }
+          }
+        ],
+        "insurance": [
+          {
+            "sequence": 1,
+            "focal": true,
+            "coverage": {
+              "reference": "Coverage/bc40a82d-47a9-df67-a184-0302d4b2b86c"
+            }
+          }
+        ],
+        "item": [
+          {
+            "sequence": 1,
+            "careTeamSequence": [
+              1
+            ],
+            "diagnosisSequence": [
+              1
+            ],
+            "procedureSequence": [
+              1
+            ],
+            "productOrService": {
+              "coding": [
+                {
+                  "code": "99309",
+                  "system": "http://www.ama-assn.org/go/cpt"
+                }
+              ]
+            },
+            "servicedPeriod": {
+              "start": "2021-12-26T00:00:00+00:00",
+              "end": "2021-12-26T00:15:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "da7d16c5-63c2-7341-09bb-896f97e1b1c5"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Condition/19dbd618-acf4-4120-8799-3cf7c2f40eaa",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "19dbd618-acf4-4120-8799-3cf7c2f40eaa",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-condition-encounter-diagnosis"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "92ec4845-9d98-4259-aca3-3851099f1496",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "encounter-diagnosis",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "Z76.89",
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "display": "Persons encountering health services in other specified circumstances"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "onsetDateTime": "2021-12-26T00:00:00+00:00",
+        "recordedDate": "2021-12-26T00:00:00+00:00"
+      },
+      "request": {
+        "method": "POST",
+        "url": "19dbd618-acf4-4120-8799-3cf7c2f40eaa"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Procedure/401d3308-225e-cd98-66ca-aa86b6eb6354",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "401d3308-225e-cd98-66ca-aa86b6eb6354",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-procedure"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "78c66055-c50f-4cc0-bccc-c76ceacc3914",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "status": "completed",
+        "code": {
+          "coding": [
+            {
+              "code": "428931000",
+              "system": "http://snomed.info/sct/731000124108"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "performedPeriod": {
+          "start": "2021-12-26T00:00:00+00:00",
+          "end": "2021-12-26T00:15:00+00:00"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "401d3308-225e-cd98-66ca-aa86b6eb6354"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Encounter/e8a81d38-1a6d-71a9-ab1f-65bc583eaf26",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "e8a81d38-1a6d-71a9-ab1f-65bc583eaf26",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-encounter"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "https://www.ncqa.org/synthea",
+            "value": "e8a81d38-1a6d-71a9-ab1f-65bc583eaf26"
+          }
+        ],
+        "status": "finished",
+        "class": {
+          "code": "AMB",
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "99309",
+                "system": "http://www.ama-assn.org/go/cpt"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "code": "PPRF",
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    "display": "primary performer"
+                  }
+                ]
+              }
+            ],
+            "period": {
+              "start": "2021-12-26T00:00:00+00:00",
+              "end": "2021-12-26T00:15:00+00:00"
+            },
+            "individual": {
+              "reference": "Practitioner/f57a4503-7ec8-762b-9d03-9e6e653ad72c",
+              "display": "null null"
+            }
+          }
+        ],
+        "period": {
+          "start": "2021-12-26T00:00:00+00:00",
+          "end": "2021-12-26T00:15:00+00:00"
+        },
+        "diagnosis": [
+          {
+            "condition": {
+              "reference": "Condition/19dbd618-acf4-4120-8799-3cf7c2f40eaa"
+            }
+          }
+        ],
+        "serviceProvider": {
+          "reference": "Organization/96807a8e-1823-4d46-8a39-d3b35c01418f"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "e8a81d38-1a6d-71a9-ab1f-65bc583eaf26"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Claim/e70fd707-4d0c-2e6d-b37a-e9fb24e457de",
+      "resource": {
+        "resourceType": "Claim",
+        "id": "e70fd707-4d0c-2e6d-b37a-e9fb24e457de",
+        "meta": {
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "f50529cd-de20-4853-85f8-5292f1517964",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "institutional",
+              "system": "http://terminology.hl7.org/CodeSystem/claim-type"
+            }
+          ]
+        },
+        "use": "claim",
+        "patient": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "billablePeriod": {
+          "start": "2022-01-09T00:00:00+00:00",
+          "end": "2022-01-09T00:15:00+00:00"
+        },
+        "created": "2022-01-09T00:15:00+00:00",
+        "provider": {
+          "reference": "Organization/96807a8e-1823-4d46-8a39-d3b35c01418f"
+        },
+        "priority": {
+          "coding": [
+            {
+              "code": "normal",
+              "system": "http://terminology.hl7.org/CodeSystem/processpriority"
+            }
+          ]
+        },
+        "careTeam": [
+          {
+            "sequence": 1,
+            "provider": {
+              "reference": "Practitioner/1a271bd7-cd93-4e39-91d9-9aaaf3443e60"
+            }
+          }
+        ],
+        "diagnosis": [
+          {
+            "sequence": 1,
+            "diagnosisCodeableConcept": {
+              "coding": [
+                {
+                  "code": "Z76.89",
+                  "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                  "display": "Persons encountering health services in other specified circumstances"
+                }
+              ]
+            }
+          }
+        ],
+        "procedure": [
+          {
+            "sequence": 1,
+            "procedureCodeableConcept": {
+              "coding": [
+                {
+                  "code": "428931000",
+                  "system": "http://snomed.info/sct/731000124108"
+                }
+              ]
+            }
+          }
+        ],
+        "insurance": [
+          {
+            "sequence": 1,
+            "focal": true,
+            "coverage": {
+              "reference": "Coverage/bc40a82d-47a9-df67-a184-0302d4b2b86c"
+            }
+          }
+        ],
+        "item": [
+          {
+            "sequence": 1,
+            "careTeamSequence": [
+              1
+            ],
+            "diagnosisSequence": [
+              1
+            ],
+            "procedureSequence": [
+              1
+            ],
+            "productOrService": {
+              "coding": [
+                {
+                  "code": "99309",
+                  "system": "http://www.ama-assn.org/go/cpt"
+                }
+              ]
+            },
+            "servicedPeriod": {
+              "start": "2022-01-09T00:00:00+00:00",
+              "end": "2022-01-09T00:15:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "e70fd707-4d0c-2e6d-b37a-e9fb24e457de"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Condition/094c88b9-8443-4051-88be-6f73379b7d2d",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "094c88b9-8443-4051-88be-6f73379b7d2d",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-condition-encounter-diagnosis"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "92ec4845-9d98-4259-aca3-3851099f1496",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "encounter-diagnosis",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "Z76.89",
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "display": "Persons encountering health services in other specified circumstances"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "onsetDateTime": "2022-01-09T00:00:00+00:00",
+        "recordedDate": "2022-01-09T00:00:00+00:00"
+      },
+      "request": {
+        "method": "POST",
+        "url": "094c88b9-8443-4051-88be-6f73379b7d2d"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Procedure/442fc9a4-db2a-a5db-05ee-4f2a05185c07",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "442fc9a4-db2a-a5db-05ee-4f2a05185c07",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-procedure"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "78c66055-c50f-4cc0-bccc-c76ceacc3914",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "status": "completed",
+        "code": {
+          "coding": [
+            {
+              "code": "428931000",
+              "system": "http://snomed.info/sct/731000124108"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "performedPeriod": {
+          "start": "2022-01-09T00:00:00+00:00",
+          "end": "2022-01-09T00:15:00+00:00"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "442fc9a4-db2a-a5db-05ee-4f2a05185c07"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Encounter/9772c35f-6807-69ea-31cb-2a748b422fa1",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "9772c35f-6807-69ea-31cb-2a748b422fa1",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-encounter"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "https://www.ncqa.org/synthea",
+            "value": "9772c35f-6807-69ea-31cb-2a748b422fa1"
+          }
+        ],
+        "status": "finished",
+        "class": {
+          "code": "AMB",
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "99309",
+                "system": "http://www.ama-assn.org/go/cpt"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "code": "PPRF",
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    "display": "primary performer"
+                  }
+                ]
+              }
+            ],
+            "period": {
+              "start": "2022-01-09T00:00:00+00:00",
+              "end": "2022-01-09T00:15:00+00:00"
+            },
+            "individual": {
+              "reference": "Practitioner/1a271bd7-cd93-4e39-91d9-9aaaf3443e60",
+              "display": "null null"
+            }
+          }
+        ],
+        "period": {
+          "start": "2022-01-09T00:00:00+00:00",
+          "end": "2022-01-09T00:15:00+00:00"
+        },
+        "diagnosis": [
+          {
+            "condition": {
+              "reference": "Condition/094c88b9-8443-4051-88be-6f73379b7d2d"
+            }
+          }
+        ],
+        "serviceProvider": {
+          "reference": "Organization/96807a8e-1823-4d46-8a39-d3b35c01418f"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "9772c35f-6807-69ea-31cb-2a748b422fa1"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Claim/3524f2f1-bcf6-0da7-4704-277806159c58",
+      "resource": {
+        "resourceType": "Claim",
+        "id": "3524f2f1-bcf6-0da7-4704-277806159c58",
+        "meta": {
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "f50529cd-de20-4853-85f8-5292f1517964",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "institutional",
+              "system": "http://terminology.hl7.org/CodeSystem/claim-type"
+            }
+          ]
+        },
+        "use": "claim",
+        "patient": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "billablePeriod": {
+          "start": "2022-01-23T00:00:00+00:00",
+          "end": "2022-01-23T00:15:00+00:00"
+        },
+        "created": "2022-01-23T00:15:00+00:00",
+        "provider": {
+          "reference": "Organization/96807a8e-1823-4d46-8a39-d3b35c01418f"
+        },
+        "priority": {
+          "coding": [
+            {
+              "code": "normal",
+              "system": "http://terminology.hl7.org/CodeSystem/processpriority"
+            }
+          ]
+        },
+        "careTeam": [
+          {
+            "sequence": 1,
+            "provider": {
+              "reference": "Practitioner/f59686ab-ad6b-4fc9-d2a5-fcb257641cb5"
+            }
+          }
+        ],
+        "diagnosis": [
+          {
+            "sequence": 1,
+            "diagnosisCodeableConcept": {
+              "coding": [
+                {
+                  "code": "Z76.89",
+                  "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                  "display": "Persons encountering health services in other specified circumstances"
+                }
+              ]
+            }
+          }
+        ],
+        "procedure": [
+          {
+            "sequence": 1,
+            "procedureCodeableConcept": {
+              "coding": [
+                {
+                  "code": "428931000",
+                  "system": "http://snomed.info/sct/731000124108"
+                }
+              ]
+            }
+          }
+        ],
+        "insurance": [
+          {
+            "sequence": 1,
+            "focal": true,
+            "coverage": {
+              "reference": "Coverage/bc40a82d-47a9-df67-a184-0302d4b2b86c"
+            }
+          }
+        ],
+        "item": [
+          {
+            "sequence": 1,
+            "careTeamSequence": [
+              1
+            ],
+            "diagnosisSequence": [
+              1
+            ],
+            "procedureSequence": [
+              1
+            ],
+            "productOrService": {
+              "coding": [
+                {
+                  "code": "99309",
+                  "system": "http://www.ama-assn.org/go/cpt"
+                }
+              ]
+            },
+            "servicedPeriod": {
+              "start": "2022-01-23T00:00:00+00:00",
+              "end": "2022-01-23T00:15:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "3524f2f1-bcf6-0da7-4704-277806159c58"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Condition/b1a54eb3-da2f-40e6-94b5-38bd7e961263",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "b1a54eb3-da2f-40e6-94b5-38bd7e961263",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-condition-encounter-diagnosis"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "92ec4845-9d98-4259-aca3-3851099f1496",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "encounter-diagnosis",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "Z76.89",
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "display": "Persons encountering health services in other specified circumstances"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "onsetDateTime": "2022-01-23T00:00:00+00:00",
+        "recordedDate": "2022-01-23T00:00:00+00:00"
+      },
+      "request": {
+        "method": "POST",
+        "url": "b1a54eb3-da2f-40e6-94b5-38bd7e961263"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Procedure/004dc18e-fcbd-b6a0-e728-9701e914f862",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "004dc18e-fcbd-b6a0-e728-9701e914f862",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-procedure"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "78c66055-c50f-4cc0-bccc-c76ceacc3914",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "status": "completed",
+        "code": {
+          "coding": [
+            {
+              "code": "428931000",
+              "system": "http://snomed.info/sct/731000124108"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "performedPeriod": {
+          "start": "2022-01-23T00:00:00+00:00",
+          "end": "2022-01-23T00:15:00+00:00"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "004dc18e-fcbd-b6a0-e728-9701e914f862"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Encounter/c32fd74d-1848-3237-8401-f154a7a35ba2",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "c32fd74d-1848-3237-8401-f154a7a35ba2",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-encounter"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "https://www.ncqa.org/synthea",
+            "value": "c32fd74d-1848-3237-8401-f154a7a35ba2"
+          }
+        ],
+        "status": "finished",
+        "class": {
+          "code": "AMB",
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "99309",
+                "system": "http://www.ama-assn.org/go/cpt"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/aa99adc7-0587-6d17-1c52-5ac1facec412",
+          "display": "Randell Ty Langworth"
+        },
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "code": "PPRF",
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    "display": "primary performer"
+                  }
+                ]
+              }
+            ],
+            "period": {
+              "start": "2022-01-23T00:00:00+00:00",
+              "end": "2022-01-23T00:15:00+00:00"
+            },
+            "individual": {
+              "reference": "Practitioner/f59686ab-ad6b-4fc9-d2a5-fcb257641cb5",
+              "display": "null null"
+            }
+          }
+        ],
+        "period": {
+          "start": "2022-01-23T00:00:00+00:00",
+          "end": "2022-01-23T00:15:00+00:00"
+        },
+        "diagnosis": [
+          {
+            "condition": {
+              "reference": "Condition/b1a54eb3-da2f-40e6-94b5-38bd7e961263"
+            }
+          }
+        ],
+        "serviceProvider": {
+          "reference": "Organization/96807a8e-1823-4d46-8a39-d3b35c01418f"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "c32fd74d-1848-3237-8401-f154a7a35ba2"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Organization/ad6e5d48-c584-6b97-a790-2ee02c5a49eb",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "ad6e5d48-c584-6b97-a790-2ee02c5a49eb",
+        "meta": {
+          "lastUpdated": "1970-01-01T00:00:00+00:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-organization"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "active": true,
+        "name": "Test Organization Name"
+      },
+      "request": {
+        "method": "POST",
+        "url": "ad6e5d48-c584-6b97-a790-2ee02c5a49eb"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Organization/d4af6769-f70d-c0e7-7c08-89d86e63fb97",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "d4af6769-f70d-c0e7-7c08-89d86e63fb97",
+        "meta": {
+          "lastUpdated": "1970-01-01T00:00:00+00:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-organization"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "active": true,
+        "name": "Test Organization Name"
+      },
+      "request": {
+        "method": "POST",
+        "url": "d4af6769-f70d-c0e7-7c08-89d86e63fb97"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Organization/52715db6-3643-0572-f5e2-675c9152b39c",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "52715db6-3643-0572-f5e2-675c9152b39c",
+        "meta": {
+          "lastUpdated": "1970-01-01T00:00:00+00:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-organization"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "active": true,
+        "name": "Test Organization Name"
+      },
+      "request": {
+        "method": "POST",
+        "url": "52715db6-3643-0572-f5e2-675c9152b39c"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Organization/e01714ee-32b4-b766-056e-15670e3979cd",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "e01714ee-32b4-b766-056e-15670e3979cd",
+        "meta": {
+          "lastUpdated": "1970-01-01T00:00:00+00:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-organization"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "active": true,
+        "name": "Test Organization Name"
+      },
+      "request": {
+        "method": "POST",
+        "url": "e01714ee-32b4-b766-056e-15670e3979cd"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Organization/279fc451-37fc-cbc4-66f1-2bcf89495d8c",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "279fc451-37fc-cbc4-66f1-2bcf89495d8c",
+        "meta": {
+          "lastUpdated": "1970-01-01T00:00:00+00:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-organization"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "active": true,
+        "name": "Test Organization Name"
+      },
+      "request": {
+        "method": "POST",
+        "url": "279fc451-37fc-cbc4-66f1-2bcf89495d8c"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Practitioner/2a8e4554-02d0-e817-168c-cc9c42dae081",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "2a8e4554-02d0-e817-168c-cc9c42dae081",
+        "meta": {
+          "lastUpdated": "2020-05-04T03:02:01-04:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "npi",
+                  "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+                  "display": "National Provider Identifier"
+                }
+              ],
+              "text": "National Provider Identifier"
+            },
+            "system": "http://hl7.org/fhir/sid/us-npi",
+            "value": "6667778880"
+          }
+        ],
+        "name": [
+          {
+            "family": "Jones",
+            "given": [
+              "Don"
+            ],
+            "prefix": [
+              "Dr"
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "2a8e4554-02d0-e817-168c-cc9c42dae081"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Location/c26554f3-fc09-4f9e-8eec-5c2c9912d14f",
+      "resource": {
+        "resourceType": "Location",
+        "id": "c26554f3-fc09-4f9e-8eec-5c2c9912d14f",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-location"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "system": "http://hl7.org/fhir/sid/us-npi",
+            "value": "9941339107"
+          }
+        ],
+        "status": "active",
+        "name": "Private Hospital",
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "71",
+                "system": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set",
+                "display": "Public Health Clinic"
+              }
+            ],
+            "text": "Public Health Clinic"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "c26554f3-fc09-4f9e-8eec-5c2c9912d14f"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/PractitionerRole/e15fe38e-8dab-d9ff-d5c7-a0e928560fe4",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "e15fe38e-8dab-d9ff-d5c7-a0e928560fe4",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "practitioner": {
+          "reference": "Practitioner/2a8e4554-02d0-e817-168c-cc9c42dae081",
+          "display": "TestPractitioner Last-Name-Example"
+        },
+        "organization": {
+          "reference": "Organization/ad6e5d48-c584-6b97-a790-2ee02c5a49eb"
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "specialty": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "location": [
+          {
+            "reference": "Location/c26554f3-fc09-4f9e-8eec-5c2c9912d14f"
+          }
+        ],
+        "telecom": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+                "valueBoolean": true
+              }
+            ],
+            "system": "email",
+            "value": "TestPractitioner.Last-Name-Example@example.com",
+            "use": "work"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "e15fe38e-8dab-d9ff-d5c7-a0e928560fe4"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Practitioner/6c5e309c-7036-9670-9ea4-6f2888471276",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "6c5e309c-7036-9670-9ea4-6f2888471276",
+        "meta": {
+          "lastUpdated": "2020-05-04T03:02:01-04:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "npi",
+                  "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+                  "display": "National Provider Identifier"
+                }
+              ],
+              "text": "National Provider Identifier"
+            },
+            "system": "http://hl7.org/fhir/sid/us-npi",
+            "value": "6667778880"
+          }
+        ],
+        "name": [
+          {
+            "family": "Jones",
+            "given": [
+              "Don"
+            ],
+            "prefix": [
+              "Dr"
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "6c5e309c-7036-9670-9ea4-6f2888471276"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/PractitionerRole/d3ce0bc8-a75a-10ab-2d0e-90173f62c5b4",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "d3ce0bc8-a75a-10ab-2d0e-90173f62c5b4",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "practitioner": {
+          "reference": "Practitioner/6c5e309c-7036-9670-9ea4-6f2888471276",
+          "display": "TestPractitioner Last-Name-Example"
+        },
+        "organization": {
+          "reference": "Organization/ad6e5d48-c584-6b97-a790-2ee02c5a49eb"
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "specialty": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "location": [
+          {
+            "reference": "Location/c26554f3-fc09-4f9e-8eec-5c2c9912d14f"
+          }
+        ],
+        "telecom": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+                "valueBoolean": true
+              }
+            ],
+            "system": "email",
+            "value": "TestPractitioner.Last-Name-Example@example.com",
+            "use": "work"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "d3ce0bc8-a75a-10ab-2d0e-90173f62c5b4"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Practitioner/f57a4503-7ec8-762b-9d03-9e6e653ad72c",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "f57a4503-7ec8-762b-9d03-9e6e653ad72c",
+        "meta": {
+          "lastUpdated": "2020-05-04T03:02:01-04:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "npi",
+                  "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+                  "display": "National Provider Identifier"
+                }
+              ],
+              "text": "National Provider Identifier"
+            },
+            "system": "http://hl7.org/fhir/sid/us-npi",
+            "value": "6667778880"
+          }
+        ],
+        "name": [
+          {
+            "family": "Jones",
+            "given": [
+              "Don"
+            ],
+            "prefix": [
+              "Dr"
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "f57a4503-7ec8-762b-9d03-9e6e653ad72c"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/PractitionerRole/0bcfa031-b634-8690-55ee-3a90a09f2e78",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "0bcfa031-b634-8690-55ee-3a90a09f2e78",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "practitioner": {
+          "reference": "Practitioner/f57a4503-7ec8-762b-9d03-9e6e653ad72c",
+          "display": "TestPractitioner Last-Name-Example"
+        },
+        "organization": {
+          "reference": "Organization/ad6e5d48-c584-6b97-a790-2ee02c5a49eb"
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "specialty": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "location": [
+          {
+            "reference": "Location/c26554f3-fc09-4f9e-8eec-5c2c9912d14f"
+          }
+        ],
+        "telecom": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+                "valueBoolean": true
+              }
+            ],
+            "system": "email",
+            "value": "TestPractitioner.Last-Name-Example@example.com",
+            "use": "work"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "0bcfa031-b634-8690-55ee-3a90a09f2e78"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Practitioner/1a271bd7-cd93-4e39-91d9-9aaaf3443e60",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "1a271bd7-cd93-4e39-91d9-9aaaf3443e60",
+        "meta": {
+          "lastUpdated": "2020-05-04T03:02:01-04:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "npi",
+                  "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+                  "display": "National Provider Identifier"
+                }
+              ],
+              "text": "National Provider Identifier"
+            },
+            "system": "http://hl7.org/fhir/sid/us-npi",
+            "value": "6667778880"
+          }
+        ],
+        "name": [
+          {
+            "family": "Jones",
+            "given": [
+              "Don"
+            ],
+            "prefix": [
+              "Dr"
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "1a271bd7-cd93-4e39-91d9-9aaaf3443e60"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/PractitionerRole/760481d3-1e82-eb4d-1257-f36e2b10929e",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "760481d3-1e82-eb4d-1257-f36e2b10929e",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "practitioner": {
+          "reference": "Practitioner/1a271bd7-cd93-4e39-91d9-9aaaf3443e60",
+          "display": "TestPractitioner Last-Name-Example"
+        },
+        "organization": {
+          "reference": "Organization/ad6e5d48-c584-6b97-a790-2ee02c5a49eb"
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "specialty": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "location": [
+          {
+            "reference": "Location/c26554f3-fc09-4f9e-8eec-5c2c9912d14f"
+          }
+        ],
+        "telecom": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+                "valueBoolean": true
+              }
+            ],
+            "system": "email",
+            "value": "TestPractitioner.Last-Name-Example@example.com",
+            "use": "work"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "760481d3-1e82-eb4d-1257-f36e2b10929e"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Practitioner/f59686ab-ad6b-4fc9-d2a5-fcb257641cb5",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "f59686ab-ad6b-4fc9-d2a5-fcb257641cb5",
+        "meta": {
+          "lastUpdated": "2020-05-04T03:02:01-04:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "npi",
+                  "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+                  "display": "National Provider Identifier"
+                }
+              ],
+              "text": "National Provider Identifier"
+            },
+            "system": "http://hl7.org/fhir/sid/us-npi",
+            "value": "6667778880"
+          }
+        ],
+        "name": [
+          {
+            "family": "Jones",
+            "given": [
+              "Don"
+            ],
+            "prefix": [
+              "Dr"
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "f59686ab-ad6b-4fc9-d2a5-fcb257641cb5"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/PractitionerRole/a8b57db9-df3c-8e95-8a52-6d50cebeea0e",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "a8b57db9-df3c-8e95-8a52-6d50cebeea0e",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "practitioner": {
+          "reference": "Practitioner/f59686ab-ad6b-4fc9-d2a5-fcb257641cb5",
+          "display": "TestPractitioner Last-Name-Example"
+        },
+        "organization": {
+          "reference": "Organization/ad6e5d48-c584-6b97-a790-2ee02c5a49eb"
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "specialty": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "location": [
+          {
+            "reference": "Location/c26554f3-fc09-4f9e-8eec-5c2c9912d14f"
+          }
+        ],
+        "telecom": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+                "valueBoolean": true
+              }
+            ],
+            "system": "email",
+            "value": "TestPractitioner.Last-Name-Example@example.com",
+            "use": "work"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "a8b57db9-df3c-8e95-8a52-6d50cebeea0e"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Practitioner/f97383a4-ac95-2f00-26f9-eea51cf53f0c",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "f97383a4-ac95-2f00-26f9-eea51cf53f0c",
+        "meta": {
+          "lastUpdated": "2020-05-04T03:02:01-04:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "npi",
+                  "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+                  "display": "National Provider Identifier"
+                }
+              ],
+              "text": "National Provider Identifier"
+            },
+            "system": "http://hl7.org/fhir/sid/us-npi",
+            "value": "9999999995"
+          }
+        ],
+        "active": true,
+        "name": [
+          {
+            "family": "Last-Name-Example",
+            "given": [
+              "Test Practitioner"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+                "valueBoolean": true
+              }
+            ],
+            "system": "email",
+            "value": "TestPractitioner.Last-Name-Example@example.com",
+            "use": "work"
+          }
+        ],
+        "address": [
+          {
+            "country": "US"
+          }
+        ],
+        "gender": "unknown"
+      },
+      "request": {
+        "method": "POST",
+        "url": "f97383a4-ac95-2f00-26f9-eea51cf53f0c"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/PractitionerRole/782fb151-702f-c61c-05be-4fda8f7fdde8",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "782fb151-702f-c61c-05be-4fda8f7fdde8",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "practitioner": {
+          "reference": "Practitioner/f97383a4-ac95-2f00-26f9-eea51cf53f0c",
+          "display": "TestPractitioner Last-Name-Example"
+        },
+        "organization": {
+          "reference": "Organization/ad6e5d48-c584-6b97-a790-2ee02c5a49eb"
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "specialty": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "location": [
+          {
+            "reference": "Location/c26554f3-fc09-4f9e-8eec-5c2c9912d14f"
+          }
+        ],
+        "telecom": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+                "valueBoolean": true
+              }
+            ],
+            "system": "email",
+            "value": "TestPractitioner.Last-Name-Example@example.com",
+            "use": "work"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "782fb151-702f-c61c-05be-4fda8f7fdde8"
+      }
+    }
+  ]
+}

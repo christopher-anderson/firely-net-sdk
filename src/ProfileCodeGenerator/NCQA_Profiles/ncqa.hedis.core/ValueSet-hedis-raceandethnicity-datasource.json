@@ -1,0 +1,19 @@
+{
+  "resourceType": "ValueSet",
+  "id": "hedis-raceandethnicity-datasource",
+  "url": "https://ncqa.org/fhir/ValueSet/hedis-raceandethnicity-datasource",
+  "name": "HEDISRaceAndEthnicityDataSource",
+  "title": "HEDIS Race And Ethnicity DataSource codes",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "This value set defines codes to identify race and ethnicity data source relevant to HEDIS",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "compose": {
+    "include": [
+      {
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-raceandethnicity-datasource"
+      }
+    ]
+  }
+}

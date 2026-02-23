@@ -1,0 +1,116 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-location",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-location",
+  "name": "HEDISCoreLocation",
+  "title": "HEDIS Core Location",
+  "status": "active",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core Location profile extends the Core resource to include requirements for measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Location",
+  "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Location.meta",
+        "path": "Location.meta",
+        "definition": "[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Meta",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Location.identifier",
+        "path": "Location.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        },
+        "comment": "NPI must be supported as the identifier system in the US, Tax id is allowed, Local id is allowed in addition to an another identifier supplied by a jurisdictional authority such as a practitioner's *Drug Enforcement Administration (DEA)* number.",
+        "min": 1
+      },
+      {
+        "id": "Location.identifier:NPI",
+        "path": "Location.identifier",
+        "sliceName": "NPI",
+        "short": "An identifier for the person as this agent",
+        "definition": "[HEDIS] An identifier that applies to this specific pharmacy.",
+        "max": "1",
+        "patternIdentifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi"
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "Location.identifier:NPI.system",
+        "path": "Location.identifier.system",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.name",
+        "path": "Location.name",
+        "definition": "[US Core] Name of the location as used by humans. Does not need to be unique."
+      },
+      {
+        "id": "Location.type",
+        "path": "Location.type",
+        "definition": "[HEDIS] Indicates the type of function performed at the location.",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Location.telecom",
+        "path": "Location.telecom",
+        "definition": "[US Core] The contact details of communication devices available at the location. This can include phone numbers, fax numbers, mobile numbers, email addresses and web sites."
+      },
+      {
+        "id": "Location.address",
+        "path": "Location.address",
+        "definition": "[US Core] Physical location."
+      },
+      {
+        "id": "Location.address.line",
+        "path": "Location.address.line",
+        "definition": "[US Core] This component contains the house number, apartment number, street name, street direction,  P.O. Box number, delivery hints, and similar address information."
+      },
+      {
+        "id": "Location.address.city",
+        "path": "Location.address.city",
+        "definition": "[US Core] The name of the city, town, suburb, village or other community or delivery center."
+      },
+      {
+        "id": "Location.address.state",
+        "path": "Location.address.state",
+        "definition": "[US Core] Sub-unit of a country with limited sovereignty in a federally organized country. A code may be used if codes are in common use (e.g. US 2 letter state codes)."
+      },
+      {
+        "id": "Location.address.postalCode",
+        "path": "Location.address.postalCode",
+        "definition": "[US Core] A postal code designating a region defined by the postal service."
+      },
+      {
+        "id": "Location.managingOrganization",
+        "path": "Location.managingOrganization",
+        "definition": "[US Core] The organization responsible for the provisioning and upkeep of the location."
+      }
+    ]
+  }
+}

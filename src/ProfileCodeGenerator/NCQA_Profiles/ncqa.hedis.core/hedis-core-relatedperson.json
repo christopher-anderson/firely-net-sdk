@@ -1,0 +1,101 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-relatedperson",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-relatedperson",
+  "name": "HEDISCoreRelatedPerson",
+  "title": "HEDIS Core RelatedPerson",
+  "status": "active",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "This profile sets minimum expectations for the RelatedPerson resource to record, search, and fetch basic administrative information about persons with a legal or familial relationship to a patient. It identifies which core elements, extensions, vocabularies, and value sets **SHALL** be present in the resource and constrains the way the elements are used when using this profile.  It provides the floor for standards development for specific use cases.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "RelatedPerson",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "RelatedPerson",
+        "path": "RelatedPerson",
+        "definition": "\\-",
+        "comment": "\\-",
+        "constraint": [
+          {
+            "key": "us-core-14",
+            "severity": "error",
+            "human": "Either a name or a relationship SHALL be provided (or both)",
+            "expression": "name.exists() or relationship.exists()"
+          }
+        ]
+      },
+      {
+        "id": "RelatedPerson.meta",
+        "path": "RelatedPerson.meta",
+        "definition": "[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Meta",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.active",
+        "path": "RelatedPerson.active",
+        "definition": "[US Core] Whether this related person record is in active use.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.patient",
+        "path": "RelatedPerson.patient",
+        "definition": "[HEDIS] The patient this person is related to.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-patient"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.relationship",
+        "path": "RelatedPerson.relationship",
+        "definition": "[US Core] The nature of the relationship between a patient and the related person.",
+        "condition": [
+          "us-core-14"
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.name",
+        "path": "RelatedPerson.name",
+        "definition": "[US Core]  A name associated with the person.",
+        "condition": [
+          "us-core-14"
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.telecom",
+        "path": "RelatedPerson.telecom",
+        "definition": "[US Core] A contact detail for the person, e.g. a telephone number or an email address.",
+        "mustSupport": true
+      },
+      {
+        "id": "RelatedPerson.address",
+        "path": "RelatedPerson.address",
+        "definition": "[US Core] Address where the related person can be contacted or visited.",
+        "mustSupport": true
+      }
+    ]
+  }
+}

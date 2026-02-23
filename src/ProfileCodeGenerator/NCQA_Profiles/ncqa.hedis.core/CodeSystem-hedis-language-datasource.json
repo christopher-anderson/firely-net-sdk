@@ -1,0 +1,32 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "hedis-language-datasource",
+  "url": "https://ncqa.org/fhir/CodeSystem/hedis-language-datasource",
+  "name": "HEDISLanguageDataSource",
+  "title": "HEDIS Language DataSource",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "This code system defines codes to identify language datasource relevant to HEDIS",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "content": "complete",
+  "count": 4,
+  "concept": [
+    {
+      "code": "CMS Databases",
+      "display": "cms Databases"
+    },
+    {
+      "code": "State Databases",
+      "display": "state Databases"
+    },
+    {
+      "code": "Health Plan Direct",
+      "display": "health plan direct"
+    },
+    {
+      "code": "Other",
+      "display": "other"
+    }
+  ]
+}

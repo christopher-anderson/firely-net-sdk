@@ -1,0 +1,128 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-observation-bmi",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-observation-bmi",
+  "name": "HEDISCoreObservationBMI",
+  "title": "HEDIS Core Observation BMI",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core BMI profile extends the HEDIS Core Vital Signs requirements requirements to include requirements for measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "https://ncqa.org/fhir/StructureDefinition/hedis-core-observation-vital-signs",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.status",
+        "path": "Observation.status"
+      },
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "definition": "[US Core] Describes what was observed. Sometimes this is called the observation \"name\"."
+      },
+      {
+        "id": "Observation.code.coding",
+        "path": "Observation.code.coding",
+        "patternCoding": {
+          "system": "http://loinc.org",
+          "code": "39156-5"
+        }
+      },
+      {
+        "id": "Observation.code.coding.system",
+        "path": "Observation.code.coding.system",
+        "definition": "[US Core] The identification of the code system that defines the meaning of the symbol in the code."
+      },
+      {
+        "id": "Observation.code.coding.code",
+        "path": "Observation.code.coding.code",
+        "definition": "[US Core] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)."
+      },
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]"
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        },
+        "type": [
+          {
+            "code": "Quantity"
+          }
+        ]
+      },
+      {
+        "id": "Observation.value[x]:valueQuantity",
+        "path": "Observation.value[x]",
+        "sliceName": "valueQuantity",
+        "short": "(USCDI) Vital Signs Value",
+        "definition": "[US Core] Vital Signs value are typically recorded using the Quantity data type.",
+        "comment": "An observation may have; 1)  a single value here, 2)  both a value and a set of related or component values,  or 3)  only a set of related or component values. If a value is present, the datatype for this element should be determined by Observation.code.  A CodeableConcept with just a text would be used instead of a string if the field was usually coded, or if the type associated with the Observation.code defines a coded value.  For additional guidance, see the [Notes section](http://hl7.org/fhir/observation.html#notes) below.",
+        "type": [
+          {
+            "code": "Quantity"
+          }
+        ]
+      },
+      {
+        "id": "Observation.value[x]:valueQuantity.id",
+        "path": "Observation.value[x].id",
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "Observation.value[x]:valueQuantity.value",
+        "path": "Observation.value[x].value",
+        "short": "(USCDI) Numerical value (with implicit precision)",
+        "definition": "[US Core] The value of the measured amount. The value includes an implicit precision in the presentation of the value.",
+        "min": 1,
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Observation.value[x]:valueQuantity.unit",
+        "path": "Observation.value[x].unit",
+        "short": "(USCDI) Unit representation",
+        "definition": "[US Core] A human-readable form of the unit.",
+        "min": 1,
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Observation.value[x]:valueQuantity.system",
+        "path": "Observation.value[x].system",
+        "short": "(USCDI) System that defines coded unit form",
+        "definition": "[US Core] The identification of the system that provides the coded form of the unit.",
+        "min": 1,
+        "fixedUri": "http://unitsofmeasure.org",
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Observation.value[x]:valueQuantity.code",
+        "path": "Observation.value[x].code",
+        "short": "(USCDI) Coded responses from the common UCUM units for vital signs value set.",
+        "definition": "[US Core] A computer processable form of the unit in some unit representation system.",
+        "min": 1,
+        "fixedCode": "kg/m2",
+        "mustSupport": true,
+        "isModifier": false
+      }
+    ]
+  }
+}

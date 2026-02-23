@@ -25,6 +25,13 @@ class Program
             return;
         }
 
+        // Check for HEDIS batch mode
+        if (args[0] == "--hedis" || args[0] == "-h")
+        {
+            await RunHedisBatchGeneration(args);
+            return;
+        }
+
         var profilePath = args[0];
         var outputPath = args.Length > 1 ? args[1] : null;
         var options = ParseOptions(args);
@@ -32,17 +39,50 @@ class Program
         await GenerateFromFile(profilePath, outputPath, options);
     }
 
+    static async Task RunHedisBatchGeneration(string[] args)
+    {
+        // Default paths
+        var profilesPath = args.Length > 1 ? args[1] : @"NCQA_Profiles\ncqa.hedis.core";
+        var outputPath = args.Length > 2 ? args[2] : @"..\..\..\..\Ncqa.Hedis.Core.2025";
+        var @namespace = "Ncqa.Hedis.Core._2025";
+
+        // Parse namespace option
+        for (int i = 3; i < args.Length; i++)
+        {
+            if (args[i] == "--namespace" && i + 1 < args.Length)
+            {
+                @namespace = args[++i];
+            }
+        }
+
+        Console.WriteLine("HEDIS Core Profile Batch Generation");
+        Console.WriteLine("====================================");
+        Console.WriteLine();
+
+        var generator = new HedisProfileBatchGenerator(profilesPath, outputPath, @namespace);
+        await generator.GenerateAllAsync();
+    }
+
     static void PrintUsage()
     {
         Console.WriteLine("Usage: ProfileCodeGenerator <profile.json> [output.cs] [options]");
         Console.WriteLine();
-        Console.WriteLine("Options:");
+        Console.WriteLine("Single Profile Mode:");
         Console.WriteLine("  --namespace <ns>      Set the namespace (default: Generated.Fhir)");
         Console.WriteLine("  --class <name>        Override the class name");
         Console.WriteLine("  --must-support        Only include MustSupport elements");
         Console.WriteLine("  --constrained         Only include constrained elements");
         Console.WriteLine("  --include-extensions  Include extension elements");
         Console.WriteLine("  --include-metadata    Include meta, text, contained elements");
+        Console.WriteLine();
+        Console.WriteLine("HEDIS Batch Mode:");
+        Console.WriteLine("  --hedis [profiles-path] [output-path] [--namespace <ns>]");
+        Console.WriteLine("  -h      Same as --hedis");
+        Console.WriteLine();
+        Console.WriteLine("  Generates DTOs from all HEDIS Core profiles.");
+        Console.WriteLine("  Default profiles-path: NCQA_Profiles\\ncqa.hedis.core");
+        Console.WriteLine("  Default output-path:   ..\\..\\..\\..\\Ncqa.Hedis.Core.2025");
+        Console.WriteLine("  Default namespace:     Ncqa.Hedis.Core._2025");
         Console.WriteLine();
     }
 

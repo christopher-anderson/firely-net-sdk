@@ -1,0 +1,43 @@
+{
+  "resourceType": "DiagnosticReport",
+  "id": "hedis-core-diagnosticreport-note-01",
+  "meta": {
+    "profile": [
+      "https://ncqa.org/fhir/StructureDefinition/hedis-core-diagnosticreport-note"
+    ],
+    "tag": [
+      {
+        "code": "ehr",
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+        "display": "EHR"
+      }
+    ]
+  },
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "code": "LP29684-5",
+          "system": "http://loinc.org",
+          "display": "Radiology"
+        }
+      ],
+      "text": "Radiology"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "code": "30746-2",
+        "system": "http://loinc.org",
+        "display": "Portable XR Chest Views"
+      }
+    ],
+    "text": "Portable XR Chest Views"
+  },
+  "subject": {
+    "reference": "Patient/example"
+  },
+  "effectiveDateTime": "2019-02-03T19:43:30.000Z"
+}

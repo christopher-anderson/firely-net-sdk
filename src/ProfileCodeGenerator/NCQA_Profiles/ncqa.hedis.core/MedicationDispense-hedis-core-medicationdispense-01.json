@@ -1,0 +1,31 @@
+{
+  "resourceType": "MedicationDispense",
+  "id": "hedis-core-medicationdispense-01",
+  "meta": {
+    "profile": [
+      "https://ncqa.org/fhir/StructureDefinition/hedis-core-medicationdispense"
+    ],
+    "tag": [
+      {
+        "code": "administrative",
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+        "display": "Administrative"
+      }
+    ]
+  },
+  "status": "completed",
+  "medicationReference": {
+    "reference": "Medication/hedis-core-medication-01"
+  },
+  "daysSupply": {
+    "value": 10,
+    "code": "d",
+    "system": "http://unitsofmeasure.org",
+    "unit": "Day"
+  },
+  "subject": {
+    "reference": "Patient/hedis-core-patient-01",
+    "display": "Amy Shaw"
+  },
+  "whenHandedOver": "2022-02-23"
+}

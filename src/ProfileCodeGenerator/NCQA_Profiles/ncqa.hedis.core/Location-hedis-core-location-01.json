@@ -1,0 +1,36 @@
+{
+  "resourceType": "Location",
+  "id": "hedis-core-location-01",
+  "meta": {
+    "profile": [
+      "https://ncqa.org/fhir/StructureDefinition/hedis-core-location"
+    ],
+    "tag": [
+      {
+        "code": "administrative",
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+        "display": "Administrative"
+      }
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://hl7.org/fhir/sid/us-npi",
+      "value": "9941339107"
+    }
+  ],
+  "status": "active",
+  "name": "Private Hospital",
+  "type": [
+    {
+      "coding": [
+        {
+          "code": "81",
+          "system": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set",
+          "display": "Independent Laboratory"
+        }
+      ],
+      "text": "Independent Laboratory"
+    }
+  ]
+}

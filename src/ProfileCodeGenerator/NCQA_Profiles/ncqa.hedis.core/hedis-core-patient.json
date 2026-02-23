@@ -1,0 +1,357 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-patient",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-patient",
+  "name": "HEDISCorePatient",
+  "title": "HEDIS Core Patient",
+  "status": "active",
+  "date": "2024-05-13T15:48:48.1965571+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core Patient profile extends the CARIN BB requirements which includes additional requirement for HEDIS measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.meta",
+        "path": "Patient.meta",
+        "definition": "[HEDIS][CARIN-BB]  The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+        "type": [
+          {
+            "code": "Meta",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Patient.meta.lastUpdated",
+        "path": "Patient.meta.lastUpdated",
+        "definition": "[CARIN-BB] When the resource last changed - e.g. when the version changed."
+      },
+      {
+        "id": "Patient.meta.profile",
+        "path": "Patient.meta.profile"
+      },
+      {
+        "id": "Patient.meta.profile:supportedProfile",
+        "path": "Patient.meta.profile",
+        "sliceName": "supportedProfile",
+        "definition": "[CARIN-BB] A list of profiles (references to [StructureDefinition](structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url)."
+      },
+      {
+        "id": "Patient.extension:race",
+        "path": "Patient.extension",
+        "sliceName": "race",
+        "definition": "[US Core] Concepts classifying the person into a named category of humans sharing common history, traits, geographical origin or nationality.  The race codes used to represent these concepts are based upon the [CDC Race and Ethnicity Code Set Version 1.0](http://www.cdc.gov/phin/resources/vocabulary/index.html) which includes over 900 concepts for representing race and ethnicity of which 921 reference race.  The race concepts are grouped by and pre-mapped to the 5 OMB race categories:\n\n   - American Indian or Alaska Native\n   - Asian\n   - Black or African American\n   - Native Hawaiian or Other Pacific Islander\n   - White."
+      },
+      {
+        "id": "Patient.extension:race.extension",
+        "path": "Patient.extension.extension",
+        "min": 1
+      },
+      {
+        "id": "Patient.extension:ethnicity",
+        "path": "Patient.extension",
+        "sliceName": "ethnicity",
+        "definition": "[US Core] Concepts classifying the person into a named category of humans sharing common history, traits, geographical origin or nationality.  The ethnicity codes used to represent these concepts are based upon the [CDC ethnicity and Ethnicity Code Set Version 1.0](http://www.cdc.gov/phin/resources/vocabulary/index.html) which includes over 900 concepts for representing race and ethnicity of which 43 reference ethnicity.  The ethnicity concepts are grouped by and pre-mapped to the 2 OMB ethnicity categories: - Hispanic or Latino - Not Hispanic or Latino."
+      },
+      {
+        "id": "Patient.extension:ethnicity.extension",
+        "path": "Patient.extension.extension",
+        "min": 1
+      },
+      {
+        "id": "Patient.extension:birthsex",
+        "path": "Patient.extension",
+        "sliceName": "birthsex",
+        "definition": "[US Core] A code classifying the person's sex assigned at birth  as specified by the [Office of the National Coordinator for Health IT (ONC)](https://www.healthit.gov/newsroom/about-onc)."
+      },
+      {
+        "id": "Patient.extension:ethnicityDataSource",
+        "path": "Patient.extension",
+        "sliceName": "ethnicityDataSource",
+        "definition": "[HEDIS] Optional Extension Element - found in all resources.",
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/ext-patient.ethnicity-datasource"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Patient.extension:raceDataSource",
+        "path": "Patient.extension",
+        "sliceName": "raceDataSource",
+        "definition": "[HEDIS] Optional Extension Element - found in all resources.",
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/ext-patient.race-datasource"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Patient.extension:otherCommunication",
+        "path": "Patient.extension",
+        "sliceName": "otherCommunication",
+        "short": "[HEDIS] A language which may be used to communicate with the patient.",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/ext-patient-other-communication"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Patient.extension:writtenDatasource",
+        "path": "Patient.extension",
+        "sliceName": "writtenDatasource",
+        "definition": "[HEDIS] Optional Extension Element - found in all resources.",
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/ext-patient.written.language-datasource"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Patient.extension:spokenDatasource",
+        "path": "Patient.extension",
+        "sliceName": "spokenDatasource",
+        "definition": "[HEDIS] Optional Extension Element - found in all resources.",
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/ext-patient.spoken.language-datasource"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Patient.extension:otherDatasource",
+        "path": "Patient.extension",
+        "sliceName": "otherDatasource",
+        "definition": "[HEDIS] Optional Extension Element - found in all resources.",
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/ext-patient.other.language-datasource"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Patient.extension:sexParameterForClinicalUse",
+        "path": "Patient.extension",
+        "sliceName": "sexParameterForClinicalUse",
+        "definition": "[HEDIS] A parameter that provides guidance on how a recipient should apply settings or reference ranges that are derived from observable information such as an organ inventory, recent hormone lab tests, genetic testing, menstrual status, obstetric history, etc..",
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/ext-patient.sex-parameter-for-clinical-use"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "definition": "[CARIN BB] An identifier for this patient."
+      },
+      {
+        "id": "Patient.identifier.system",
+        "path": "Patient.identifier.system",
+        "definition": "[US Core] Establishes the namespace for the value - that is, a URL that describes a set values that are unique."
+      },
+      {
+        "id": "Patient.identifier.value",
+        "path": "Patient.identifier.value",
+        "definition": "[US Core] The portion of the identifier typically relevant to the user and which is unique within the context of the system."
+      },
+      {
+        "id": "Patient.identifier:memberid",
+        "path": "Patient.identifier",
+        "sliceName": "memberid",
+        "definition": "[CARIN-BB]  An identifier for this patient."
+      },
+      {
+        "id": "Patient.identifier:uniquememberid",
+        "path": "Patient.identifier",
+        "sliceName": "uniquememberid",
+        "definition": "[CARIN-BB]  An identifier for this patient."
+      },
+      {
+        "id": "Patient.name",
+        "path": "Patient.name",
+        "definition": "[US Core] A name associated with the individual."
+      },
+      {
+        "id": "Patient.name.family",
+        "path": "Patient.name.family",
+        "definition": "[US Core] The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name of his father."
+      },
+      {
+        "id": "Patient.name.given",
+        "path": "Patient.name.given",
+        "definition": "[US Core] Given name."
+      },
+      {
+        "id": "Patient.telecom",
+        "path": "Patient.telecom",
+        "definition": "[US Core] A contact detail (e.g. a telephone number or an email address) by which the individual may be contacted."
+      },
+      {
+        "id": "Patient.telecom.system",
+        "path": "Patient.telecom.system",
+        "definition": "[US Core] Telecommunications form for contact point - what communications system is required to make use of the contact."
+      },
+      {
+        "id": "Patient.telecom.value",
+        "path": "Patient.telecom.value",
+        "definition": "[US Core] The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address)."
+      },
+      {
+        "id": "Patient.telecom.use",
+        "path": "Patient.telecom.use",
+        "definition": "[US Core] Identifies the purpose for the contact point."
+      },
+      {
+        "id": "Patient.gender",
+        "path": "Patient.gender",
+        "definition": "[US Core] Administrative Gender - the gender that the patient is considered to have for administration and record keeping purposes."
+      },
+      {
+        "id": "Patient.birthDate",
+        "path": "Patient.birthDate",
+        "definition": "[HEDIS][US Core]  The date of birth for the individual.",
+        "comment": "Most HEDIS measures require date of birth to be specified in day precision. If only the month is known, it is acceptable to assume it is the 1st of the month. If only the year is known, it is acceptable to assume January 1st. Age of the individual is a critical factor for inclusion in initial populations for most HEDIS measures and cannot be omitted.",
+        "min": 1,
+        "constraint": [
+          {
+            "key": "hedis-core-patient-01",
+            "severity": "error",
+            "human": "Datetime must be at least to day",
+            "expression": "$this.toString().length() >= 10"
+          }
+        ]
+      },
+      {
+        "id": "Patient.deceased[x]",
+        "path": "Patient.deceased[x]",
+        "definition": "[CARIN-BB][HEDIS]   Indicates if the individual is deceased or not.",
+        "comment": "If there's no value in the instance, it means there is no statement on whether or not the individual is deceased. HEDIS digital measures will interpret the absence of a value as a sign of the person being alive. The use of date adequately represents the time of deceased for performance measurement. Per HEDIS general guidelines, deceased members should be identified so they can be properly excluded from performance measurement.",
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ]
+      },
+      {
+        "id": "Patient.address",
+        "path": "Patient.address",
+        "definition": "[US Core] An address for the individual."
+      },
+      {
+        "id": "Patient.address.line",
+        "path": "Patient.address.line",
+        "definition": "[US Core] This component contains the house number, apartment number, street name, street direction,  P.O. Box number, delivery hints, and similar address information."
+      },
+      {
+        "id": "Patient.address.city",
+        "path": "Patient.address.city",
+        "definition": "[US Core] The name of the city, town, suburb, village or other community or delivery center."
+      },
+      {
+        "id": "Patient.address.district",
+        "path": "Patient.address.district",
+        "definition": "[CARIN-BB]  The name of the administrative area (county)."
+      },
+      {
+        "id": "Patient.address.state",
+        "path": "Patient.address.state",
+        "definition": "[US Core] Sub-unit of a country with limited sovereignty in a federally organized country. A code may be used if codes are in common use (e.g. US 2 letter state codes)."
+      },
+      {
+        "id": "Patient.address.postalCode",
+        "path": "Patient.address.postalCode",
+        "definition": "[US Core] A postal code designating a region defined by the postal service."
+      },
+      {
+        "id": "Patient.address.country",
+        "path": "Patient.address.country",
+        "definition": "[CARIN-BB]  Country - a nation as commonly understood or generally accepted."
+      },
+      {
+        "id": "Patient.address.period",
+        "path": "Patient.address.period",
+        "definition": "[US Core] Time period when address was/is in use."
+      },
+      {
+        "id": "Patient.communication",
+        "path": "Patient.communication",
+        "definition": "[US Core] A language which may be used to communicate with the patient about his or her health."
+      },
+      {
+        "id": "Patient.communication.language",
+        "path": "Patient.communication.language",
+        "definition": "[HEDIS][US Core] The ISO-639-1 alpha 2 code in lower case for the language, optionally followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in upper case; e.g. \"en\" for English, or \"en-US\" for American English versus \"en-EN\" for England English.",
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "https://ncqa.org/fhir/ValueSet/hedis-language"
+        }
+      },
+      {
+        "id": "Patient.communication.preferred.extension:preferenceType",
+        "path": "Patient.communication.preferred.extension",
+        "sliceName": "preferenceType",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/patient-preferenceType"
+            ]
+          }
+        ],
+        "isModifier": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "hedis-data-source",
+  "url": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+  "name": "HEDISDataSource",
+  "title": "HEDIS Data Source",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "This code system defines codes to identify HEDIS data sources per HEDIS audit rules.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "content": "complete",
+  "count": 7,
+  "concept": [
+    {
+      "code": "administrative",
+      "display": "Administrative",
+      "definition": "Administrative data as from a financial system"
+    },
+    {
+      "code": "supplemental",
+      "display": "Supplemental",
+      "definition": "Supplemental data as approved by a HEDIS auditor"
+    },
+    {
+      "code": "ehr",
+      "display": "EHR",
+      "definition": "Sourced from an electronic health record (EHR) system"
+    },
+    {
+      "code": "phr",
+      "display": "PHR",
+      "definition": "Standard clinical data collected in a care setting or provided via an API"
+    },
+    {
+      "code": "hie",
+      "display": "HIE",
+      "definition": "Sourced from a health information exchange (HIE) or other data aggregator"
+    },
+    {
+      "code": "clinical-registry",
+      "display": "Clinical Registry",
+      "definition": "Sourced from a clinical data or disease registry"
+    },
+    {
+      "code": "case-management",
+      "display": "Case Management",
+      "definition": "Sourced from a case management system, either internal or delegated to another organization"
+    }
+  ]
+}

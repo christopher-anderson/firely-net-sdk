@@ -1,0 +1,75 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-procedure",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-procedure",
+  "name": "HEDISCoreProcedure",
+  "title": "HEDIS Core Procedure",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core Procedure profile extends the US Core requirements to include requirements for measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Procedure",
+  "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Procedure.meta",
+        "path": "Procedure.meta",
+        "definition": "[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Meta",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Procedure.status",
+        "path": "Procedure.status",
+        "definition": "[US Core] A code specifying the state of the procedure. Generally, this will be the in-progress or completed state."
+      },
+      {
+        "id": "Procedure.category",
+        "path": "Procedure.category"
+      },
+      {
+        "id": "Procedure.code",
+        "path": "Procedure.code",
+        "definition": "[US Core] The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. \"Laparoscopic Appendectomy\")."
+      },
+      {
+        "id": "Procedure.subject",
+        "path": "Procedure.subject",
+        "definition": "[HEDIS][US Core] The person, animal or group on which the procedure was performed.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.performed[x]",
+        "path": "Procedure.performed[x]",
+        "definition": "[US Core] Estimated or actual date, date-time, period, or age when the procedure was performed.  Allows a period to support complex procedures that span more than one date, and also allows for the length of the procedure to be captured."
+      },
+      {
+        "id": "Procedure.bodySite",
+        "path": "Procedure.bodySite",
+        "definition": "[HEDIS] Detailed and structured anatomical location information. Multiple locations are allowed - e.g. multiple punch biopsies of a lesion.",
+        "mustSupport": true
+      }
+    ]
+  }
+}

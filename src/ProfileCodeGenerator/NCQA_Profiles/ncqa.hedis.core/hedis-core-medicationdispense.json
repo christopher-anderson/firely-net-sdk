@@ -1,0 +1,93 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-medicationdispense",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-medicationdispense",
+  "name": "HEDISCoreMedicationDispense",
+  "title": "HEDIS Core MedicationDispense",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core MedicationDispense profile extends the base resource to include requirements for measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "MedicationDispense",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/MedicationDispense",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "MedicationDispense.meta",
+        "path": "MedicationDispense.meta",
+        "definition": "[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Meta",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.status",
+        "path": "MedicationDispense.status",
+        "definition": "[HEDIS] A code specifying the state of the set of dispense events.",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.medication[x]",
+        "path": "MedicationDispense.medication[x]",
+        "definition": "[HEDIS] Identifies the medication being administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications.",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-medication"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.subject",
+        "path": "MedicationDispense.subject",
+        "definition": "[HEDIS] A link to a resource representing the person or the group to whom the medication will be given.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MedicationDispense.quantity",
+        "path": "MedicationDispense.quantity",
+        "comment": "[HEDIS] The context of use may frequently define what kind of quantity this is and therefore what kind of units can be used. The context of use may also restrict the values for the comparator.",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.daysSupply",
+        "path": "MedicationDispense.daysSupply",
+        "definition": "[HEDIS] The amount of medication expressed as a timing amount.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationDispense.whenHandedOver",
+        "path": "MedicationDispense.whenHandedOver",
+        "definition": "[HEDIS] The time the dispensed product was provided to the patient or their representative.",
+        "min": 1,
+        "mustSupport": true
+      }
+    ]
+  }
+}

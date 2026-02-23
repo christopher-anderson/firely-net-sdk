@@ -1,0 +1,42 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-medication",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-medication",
+  "name": "HEDISCoreMedication",
+  "title": "HEDIS Core Medication",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core Medication profile extends the US Core requirements to include requirements for measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Medication",
+  "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Medication.meta",
+        "path": "Medication.meta",
+        "definition": "[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Meta",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Medication.code",
+        "path": "Medication.code",
+        "definition": "[US Core] A code (or set of codes) that specify this medication, or a textual description if no code is available. Usage note: This could be a standard medication code such as a code from RxNorm, SNOMED CT, IDMP etc. It could also be a national or local formulary code, optionally with translations to other code systems."
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "resourceType": "MedicationAdministration",
+  "id": "hedis-core-medicationadministration-01",
+  "meta": {
+    "profile": [
+      "https://ncqa.org/fhir/StructureDefinition/hedis-core-medicationadministration"
+    ],
+    "tag": [
+      {
+        "code": "administrative",
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+        "display": "Administrative"
+      }
+    ]
+  },
+  "status": "in-progress",
+  "medicationReference": {
+    "reference": "Medication/hedis-core-medication-01"
+  },
+  "subject": {
+    "reference": "Patient/hedis-core-patient-01",
+    "display": "Amy Shaw"
+  },
+  "effectivePeriod": {
+    "start": "2023-01-01T00:00:00+01:00"
+  }
+}

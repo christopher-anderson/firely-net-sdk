@@ -1,0 +1,46 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "us-core-category",
+  "url": "https://ncqa.org/fhir/CodeSystem/us-core-category",
+  "name": "USCoreCategory",
+  "title": "US Core Category",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "Category codes used in US Core Profiles such as the US Core Simple Observation Profile. The are typically used when there is a need for categorization for searching and finding resources or workflow hints.",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "US"
+        }
+      ]
+    }
+  ],
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "caseSensitive": true,
+  "content": "complete",
+  "concept": [
+    {
+      "code": "sdoh",
+      "display": "SDOH",
+      "definition": "Social Determinants of Health category"
+    },
+    {
+      "code": "functional-status",
+      "display": "Functional Status",
+      "definition": "Functional Status category"
+    },
+    {
+      "code": "disability-status",
+      "display": "Disability Status",
+      "definition": "Disability Status category"
+    },
+    {
+      "code": "cognitive-status",
+      "display": "Cognitive Status",
+      "definition": "Cognitive Status category"
+    }
+  ]
+}

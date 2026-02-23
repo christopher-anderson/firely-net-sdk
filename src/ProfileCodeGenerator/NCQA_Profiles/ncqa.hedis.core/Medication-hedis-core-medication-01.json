@@ -1,0 +1,25 @@
+{
+  "resourceType": "Medication",
+  "id": "hedis-core-medication-01",
+  "meta": {
+    "profile": [
+      "https://ncqa.org/fhir/StructureDefinition/hedis-core-medication"
+    ],
+    "tag": [
+      {
+        "code": "administrative",
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+        "display": "Administrative"
+      }
+    ]
+  },
+  "code": {
+    "coding": [
+      {
+        "code": "977860",
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "display": "methamphetamine hydrochloride 5 MG Oral Tablet"
+      }
+    ]
+  }
+}

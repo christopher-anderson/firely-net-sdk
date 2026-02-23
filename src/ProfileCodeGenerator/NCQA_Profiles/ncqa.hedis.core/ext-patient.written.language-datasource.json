@@ -1,0 +1,47 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ext-patient.written.language-datasource",
+  "url": "https://ncqa.org/fhir/StructureDefinition/ext-patient.written.language-datasource",
+  "name": "ExtPatientwrittenlanguageDatasource",
+  "title": "Ext Patient written Language Datasource",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "Indicates the data source for written language relevant to HEDIS Measure.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "Patient"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://ncqa.org/fhir/StructureDefinition/ext-patient.written.language-datasource"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "type": [
+          {
+            "code": "Coding"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "description": "This value set defines codes to identify language data source relevant to HEDIS",
+          "valueSet": "https://ncqa.org/fhir/ValueSet/hedis-language-datasource"
+        }
+      }
+    ]
+  }
+}

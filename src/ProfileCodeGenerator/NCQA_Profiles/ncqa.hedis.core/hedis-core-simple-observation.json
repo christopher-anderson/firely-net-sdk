@@ -1,0 +1,239 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-simple-observation",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-simple-observation",
+  "name": "HEDISCoreSimpleObservation",
+  "title": "HEDIS Core Simple Observation",
+  "status": "active",
+  "date": "2024-05-03T18:45:38.1089208+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "This is a copy of the US Core Simple Observation profile currently under development for inclusion in US Core version 6.0.0. This profile specifies the core elements, extensions, vocabularies, and value sets that shall be present in the resource when utilizing this profile. This serves as a baseline for standards development for specific use cases. By adhering to these requirements, data consistency and interoperability can be ensured across different healthcare systems and applications.",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "US"
+        }
+      ]
+    }
+  ],
+  "purpose": "The US Core 5.0.1 specification includes various Observation profiles such as Clinical Test Result, Imaging Result, Laboratory Result, Sexual Orientation, Social History, Survey, and SDOH Assessment profiles. With the release of US Core 6.0.0, a new profile has been added that documents the common requirements for the Observation profiles in both versions. To ensure alignment with the US Realm, a copy of this profile along with the required ValueSets and CodeSystems has been made available for pre-adoption.In this updated profile, any TargetProfile references related to a HEDIS Core profile have been corrected, and any unresolved references to US Core have been removed. By doing so, this profile will provide a more comprehensive and standardized approach to meeting the common Observation requirements for HEDIS.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "workflow",
+      "uri": "http://hl7.org/fhir/workflow",
+      "name": "Workflow Pattern"
+    },
+    {
+      "identity": "sct-concept",
+      "uri": "http://snomed.info/conceptdomain",
+      "name": "SNOMED CT Concept Domain Binding"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    },
+    {
+      "identity": "sct-attr",
+      "uri": "http://snomed.org/attributebinding",
+      "name": "SNOMED CT Attribute Binding"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation",
+        "path": "Observation",
+        "short": "assessment observation",
+        "definition": "\\-",
+        "comment": "\\-"
+      },
+      {
+        "id": "Observation.meta",
+        "path": "Observation.meta",
+        "definition": "[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Meta",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.status",
+        "path": "Observation.status",
+        "definition": "[US Core] The status of the result value.",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.category",
+        "path": "Observation.category",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        },
+        "definition": "[HEDIS] A code that classifies the general type of observation being made.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.category:hedis-core",
+        "path": "Observation.category",
+        "sliceName": "hedis-core",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "description": "[HEDIS] Codes for high level observation categories.",
+          "valueSet": "https://ncqa.org/fhir/ValueSet/us-core-simple-observation-category"
+        }
+      },
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "definition": "[US Core] Describes what was observed. Sometimes this is called the observation \"name\".",
+        "mustSupport": true,
+        "binding": {
+          "strength": "preferred"
+        }
+      },
+      {
+        "id": "Observation.subject",
+        "path": "Observation.subject",
+        "definition": "[HEDIS] [US Core] The patient, or group of patients, location, or device this observation is about and into whose record the observation is placed. If the actual focus of the observation is different from the subject (or a sample of, part, or region of the subject), the `focus` element or the `code` itself specifies the actual focus of the observation.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-patient"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]",
+        "definition": "[HEDIS][US Core] The time or time-period the observed value is asserted as being true. For biological subjects - e.g. human patients - this is usually called the \"physiologically relevant time\".",
+        "comment": "At least a date should be present unless this observation is a historical report.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.performer",
+        "path": "Observation.performer",
+        "definition": "[HEDIS][US Core] Who was responsible for asserting the observed value as \"true\".",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner",
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-organization",
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-patient",
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitionerrole",
+              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam",
+              "http://hl7.org/fhir/StructureDefinition/RelatedPerson"
+            ],
+            "_targetProfile": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support",
+                    "valueBoolean": true
+                  }
+                ]
+              },
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support",
+                    "valueBoolean": false
+                  }
+                ]
+              },
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support",
+                    "valueBoolean": false
+                  }
+                ]
+              },
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support",
+                    "valueBoolean": false
+                  }
+                ]
+              },
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/elementdefinition-type-must-support",
+                    "valueBoolean": false
+                  }
+                ]
+              },
+              null
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "definition": "[US Core] The information determined as a result of making the observation, if the information has a simple value.",
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.derivedFrom",
+        "path": "Observation.derivedFrom",
+        "short": "Related Observation(s) or other resource the observation is made from",
+        "definition": "[HEDIS] Observations or or other resource such as a QuestionnaireResponse from which this observation value is derived.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-documentreference",
+              "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+              "http://hl7.org/fhir/StructureDefinition/ImagingStudy",
+              "http://hl7.org/fhir/StructureDefinition/Media",
+              "http://hl7.org/fhir/StructureDefinition/MolecularSequence"
+            ]
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

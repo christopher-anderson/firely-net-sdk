@@ -1,0 +1,65 @@
+{
+  "resourceType": "RelatedPerson",
+  "id": "hedis-core-relatedperson-01",
+  "meta": {
+    "profile": [
+      "https://ncqa.org/fhir/StructureDefinition/hedis-core-relatedperson"
+    ],
+    "tag": [
+      {
+        "code": "administrative",
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+        "display": "Administrative"
+      }
+    ]
+  },
+  "active": true,
+  "patient": {
+    "reference": "Patient/example",
+    "display": "Amy V. Shaw"
+  },
+  "relationship": [
+    {
+      "coding": [
+        {
+          "code": "NIECE",
+          "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+          "display": "niece"
+        }
+      ]
+    }
+  ],
+  "name": [
+    {
+      "use": "official",
+      "family": "van Putten",
+      "given": [
+        "Sarah"
+      ]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "555-555-5555",
+      "use": "home"
+    },
+    {
+      "system": "email",
+      "value": "sarah.vanputten@example.com",
+      "use": "home"
+    }
+  ],
+  "birthDate": "1996-01-28",
+  "address": [
+    {
+      "use": "home",
+      "line": [
+        "80A Village Street"
+      ],
+      "city": "New Holland",
+      "state": "PA",
+      "postalCode": "17557"
+    }
+  ]
+}

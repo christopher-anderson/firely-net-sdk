@@ -1,0 +1,267 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-observation-blood-pressure",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-observation-blood-pressure",
+  "name": "HEDISCoreObservationBloodPressure",
+  "title": "HEDIS Core Observation Blood Pressure",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core Blood Pressure profile extends the HEDIS Core Vital Signs requirements to include requirements for measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "https://ncqa.org/fhir/StructureDefinition/hedis-core-observation-vital-signs",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.status",
+        "path": "Observation.status",
+        "definition": "[US Core] The status of the result value."
+      },
+      {
+        "id": "Observation.category",
+        "path": "Observation.category",
+        "definition": "[US Core] A code that classifies the general type of observation being made."
+      },
+      {
+        "id": "Observation.category:VSCat",
+        "path": "Observation.category",
+        "sliceName": "VSCat",
+        "definition": "[US Core] A code that classifies the general type of observation being made."
+      },
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "definition": "[US Core] Describes what was observed. Sometimes this is called the observation \"name\"."
+      },
+      {
+        "id": "Observation.code.coding",
+        "path": "Observation.code.coding",
+        "patternCoding": {
+          "system": "http://loinc.org",
+          "code": "85354-9"
+        }
+      },
+      {
+        "id": "Observation.subject",
+        "path": "Observation.subject",
+        "definition": "[HEDIS] The patient, or group of patients, location, or device this observation is about and into whose record the observation is placed. If the actual focus of the observation is different from the subject (or a sample of, part, or region of the subject), the `focus` element or the `code` itself specifies the actual focus of the observation."
+      },
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]",
+        "short": "Often just a dateTime for Vital Signs",
+        "definition": "[US Core] Often just a dateTime for Vital Signs.",
+        "comment": "At least a date should be present unless this observation is a historical report.  For recording imprecise or \"fuzzy\" times (For example, a blood glucose measurement taken \"after breakfast\") use the [Timing](http://hl7.org/fhir/datatypes.html#timing) datatype which allow the measurement to be tied to regular life events.",
+        "isModifier": false
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "definition": "[HEDIS] The information determined as a result of making the observation, if the information has a simple value."
+      },
+      {
+        "id": "Observation.dataAbsentReason",
+        "path": "Observation.dataAbsentReason",
+        "definition": "[US Core] Provides a reason why the expected value in the element Observation.value[x] is missing."
+      },
+      {
+        "id": "Observation.component",
+        "path": "Observation.component",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "code"
+            }
+          ],
+          "rules": "open"
+        },
+        "definition": "[US Core] Some observations have multiple component observations.  These component observations are expressed as separate code value pairs that share the same attributes.  Examples include systolic and diastolic component observations for blood pressure measurement and multiple component observations for genetics observations.",
+        "min": 2
+      },
+      {
+        "id": "Observation.component.code",
+        "path": "Observation.component.code",
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "https://ncqa.org/fhir/ValueSet/us-core-vital-signs"
+        }
+      },
+      {
+        "id": "Observation.component:systolic",
+        "path": "Observation.component",
+        "sliceName": "systolic",
+        "short": "Systolic Blood Pressure",
+        "definition": "[US Core] Used when reporting component observation such as systolic and diastolic blood pressure.",
+        "comment": "For a discussion on the ways Observations can be assembled in groups together see [Notes](http://hl7.org/fhir/observation.html#notes) below.",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Observation.component:systolic.code",
+        "path": "Observation.component.code",
+        "definition": "[US Core] Describes what was observed. Sometimes this is called the observation \"code\".",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8480-6"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Observation.component:systolic.code.coding",
+        "path": "Observation.component.code.coding",
+        "definition": "[US Core] A reference to a code defined by a terminology system.",
+        "min": 1
+      },
+      {
+        "id": "Observation.component:systolic.code.coding.system",
+        "path": "Observation.component.code.coding.system",
+        "definition": "[US Core] The identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "Observation.component:systolic.code.coding.code",
+        "path": "Observation.component.code.coding.code",
+        "definition": "[US Core] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "Observation.component:systolic.value[x]",
+        "path": "Observation.component.value[x]",
+        "definition": "[US Core] The information determined as a result of making the observation, if the information has a simple value.",
+        "type": [
+          {
+            "code": "Quantity"
+          }
+        ]
+      },
+      {
+        "id": "Observation.component:systolic.value[x].value",
+        "path": "Observation.component.value[x].value",
+        "definition": "[US Core] The value of the measured amount. The value includes an implicit precision in the presentation of the value.",
+        "min": 1,
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Observation.component:systolic.value[x].unit",
+        "path": "Observation.component.value[x].unit",
+        "definition": "[US Core] A human-readable form of the unit.",
+        "min": 1,
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Observation.component:systolic.value[x].system",
+        "path": "Observation.component.value[x].system",
+        "definition": "[US Core] The identification of the system that provides the coded form of the unit.",
+        "min": 1,
+        "fixedUri": "http://unitsofmeasure.org",
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Observation.component:systolic.value[x].code",
+        "path": "Observation.component.value[x].code",
+        "definition": "[US Core] A computer processable form of the unit in some unit representation system.",
+        "min": 1,
+        "fixedCode": "mm[Hg]",
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Observation.component:diastolic",
+        "path": "Observation.component",
+        "sliceName": "diastolic",
+        "short": "Diastolic Blood Pressure",
+        "definition": "[US Core] Used when reporting component observation such as systolic and diastolic blood pressure.",
+        "comment": "For a discussion on the ways Observations can be assembled in groups together see [Notes](http://hl7.org/fhir/observation.html#notes) below.",
+        "min": 1,
+        "max": "1",
+        "isModifier": false
+      },
+      {
+        "id": "Observation.component:diastolic.code",
+        "path": "Observation.component.code",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8462-4"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Observation.component:diastolic.code.coding",
+        "path": "Observation.component.code.coding",
+        "definition": "[US Core] A reference to a code defined by a terminology system.",
+        "min": 1
+      },
+      {
+        "id": "Observation.component:diastolic.code.coding.system",
+        "path": "Observation.component.code.coding.system",
+        "definition": "[US Core] The identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "Observation.component:diastolic.code.coding.code",
+        "path": "Observation.component.code.coding.code",
+        "definition": "[US Core] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "Observation.component:diastolic.value[x]",
+        "path": "Observation.component.value[x]",
+        "definition": "[US Core] The information determined as a result of making the observation, if the information has a simple value.",
+        "type": [
+          {
+            "code": "Quantity"
+          }
+        ]
+      },
+      {
+        "id": "Observation.component:diastolic.value[x].value",
+        "path": "Observation.component.value[x].value",
+        "definition": "[US Core] The value of the measured amount. The value includes an implicit precision in the presentation of the value.",
+        "min": 1,
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Observation.component:diastolic.value[x].unit",
+        "path": "Observation.component.value[x].unit",
+        "definition": "[US Core] A human-readable form of the unit.",
+        "min": 1,
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Observation.component:diastolic.value[x].system",
+        "path": "Observation.component.value[x].system",
+        "definition": "[US Core] The identification of the system that provides the coded form of the unit.",
+        "min": 1,
+        "fixedUri": "http://unitsofmeasure.org",
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Observation.component:diastolic.value[x].code",
+        "path": "Observation.component.value[x].code",
+        "definition": "[US Core] A computer processable form of the unit in some unit representation system.",
+        "min": 1,
+        "fixedCode": "mm[Hg]",
+        "mustSupport": true,
+        "isModifier": false
+      }
+    ]
+  }
+}

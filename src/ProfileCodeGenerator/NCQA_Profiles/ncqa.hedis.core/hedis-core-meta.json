@@ -1,0 +1,51 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-meta",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta",
+  "name": "HEDISCoreMeta",
+  "title": "HEDIS Core Meta",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "A data type profile on Meta to capture the HEDIS data source.",
+  "purpose": "Data sources in HEDIS are required to be distinguished specifically between Administrative and Supplemental Data. This profile defines a set of codes that implementers must use to define the type of data source.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "type": "Meta",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Meta",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Meta.tag",
+        "path": "Meta.tag",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1
+      },
+      {
+        "id": "Meta.tag:hedisDataSource",
+        "path": "Meta.tag",
+        "sliceName": "hedisDataSource",
+        "short": "HEDIS Data Source",
+        "definition": "[HEDIS] Indicates which data source contributed to this record.",
+        "min": 1,
+        "max": "1",
+        "binding": {
+          "strength": "required",
+          "description": "Codes to identify the source of data per HEDIS audit rules.",
+          "valueSet": "https://ncqa.org/fhir/ValueSet/hedis-data-source"
+        }
+      }
+    ]
+  }
+}

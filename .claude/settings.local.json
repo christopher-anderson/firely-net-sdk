@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet build:*)",
+      "Bash(dotnet test:*)",
+      "Bash(dotnet run:*)",
+      "Bash(git remote add:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git fetch:*)",
+      "Bash(git cherry-pick:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(copy \"C:\\\\Development\\\\Projects\\\\firely-net-sdk\\\\src\\\\ProfileCodeGenerator\\\\NCQA_Profiles\\\\ncqa.hedis.core\\\\Patient-hedis-core-patient-01.json\" \"C:\\\\Development\\\\Projects\\\\firely-net-sdk\\\\Ncqa.Hedis.Core.2025.Tests\\\\TestData\"\")",
+      "Bash(for:*)",
+      "Bash(do sed -i 's/MetaDto/Meta/g; s/ReferenceDto/ResourceReference/g; s/CodeableConceptDto/CodeableConcept/g; s/QuantityDto/Quantity/g; s/PeriodDto/Period/g; s/IdentifierDto/Identifier/g; s/CodingDto/Coding/g; s/AddressDto/Address/g; s/HumanNameDto/HumanName/g; s/ContactPointDto/ContactPoint/g; s/AttachmentDto/Attachment/g; s/ExtensionDto/Extension/g' \"$f\")",
+      "Bash(done)",
+      "Bash(dotnet sln add:*)"
+    ]
+  }
+}

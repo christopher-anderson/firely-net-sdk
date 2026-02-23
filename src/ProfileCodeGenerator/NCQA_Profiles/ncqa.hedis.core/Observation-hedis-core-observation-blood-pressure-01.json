@@ -1,0 +1,86 @@
+{
+  "resourceType": "Observation",
+  "id": "hedis-core-observation-blood-pressure-01",
+  "meta": {
+    "tag": [
+      {
+        "code": "ehr",
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+        "display": "EHR"
+      }
+    ],
+    "profile": [
+      "https://ncqa.org/fhir/StructureDefinition/hedis-core-observation-blood-pressure"
+    ]
+  },
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "code": "vital-signs",
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "display": "Vital Signs"
+        }
+      ],
+      "text": "Vital Signs"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "code": "85354-9",
+        "system": "http://loinc.org",
+        "display": "Blood pressure panel with all children optional"
+      }
+    ],
+    "text": "Blood pressure systolic and diastolic"
+  },
+  "subject": {
+    "reference": "Patient/hedis-core-patient-01",
+    "display": "Amy Shaw"
+  },
+  "encounter": {
+    "reference": "Encounter/hedis-core-encounter-01",
+    "display": "GP Visit"
+  },
+  "effectiveDateTime": "1999-07-02",
+  "component": [
+    {
+      "code": {
+        "coding": [
+          {
+            "code": "8480-6",
+            "system": "http://loinc.org",
+            "display": "Systolic blood pressure"
+          }
+        ],
+        "text": "Systolic blood pressure"
+      },
+      "valueQuantity": {
+        "value": 120,
+        "code": "mm[Hg]",
+        "system": "http://unitsofmeasure.org",
+        "unit": "mmHg"
+      }
+    },
+    {
+      "code": {
+        "coding": [
+          {
+            "code": "8462-4",
+            "system": "http://loinc.org",
+            "display": "Diastolic blood pressure"
+          }
+        ],
+        "text": "Diastolic blood pressure"
+      },
+      "valueQuantity": {
+        "value": 80,
+        "code": "mm[Hg]",
+        "system": "http://unitsofmeasure.org",
+        "unit": "mmHg"
+      }
+    }
+  ]
+}

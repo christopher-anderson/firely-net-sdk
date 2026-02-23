@@ -1,0 +1,59 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-observation",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-observation",
+  "name": "HEDISCoreObservation",
+  "title": "HEDIS Core Observation",
+  "status": "active",
+  "date": "2024-05-03T18:44:04.160592+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core Observation profile extends the HEDIS Core Simple Observation to include requirements for measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "https://ncqa.org/fhir/StructureDefinition/hedis-core-simple-observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.meta",
+        "path": "Observation.meta",
+        "min": 1
+      },
+      {
+        "id": "Observation.status",
+        "path": "Observation.status"
+      },
+      {
+        "id": "Observation.category",
+        "path": "Observation.category",
+        "definition": "[HEDIS][US Core] A code that classifies the general type of observation being made."
+      },
+      {
+        "id": "Observation.category:hedis-core",
+        "path": "Observation.category",
+        "sliceName": "hedis-core",
+        "definition": "[HEDIS] A code that classifies the general type of observation being made."
+      },
+      {
+        "id": "Observation.code",
+        "path": "Observation.code"
+      },
+      {
+        "id": "Observation.subject",
+        "path": "Observation.subject",
+        "definition": "[HEDIS][US Core] The patient, or group of patients, location, or device this observation is about and into whose record the observation is placed. If the actual focus of the observation is different from the subject (or a sample of, part, or region of the subject), the `focus` element or the `code` itself specifies the actual focus of the observation."
+      },
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]"
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]"
+      }
+    ]
+  }
+}

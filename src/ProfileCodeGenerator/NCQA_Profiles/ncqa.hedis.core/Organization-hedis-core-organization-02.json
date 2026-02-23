@@ -1,0 +1,58 @@
+{
+  "resourceType": "Organization",
+  "id": "hedis-core-organization-02",
+  "meta": {
+    "lastUpdated": "2022-12-16T09:14:11+00:00",
+    "profile": [
+      "https://ncqa.org/fhir/StructureDefinition/hedis-core-organization",
+      "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization|1.1.0"
+    ],
+    "tag": [
+      {
+        "code": "administrative",
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+        "display": "Administrative"
+      }
+    ]
+  },
+  "identifier": [
+    {
+      "type": {
+        "coding": [
+          {
+            "code": "npi",
+            "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+            "display": "National Provider Identifier"
+          }
+        ],
+        "text": "National Provider Identifier"
+      },
+      "system": "http://hl7.org/fhir/sid/us-npi",
+      "value": "6667778880"
+    }
+  ],
+  "active": true,
+  "name": "Green Medical Group",
+  "address": [
+    {
+      "line": [
+        "Attn: Green Medical Group"
+      ],
+      "city": "Pittsburgh",
+      "state": "PA",
+      "postalCode": "15222",
+      "country": "USA"
+    }
+  ],
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "phone",
+          "value": "555-555-5520",
+          "use": "work"
+        }
+      ]
+    }
+  ]
+}

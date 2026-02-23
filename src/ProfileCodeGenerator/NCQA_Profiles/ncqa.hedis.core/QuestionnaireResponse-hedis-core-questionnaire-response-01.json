@@ -1,0 +1,63 @@
+{
+  "resourceType": "QuestionnaireResponse",
+  "id": "hedis-core-questionnaire-response-01",
+  "meta": {
+    "tag": [
+      {
+        "code": "ehr",
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+        "display": "EHR"
+      }
+    ],
+    "profile": [
+      "https://ncqa.org/fhir/StructureDefinition/hedis-core-questionnaireresponse"
+    ]
+  },
+  "status": "completed",
+  "subject": {
+    "reference": "Patient/hedis-core-patient-01",
+    "display": "Amy V. Shaw"
+  },
+  "authored": "2014-12-11T04:44:16Z",
+  "author": {
+    "reference": "Practitioner/hedis-core-practitioner-01",
+    "display": "Ronald Bone"
+  },
+  "item": [
+    {
+      "linkId": "1",
+      "text": "Eye Opening Response",
+      "answer": [
+        {
+          "valueDecimal": 4
+        }
+      ]
+    },
+    {
+      "linkId": "2",
+      "text": "Verbal Response",
+      "answer": [
+        {
+          "valueDecimal": 4
+        }
+      ]
+    },
+    {
+      "linkId": "3",
+      "text": "Motor Response",
+      "answer": [
+        {
+          "valueDecimal": 4
+        }
+      ]
+    }
+  ],
+  "_questionnaire": {
+    "extension": [
+      {
+        "url": "https://ncqa.org/fhir/StructureDefinition/ext-questionnaireresponse.questionnaire-uri",
+        "valueUri": "https://www.cdc.gov/masstrauma/resources/gcs.pdf"
+      }
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-practitionerrole",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitionerrole",
+  "name": "HEDISCorePractitionerRole",
+  "title": "HEDIS Core PractitionerRole",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core PractitionerRole profile extends US Core requirements to include requirements for measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "PractitionerRole",
+  "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "PractitionerRole.meta",
+        "path": "PractitionerRole.meta",
+        "definition": "[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Meta",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "PractitionerRole.extension:practitionerRolePresc",
+        "path": "PractitionerRole.extension",
+        "sliceName": "practitionerRolePresc",
+        "definition": "[HEDIS] Indicates a practitioner with prescribing authority",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/ext-practitionerrole.presc"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "PractitionerRole.period",
+        "path": "PractitionerRole.period",
+        "mustSupport": false
+      },
+      {
+        "id": "PractitionerRole.practitioner",
+        "path": "PractitionerRole.practitioner",
+        "definition": "[US Core] Practitioner that is able to provide the defined services for the organization."
+      },
+      {
+        "id": "PractitionerRole.organization",
+        "path": "PractitionerRole.organization",
+        "definition": "[US Core] The organization where the Practitioner performs the roles associated."
+      },
+      {
+        "id": "PractitionerRole.code",
+        "path": "PractitionerRole.code",
+        "definition": "[US Core] Roles which this practitioner is authorized to perform for the organization."
+      },
+      {
+        "id": "PractitionerRole.specialty",
+        "path": "PractitionerRole.specialty",
+        "definition": "[US Core] Specific specialty of the practitioner."
+      },
+      {
+        "id": "PractitionerRole.location",
+        "path": "PractitionerRole.location",
+        "definition": "[US Core] The location(s) at which this practitioner provides care."
+      },
+      {
+        "id": "PractitionerRole.telecom",
+        "path": "PractitionerRole.telecom",
+        "definition": "[US Core] Contact details that are specific to the role/location/service."
+      },
+      {
+        "id": "PractitionerRole.telecom.system",
+        "path": "PractitionerRole.telecom.system",
+        "definition": "[US Core] Telecommunications form for contact point - what communications system is required to make use of the contact."
+      },
+      {
+        "id": "PractitionerRole.telecom.value",
+        "path": "PractitionerRole.telecom.value",
+        "definition": "[US Core] The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address)."
+      },
+      {
+        "id": "PractitionerRole.endpoint",
+        "path": "PractitionerRole.endpoint",
+        "definition": "[US Core] Technical endpoints providing access to services operated for the practitioner with this role."
+      }
+    ]
+  }
+}

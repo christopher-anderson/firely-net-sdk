@@ -1,0 +1,2113 @@
+{
+  "resourceType": "Bundle",
+  "id": "hedis-core-ima-numeratorcmb1-01",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "https://ncqa.org/Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Patient|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-patient"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ],
+          "lastUpdated": "2025-09-19T09:48:01.8512764-04:00"
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "MB",
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "display": "Member Number"
+                }
+              ]
+            },
+            "system": "https://www.xxx.com/fhir/memberidentifier",
+            "value": "1234"
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "SS",
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "display": "Social Security Number"
+                }
+              ]
+            },
+            "system": "http://hl7.org/fhir/sid/us-ssn",
+            "value": "999-93-4640"
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "MR",
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "display": "Medical Record Number"
+                }
+              ]
+            },
+            "system": "http://hospital.smarthealthit.org",
+            "value": "d51a8a22-9a8e-b88a-e85f-5e7493f7192a"
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-mothersMaidenName",
+            "valueString": "Concepción Naranjo"
+          },
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "code": "2106-3",
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "display": "White"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "White"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "code": "2135-2",
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "display": "Hispanic or Latino"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "Hispanic or Latino"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-birthPlace",
+            "valueAddress": {
+              "city": "Gaudalajara",
+              "state": "Jalisco",
+              "country": "MX"
+            }
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Alcala",
+            "given": [
+              "Juan",
+              "Rodrigo"
+            ]
+          },
+          {
+            "use": "official",
+            "family": "Alcala",
+            "given": [
+              "Juan",
+              "Rodrigo"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "555-299-3600",
+            "use": "home"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "2010-10-29",
+        "address": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/geolocation",
+                "extension": [
+                  {
+                    "url": "latitude",
+                    "valueDecimal": 41.745575367558125
+                  },
+                  {
+                    "url": "longitude",
+                    "valueDecimal": -71.05881572579644
+                  }
+                ]
+              }
+            ],
+            "line": [
+              "1011 Toy Park"
+            ],
+            "city": "Freetown",
+            "state": "MA"
+          }
+        ],
+        "maritalStatus": {
+          "coding": [
+            {
+              "code": "S",
+              "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+              "display": "Never Married"
+            }
+          ]
+        },
+        "multipleBirthBoolean": false,
+        "communication": [
+          {
+            "language": {
+              "coding": [
+                {
+                  "code": "es",
+                  "system": "urn:ietf:bcp:47",
+                  "display": "Spanish"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "d51a8a22-9a8e-b88a-e85f-5e7493f7192a"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Parameters/01ff2914-684d-d325-3e0d-138e00faede2.all-params",
+      "resource": {
+        "resourceType": "Parameters",
+        "id": "01ff2914-684d-d325-3e0d-138e00faede2.all-params",
+        "parameter": [
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Chemical Dependency - Inpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_numerator_hpv.json Module.BirthDate",
+            "valueString": "10/29/2010"
+          },
+          {
+            "name": "coverage_generator.json Module.BenefitHit",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_generator.json Module.Pharmacy Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Pharmacy",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_benefit.json Module.Medical",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_enroll.json Module.Chemical Dependency - Outpatient / EDBenefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_enroll.json Module.Medicare Good",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_benefit.json Module.Mental Health - Outpatient/ED",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_initial_population.json Module.InitialPopulation",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_generator.json Module.Medical Benefit",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_generator.json Module.Chemical Dependency - Outpatient / ED Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_denominator.json Module.InitialPopulation",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Chemical Dependency - Intensive Outpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_benefit.json Module.Mental Health - Inpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_continuous_enrollment.json Module.Start Date",
+            "valueString": "10/29/2022"
+          },
+          {
+            "name": "coverage_generator.json Module.Mental Health - Outpatient / ED Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Dental",
+            "valueBoolean": false
+          },
+          {
+            "name": "hospice_check.json Module.Measurement_Period_End",
+            "valueString": "12/31/2023"
+          },
+          {
+            "name": "ima_numerator_hpv.json Module.NumeratorHPV",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima.json Module.Prior_Year_Start",
+            "valueString": "01/01/2022"
+          },
+          {
+            "name": "coverage_enroll.json Module.PayerHit",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_benefit.json Module.Chemical Dependency - Inpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_benefit.json Module.Pharmacy",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_continuous_enrollment.json Module.End Date",
+            "valueString": "10/29/2023"
+          },
+          {
+            "name": "coverage_generator.json Module.Start Date",
+            "valueString": "10/29/2022"
+          },
+          {
+            "name": "prior_to_my_and_after_my.json Module.Measurement_Period_End",
+            "valueString": "12/31/2023"
+          },
+          {
+            "name": "ima.json Module.Measurement_Period_Start",
+            "valueString": "01/01/2023"
+          },
+          {
+            "name": "ima_initial_population.json Module.PayerHit",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_enroll.json Module.Chemical Dependency - Inpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "prior_to_my_and_after_my.json Module.Measurement_Period_Start",
+            "valueString": "01/01/2023"
+          },
+          {
+            "name": "coverage_generator.json Module.Mental Health - Inpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Exchange Good?",
+            "valueBoolean": true
+          },
+          {
+            "name": "hospice_check.json Module.Has_Hospice",
+            "valueBoolean": false
+          },
+          {
+            "name": "hospice_required_exclusion.json Module.RequiredExclusion",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_numerator_men.json Module.BirthDate",
+            "valueString": "10/29/2010"
+          },
+          {
+            "name": "choose_good.json Module.Exchange",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_enroll.json Module.Exchange Good",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_benefit.json Module.Choose True",
+            "valueBoolean": true
+          },
+          {
+            "name": "hospice_check.json Module.Hospice_Date",
+            "valueString": "04/10/2024"
+          },
+          {
+            "name": "coverage_enroll.json Module.Mental Health - Intensive Outpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "hospice_required_exclusion.json Module.Hospice_Date",
+            "valueString": "04/10/2024"
+          },
+          {
+            "name": "coverage_generator.json Module.PayerHit",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima_denominator.json Module.Denominator",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_generator.json Module.Mental Health - Intensive Outpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_benefit.json Module.Dental",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Chemical Dependency - Inpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_enroll.json Module.Mental Health - Outpatient / ED Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_numerator_tdap.json Module.BirthDate",
+            "valueString": "10/29/2010"
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Medical",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_generator.json Module.Longest Gap Length",
+            "valueString": "[15 Days]"
+          },
+          {
+            "name": "ima_initial_population.json Module.ContinuousEnrollment",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima_continuous_enrollment.json Module.PayerHit",
+            "valueBoolean": true
+          },
+          {
+            "name": "hospice_required_exclusion.json Module.Has_Hospice",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_numerator_tdap.json Module.NumeratorTDAP",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_generator.json Module.Commercial Good?",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_enroll.json Module.BenefitHit",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_good.json Module.Medicaid",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Mental Health - Inpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima_numerator_men.json Module.NumeratorMEN",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima_continuous_enrollment.json Module.BenefitHit",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_generator.json Module.Medicaid Good?",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima_denominator.json Module.RequiredExclusion",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Dental Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_enroll.json Module.Medical Benefit",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_benefit.json Module.Chemical Dependency - Intensive Outpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "hospice_required_exclusion.json Module.Measurement_Period_Start",
+            "valueString": "01/01/2023"
+          },
+          {
+            "name": "coverage_enroll.json Module.Pharmacy Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima.json Module.Prior_Year_End",
+            "valueString": "12/31/2022"
+          },
+          {
+            "name": "ima.json Module.Measurement_Period_End",
+            "valueString": "12/31/2023"
+          },
+          {
+            "name": "ima_continuous_enrollment.json Module.ContinuousEnrollment",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_enroll.json Module.Commercial Good",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Mental Health - Intensive Outpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_benefit.json Module.Chemical Dependency - Outpatient / ED",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Number of Gaps",
+            "valueString": "1"
+          },
+          {
+            "name": "coverage_enroll.json Module.Dental Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Medicare Good?",
+            "valueBoolean": false
+          },
+          {
+            "name": "hospice_check.json Module.Measurement_Period_Start",
+            "valueString": "01/01/2023"
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Mental Health - Outpatient/ED",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.Chemical Dependency - Intensive Outpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_good.json Module.Medicare",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_enroll.json Module.Medicaid Good",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima_initial_population.json Module.Measurement Period End",
+            "valueString": "12/31/2023"
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Chemical Dependency - Outpatient / ED",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_either_good_or_bad_benefit.json Module.Did Chose True",
+            "valueBoolean": true
+          },
+          {
+            "name": "coverage_enroll.json Module.Mental Health - Inpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "choose_good.json Module.Commercial",
+            "valueBoolean": true
+          },
+          {
+            "name": "choose_benefit.json Module.Mental Health - Intensive Outpatient",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_enroll.json Module.Chemical Dependency - Intensive Outpatient Benefit",
+            "valueBoolean": false
+          },
+          {
+            "name": "coverage_generator.json Module.End Date",
+            "valueString": "10/29/2023"
+          },
+          {
+            "name": "hospice_required_exclusion.json Module.Measurement_Period_End",
+            "valueString": "12/31/2023"
+          },
+          {
+            "name": "ima.json Module.RExclD",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima.json Module.Denominator",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima.json Module.ContinuousEnrollment",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima.json Module.NumeratorHPV",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima.json Module.NumeratorCMB2",
+            "valueBoolean": false
+          },
+          {
+            "name": "ima.json Module.NumeratorCMB1",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima.json Module.NumeratorTDAP",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima.json Module.Initial_Population",
+            "valueBoolean": true
+          },
+          {
+            "name": "ima.json Module.NumeratorMen",
+            "valueBoolean": true
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "01ff2914-684d-d325-3e0d-138e00faede2.all-params"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Parameters/01ff2914-684d-d325-3e0d-138e00faede2.scorekey",
+      "resource": {
+        "resourceType": "Parameters",
+        "id": "01ff2914-684d-d325-3e0d-138e00faede2.scorekey",
+        "parameter": [
+          {
+            "name": "RExclD",
+            "valueBoolean": false
+          },
+          {
+            "name": "Denominator",
+            "valueBoolean": true
+          },
+          {
+            "name": "ContinuousEnrollment",
+            "valueBoolean": true
+          },
+          {
+            "name": "NumeratorHPV",
+            "valueBoolean": false
+          },
+          {
+            "name": "NumeratorCMB2",
+            "valueBoolean": false
+          },
+          {
+            "name": "NumeratorCMB1",
+            "valueBoolean": true
+          },
+          {
+            "name": "NumeratorTDAP",
+            "valueBoolean": true
+          },
+          {
+            "name": "Initial_Population",
+            "valueBoolean": true
+          },
+          {
+            "name": "NumeratorMen",
+            "valueBoolean": true
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "01ff2914-684d-d325-3e0d-138e00faede2.scorekey"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Coverage/006edc5f-7542-de3c-5218-6161f9cf7ebd",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "006edc5f-7542-de3c-5218-6161f9cf7ebd",
+        "meta": {
+          "lastUpdated": "2023-04-27T00:00:00+00:00",
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ],
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-coverage",
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage|1.1.0"
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "POS",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-coverage-type"
+            }
+          ]
+        },
+        "subscriber": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "subscriberId": "d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+        "beneficiary": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "self",
+              "system": "http://terminology.hl7.org/CodeSystem/subscriber-relationship"
+            }
+          ]
+        },
+        "period": {
+          "start": "2022-10-29T00:00:00+00:00",
+          "end": "2023-04-27T00:00:00+00:00"
+        },
+        "payor": [
+          {
+            "reference": "Organization/f24a8972-3ea9-517d-af2e-df7fd75f2594"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "006edc5f-7542-de3c-5218-6161f9cf7ebd"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Coverage/890c7bc1-bf3d-9099-6573-9388a1ec1788",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "890c7bc1-bf3d-9099-6573-9388a1ec1788",
+        "meta": {
+          "lastUpdated": "2023-04-27T00:00:00+00:00",
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ],
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-coverage",
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage|1.1.0"
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "MCPOL",
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+            }
+          ]
+        },
+        "subscriber": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "subscriberId": "d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+        "beneficiary": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "self",
+              "system": "http://terminology.hl7.org/CodeSystem/subscriber-relationship"
+            }
+          ]
+        },
+        "period": {
+          "start": "2022-10-29T00:00:00+00:00",
+          "end": "2023-04-27T00:00:00+00:00"
+        },
+        "payor": [
+          {
+            "reference": "Organization/f24a8972-3ea9-517d-af2e-df7fd75f2594"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "890c7bc1-bf3d-9099-6573-9388a1ec1788"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Coverage/4b45aae0-01c2-ea69-f687-a131320b980a",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "4b45aae0-01c2-ea69-f687-a131320b980a",
+        "meta": {
+          "lastUpdated": "2023-10-29T00:00:00+00:00",
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ],
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-coverage",
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage|1.1.0"
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "MD",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-coverage-type"
+            }
+          ]
+        },
+        "subscriber": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "subscriberId": "d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+        "beneficiary": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "self",
+              "system": "http://terminology.hl7.org/CodeSystem/subscriber-relationship"
+            }
+          ]
+        },
+        "period": {
+          "start": "2023-05-24T00:00:00+00:00",
+          "end": "2023-10-29T00:00:00+00:00"
+        },
+        "payor": [
+          {
+            "reference": "Organization/f24a8972-3ea9-517d-af2e-df7fd75f2594"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "4b45aae0-01c2-ea69-f687-a131320b980a"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Coverage/6fa735d8-36c2-ef42-a74e-f40402a6d6e7",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "6fa735d8-36c2-ef42-a74e-f40402a6d6e7",
+        "meta": {
+          "lastUpdated": "2023-10-29T00:00:00+00:00",
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ],
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-coverage",
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage|1.1.0"
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "MCPOL",
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+            }
+          ]
+        },
+        "subscriber": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "subscriberId": "d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+        "beneficiary": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "self",
+              "system": "http://terminology.hl7.org/CodeSystem/subscriber-relationship"
+            }
+          ]
+        },
+        "period": {
+          "start": "2023-05-24T00:00:00+00:00",
+          "end": "2023-10-29T00:00:00+00:00"
+        },
+        "payor": [
+          {
+            "reference": "Organization/f24a8972-3ea9-517d-af2e-df7fd75f2594"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "6fa735d8-36c2-ef42-a74e-f40402a6d6e7"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Claim/5168c9e5-74f4-673d-6bd8-a0d0fa961817",
+      "resource": {
+        "resourceType": "Claim",
+        "id": "5168c9e5-74f4-673d-6bd8-a0d0fa961817",
+        "meta": {
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "0e30aba5-b3a8-426d-8e8e-23bfbea7e3da",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "status": "active",
+        "type": {
+          "coding": [
+            {
+              "code": "institutional",
+              "system": "http://terminology.hl7.org/CodeSystem/claim-type"
+            }
+          ]
+        },
+        "use": "claim",
+        "patient": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "billablePeriod": {
+          "start": "2025-01-18T00:00:00+00:00",
+          "end": "2025-01-18T00:15:00+00:00"
+        },
+        "created": "2025-01-18T00:15:00+00:00",
+        "provider": {
+          "reference": "Organization/f24a8972-3ea9-517d-af2e-df7fd75f2594"
+        },
+        "priority": {
+          "coding": [
+            {
+              "code": "normal",
+              "system": "http://terminology.hl7.org/CodeSystem/processpriority"
+            }
+          ]
+        },
+        "careTeam": [
+          {
+            "sequence": 1,
+            "provider": {
+              "reference": "Practitioner/57e4adad-347f-896a-60f3-a1cdb7892123"
+            }
+          }
+        ],
+        "diagnosis": [
+          {
+            "sequence": 1,
+            "diagnosisCodeableConcept": {
+              "coding": [
+                {
+                  "code": "Z76.89",
+                  "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                  "display": "Persons encountering health services in other specified circumstances"
+                }
+              ]
+            }
+          }
+        ],
+        "insurance": [
+          {
+            "sequence": 1,
+            "focal": true,
+            "coverage": {
+              "reference": "Coverage/6fa735d8-36c2-ef42-a74e-f40402a6d6e7"
+            }
+          }
+        ],
+        "item": [
+          {
+            "sequence": 1,
+            "careTeamSequence": [
+              1
+            ],
+            "diagnosisSequence": [
+              1
+            ],
+            "productOrService": {
+              "coding": [
+                {
+                  "code": "G9475",
+                  "system": "http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets"
+                }
+              ]
+            },
+            "servicedPeriod": {
+              "start": "2025-01-18T00:00:00+00:00",
+              "end": "2025-01-18T00:15:00+00:00"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "5168c9e5-74f4-673d-6bd8-a0d0fa961817"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Condition/d64c6dd0-6acd-4191-8ba5-400a8193c230",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "d64c6dd0-6acd-4191-8ba5-400a8193c230",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-condition-encounter-diagnosis"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "9db3a5e2-c5b4-41eb-b079-4f6d25442487",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "encounter-diagnosis",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "Z76.89",
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "display": "Persons encountering health services in other specified circumstances"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "onsetDateTime": "2025-01-18T00:00:00+00:00",
+        "recordedDate": "2025-01-18T00:00:00+00:00"
+      },
+      "request": {
+        "method": "POST",
+        "url": "d64c6dd0-6acd-4191-8ba5-400a8193c230"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Encounter/244328c3-e3c9-65a2-469b-3e1c6cc1c1ea",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "244328c3-e3c9-65a2-469b-3e1c6cc1c1ea",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-encounter"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "https://www.ncqa.org/synthea",
+            "value": "244328c3-e3c9-65a2-469b-3e1c6cc1c1ea"
+          }
+        ],
+        "status": "finished",
+        "class": {
+          "code": "AMB",
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "G9475",
+                "system": "http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "code": "PPRF",
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    "display": "primary performer"
+                  }
+                ]
+              }
+            ],
+            "period": {
+              "start": "2025-01-18T00:00:00+00:00",
+              "end": "2025-01-18T00:15:00+00:00"
+            },
+            "individual": {
+              "reference": "Practitioner/57e4adad-347f-896a-60f3-a1cdb7892123",
+              "display": "null null"
+            }
+          }
+        ],
+        "period": {
+          "start": "2025-01-18T00:00:00+00:00",
+          "end": "2025-01-18T00:15:00+00:00"
+        },
+        "diagnosis": [
+          {
+            "condition": {
+              "reference": "Condition/d64c6dd0-6acd-4191-8ba5-400a8193c230"
+            }
+          }
+        ],
+        "serviceProvider": {
+          "reference": "Organization/f24a8972-3ea9-517d-af2e-df7fd75f2594"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "244328c3-e3c9-65a2-469b-3e1c6cc1c1ea"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Immunization/ecb9d420-8c4a-a6fb-2f5a-bbd23da3e169",
+      "resource": {
+        "resourceType": "Immunization",
+        "id": "ecb9d420-8c4a-a6fb-2f5a-bbd23da3e169",
+        "meta": {
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "81358553-0b45-4fff-b663-4c2d8d1017fa",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [
+            {
+              "code": "147",
+              "system": "http://hl7.org/fhir/sid/cvx"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "occurrenceDateTime": "2022-10-25T00:00:00+00:00",
+        "primarySource": true
+      },
+      "request": {
+        "method": "POST",
+        "url": "ecb9d420-8c4a-a6fb-2f5a-bbd23da3e169"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Encounter/cfbefb76-ffc5-5c0e-7d47-9def5a9b6891",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "cfbefb76-ffc5-5c0e-7d47-9def5a9b6891",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-encounter"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "https://www.ncqa.org/synthea",
+            "value": "cfbefb76-ffc5-5c0e-7d47-9def5a9b6891"
+          }
+        ],
+        "status": "finished",
+        "class": {
+          "code": "AMB",
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "99397",
+                "system": "http://www.ama-assn.org/go/cpt"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "code": "PPRF",
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    "display": "primary performer"
+                  }
+                ]
+              }
+            ],
+            "period": {
+              "start": "2022-10-25T00:00:00+00:00",
+              "end": "2022-10-25T00:15:00+00:00"
+            },
+            "individual": {
+              "reference": "Practitioner/493bf4e8-6d2f-98e5-6164-fd6578a560d3",
+              "display": "null null"
+            }
+          }
+        ],
+        "period": {
+          "start": "2022-10-25T00:00:00+00:00",
+          "end": "2022-10-25T00:15:00+00:00"
+        },
+        "serviceProvider": {
+          "reference": "Organization/f24a8972-3ea9-517d-af2e-df7fd75f2594"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "cfbefb76-ffc5-5c0e-7d47-9def5a9b6891"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Condition/84a3530b-07fe-4313-866e-d33cacf97a8a",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "84a3530b-07fe-4313-866e-d33cacf97a8a",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-condition-encounter-diagnosis"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "7fea63ad-51de-408e-a238-e4a9b537dcb9",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "encounter-diagnosis",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "Z76.89",
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "display": "Persons encountering health services in other specified circumstances"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "onsetDateTime": "2020-10-16T00:00:00+00:00",
+        "recordedDate": "2020-10-16T00:00:00+00:00"
+      },
+      "request": {
+        "method": "POST",
+        "url": "84a3530b-07fe-4313-866e-d33cacf97a8a"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Condition/460b86fc-e9df-448b-8514-d5e3833f4682",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "460b86fc-e9df-448b-8514-d5e3833f4682",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-condition-encounter-diagnosis"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            },
+            {
+              "code": "8bd38db3-807e-4f43-a67a-4a28b70a2d9a",
+              "system": "https://ncqa.org/fhir/CodeSystem/synthea-state-id",
+              "display": "Synthea State Id that generated the resource"
+            }
+          ]
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "encounter-diagnosis",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "192710009",
+              "system": "http://snomed.info/sct/731000124108"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "onsetDateTime": "2020-10-16T00:00:00+00:00",
+        "recordedDate": "2020-10-16T00:00:00+00:00"
+      },
+      "request": {
+        "method": "POST",
+        "url": "460b86fc-e9df-448b-8514-d5e3833f4682"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Encounter/79a5cd3f-40ee-0387-54d2-32446b86ae26",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "79a5cd3f-40ee-0387-54d2-32446b86ae26",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-encounter"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "use": "official",
+            "system": "https://www.ncqa.org/synthea",
+            "value": "79a5cd3f-40ee-0387-54d2-32446b86ae26"
+          }
+        ],
+        "status": "finished",
+        "class": {
+          "code": "AMB",
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "0522",
+                "system": "https://www.nubc.org/CodeSystem/RevenueCodes"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/d51a8a22-9a8e-b88a-e85f-5e7493f7192a",
+          "display": "Juan Rodrigo Alcala"
+        },
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "code": "PPRF",
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    "display": "primary performer"
+                  }
+                ]
+              }
+            ],
+            "period": {
+              "start": "2020-10-16T00:00:00+00:00",
+              "end": "2020-10-16T00:15:00+00:00"
+            },
+            "individual": {
+              "reference": "Practitioner/3869d638-d0fc-4821-49c1-e2f647c032ca",
+              "display": "null null"
+            }
+          }
+        ],
+        "period": {
+          "start": "2020-10-16T00:00:00+00:00",
+          "end": "2020-10-16T00:15:00+00:00"
+        },
+        "diagnosis": [
+          {
+            "condition": {
+              "reference": "Condition/84a3530b-07fe-4313-866e-d33cacf97a8a"
+            }
+          },
+          {
+            "condition": {
+              "reference": "Condition/460b86fc-e9df-448b-8514-d5e3833f4682"
+            }
+          }
+        ],
+        "serviceProvider": {
+          "reference": "Organization/f24a8972-3ea9-517d-af2e-df7fd75f2594"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "79a5cd3f-40ee-0387-54d2-32446b86ae26"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Organization/f24a8972-3ea9-517d-af2e-df7fd75f2594",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "f24a8972-3ea9-517d-af2e-df7fd75f2594",
+        "meta": {
+          "lastUpdated": "1970-01-01T00:00:00+00:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-organization"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "active": true,
+        "name": "Test Organization Name"
+      },
+      "request": {
+        "method": "POST",
+        "url": "f24a8972-3ea9-517d-af2e-df7fd75f2594"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Organization/5e344e6c-c40c-ff79-706d-9b5ef036fd6d",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "5e344e6c-c40c-ff79-706d-9b5ef036fd6d",
+        "meta": {
+          "lastUpdated": "1970-01-01T00:00:00+00:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-organization"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "active": true,
+        "name": "Test Organization Name"
+      },
+      "request": {
+        "method": "POST",
+        "url": "5e344e6c-c40c-ff79-706d-9b5ef036fd6d"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Organization/56191bb8-12cd-55f8-5b0f-03c691e455d3",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "56191bb8-12cd-55f8-5b0f-03c691e455d3",
+        "meta": {
+          "lastUpdated": "1970-01-01T00:00:00+00:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-organization"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "active": true,
+        "name": "Test Organization Name"
+      },
+      "request": {
+        "method": "POST",
+        "url": "56191bb8-12cd-55f8-5b0f-03c691e455d3"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Practitioner/57e4adad-347f-896a-60f3-a1cdb7892123",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "57e4adad-347f-896a-60f3-a1cdb7892123",
+        "meta": {
+          "lastUpdated": "2020-05-04T03:02:01-04:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "npi",
+                  "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+                  "display": "National Provider Identifier"
+                }
+              ],
+              "text": "National Provider Identifier"
+            },
+            "system": "http://hl7.org/fhir/sid/us-npi",
+            "value": "6667778880"
+          }
+        ],
+        "name": [
+          {
+            "family": "Jones",
+            "given": [
+              "Don"
+            ],
+            "prefix": [
+              "Dr"
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "57e4adad-347f-896a-60f3-a1cdb7892123"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/PractitionerRole/45506a48-b424-fd8b-dc9c-6819dc5cb6f8",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "45506a48-b424-fd8b-dc9c-6819dc5cb6f8",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "practitioner": {
+          "reference": "Practitioner/57e4adad-347f-896a-60f3-a1cdb7892123",
+          "display": "TestPractitioner Last-Name-Example"
+        },
+        "organization": {
+          "reference": "Organization/f24a8972-3ea9-517d-af2e-df7fd75f2594"
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "specialty": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "location": [
+          {
+            "reference": "Location/d98d6a79-5999-4213-961d-18bea9662bca"
+          }
+        ],
+        "telecom": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+                "valueBoolean": true
+              }
+            ],
+            "system": "email",
+            "value": "TestPractitioner.Last-Name-Example@example.com",
+            "use": "work"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "45506a48-b424-fd8b-dc9c-6819dc5cb6f8"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Practitioner/493bf4e8-6d2f-98e5-6164-fd6578a560d3",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "493bf4e8-6d2f-98e5-6164-fd6578a560d3",
+        "meta": {
+          "lastUpdated": "2020-05-04T03:02:01-04:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "npi",
+                  "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+                  "display": "National Provider Identifier"
+                }
+              ],
+              "text": "National Provider Identifier"
+            },
+            "system": "http://hl7.org/fhir/sid/us-npi",
+            "value": "6667778880"
+          }
+        ],
+        "name": [
+          {
+            "family": "Jones",
+            "given": [
+              "Don"
+            ],
+            "prefix": [
+              "Dr"
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "493bf4e8-6d2f-98e5-6164-fd6578a560d3"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/PractitionerRole/4652a280-f133-4ad8-60cb-ddd4235e6e74",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "4652a280-f133-4ad8-60cb-ddd4235e6e74",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "practitioner": {
+          "reference": "Practitioner/493bf4e8-6d2f-98e5-6164-fd6578a560d3",
+          "display": "TestPractitioner Last-Name-Example"
+        },
+        "organization": {
+          "reference": "Organization/f24a8972-3ea9-517d-af2e-df7fd75f2594"
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "specialty": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "location": [
+          {
+            "reference": "Location/d98d6a79-5999-4213-961d-18bea9662bca"
+          }
+        ],
+        "telecom": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+                "valueBoolean": true
+              }
+            ],
+            "system": "email",
+            "value": "TestPractitioner.Last-Name-Example@example.com",
+            "use": "work"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "4652a280-f133-4ad8-60cb-ddd4235e6e74"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Practitioner/3869d638-d0fc-4821-49c1-e2f647c032ca",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "3869d638-d0fc-4821-49c1-e2f647c032ca",
+        "meta": {
+          "lastUpdated": "2020-05-04T03:02:01-04:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "npi",
+                  "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+                  "display": "National Provider Identifier"
+                }
+              ],
+              "text": "National Provider Identifier"
+            },
+            "system": "http://hl7.org/fhir/sid/us-npi",
+            "value": "6667778880"
+          }
+        ],
+        "name": [
+          {
+            "family": "Jones",
+            "given": [
+              "Don"
+            ],
+            "prefix": [
+              "Dr"
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "3869d638-d0fc-4821-49c1-e2f647c032ca"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/PractitionerRole/6dd1c222-aad1-d646-34b9-df95c1b265c7",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "6dd1c222-aad1-d646-34b9-df95c1b265c7",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "practitioner": {
+          "reference": "Practitioner/3869d638-d0fc-4821-49c1-e2f647c032ca",
+          "display": "TestPractitioner Last-Name-Example"
+        },
+        "organization": {
+          "reference": "Organization/f24a8972-3ea9-517d-af2e-df7fd75f2594"
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "specialty": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "location": [
+          {
+            "reference": "Location/d98d6a79-5999-4213-961d-18bea9662bca"
+          }
+        ],
+        "telecom": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+                "valueBoolean": true
+              }
+            ],
+            "system": "email",
+            "value": "TestPractitioner.Last-Name-Example@example.com",
+            "use": "work"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "6dd1c222-aad1-d646-34b9-df95c1b265c7"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Practitioner/1aef0666-f281-3f1a-61b7-f15ed0f63cc1",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "1aef0666-f281-3f1a-61b7-f15ed0f63cc1",
+        "meta": {
+          "lastUpdated": "2020-05-04T03:02:01-04:00",
+          "profile": [
+            "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Practitioner|1.1.0",
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "npi",
+                  "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+                  "display": "National Provider Identifier"
+                }
+              ],
+              "text": "National Provider Identifier"
+            },
+            "system": "http://hl7.org/fhir/sid/us-npi",
+            "value": "9999999995"
+          }
+        ],
+        "active": true,
+        "name": [
+          {
+            "family": "Last-Name-Example",
+            "given": [
+              "Test Practitioner"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+                "valueBoolean": true
+              }
+            ],
+            "system": "email",
+            "value": "TestPractitioner.Last-Name-Example@example.com",
+            "use": "work"
+          }
+        ],
+        "address": [
+          {
+            "country": "US"
+          }
+        ],
+        "gender": "unknown"
+      },
+      "request": {
+        "method": "POST",
+        "url": "1aef0666-f281-3f1a-61b7-f15ed0f63cc1"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/Location/d98d6a79-5999-4213-961d-18bea9662bca",
+      "resource": {
+        "resourceType": "Location",
+        "id": "d98d6a79-5999-4213-961d-18bea9662bca",
+        "meta": {
+          "profile": [
+            "https://ncqa.org/fhir/StructureDefinition/hedis-core-location"
+          ],
+          "tag": [
+            {
+              "code": "administrative",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+              "display": "Administrative"
+            }
+          ]
+        },
+        "identifier": [
+          {
+            "system": "http://hl7.org/fhir/sid/us-npi",
+            "value": "9941339107"
+          }
+        ],
+        "status": "active",
+        "name": "Private Hospital",
+        "type": [
+          {
+            "coding": [
+              {
+                "code": "71",
+                "system": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set",
+                "display": "Public Health Clinic"
+              }
+            ],
+            "text": "Public Health Clinic"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "3d98d6a79-5999-4213-961d-18bea9662bca"
+      }
+    },
+    {
+      "fullUrl": "https://ncqa.org/PractitionerRole/3388d207-9f58-99d2-e74d-1793f100c543",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "3388d207-9f58-99d2-e74d-1793f100c543",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole"
+          ],
+          "tag": [
+            {
+              "code": "supplemental",
+              "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+            }
+          ]
+        },
+        "practitioner": {
+          "reference": "Practitioner/1aef0666-f281-3f1a-61b7-f15ed0f63cc1",
+          "display": "TestPractitioner Last-Name-Example"
+        },
+        "organization": {
+          "reference": "Organization/f24a8972-3ea9-517d-af2e-df7fd75f2594"
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "specialty": [
+          {
+            "coding": [
+              {
+                "code": "208D00000X",
+                "system": "http://nucc.org/provider-taxonomy"
+              }
+            ]
+          }
+        ],
+        "location": [
+          {
+            "reference": "Location/d98d6a79-5999-4213-961d-18bea9662bca"
+          }
+        ],
+        "telecom": [
+          {
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+                "valueBoolean": true
+              }
+            ],
+            "system": "email",
+            "value": "TestPractitioner.Last-Name-Example@example.com",
+            "use": "work"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "3388d207-9f58-99d2-e74d-1793f100c543"
+      }
+    }
+  ]
+}

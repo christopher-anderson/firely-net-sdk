@@ -1,0 +1,479 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-claim-inpatient-institutional",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-claim-inpatient-institutional",
+  "name": "HEDISCoreClaimInpatientInstitutional",
+  "title": "HEDIS Core Claim Inpatient Institutional",
+  "status": "active",
+  "date": "2024-04-18T21:09:51.5872526+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core Claim profile extends the core resource to include requirements for measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Claim",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Claim",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Claim.meta",
+        "path": "Claim.meta",
+        "definition": "[HEDIS][CARIN-BB] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Meta",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.meta.tag",
+        "path": "Claim.meta.tag",
+        "definition": "[HEDIS] Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource."
+      },
+      {
+        "id": "Claim.type",
+        "path": "Claim.type",
+        "definition": "[CARIN-BB] The category of claim, e.g. oral, pharmacy, vision, institutional, professional.",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/claim-type",
+              "code": "institutional"
+            }
+          ]
+        },
+        "mustSupport": true,
+        "binding": {
+          "strength": "required"
+        }
+      },
+      {
+        "id": "Claim.type.coding",
+        "path": "Claim.type.coding",
+        "min": 1
+      },
+      {
+        "id": "Claim.type.coding.system",
+        "path": "Claim.type.coding.system",
+        "definition": "[CARIN-BB] The identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "Claim.type.coding.code",
+        "path": "Claim.type.coding.code",
+        "definition": "[CARIN-BB] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "Claim.subType",
+        "path": "Claim.subType",
+        "definition": "[CARIN-BB] A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.",
+        "comment": "This element is used to convey more granular information about the setting for care. Some jurisdictions need a finer grained claim type for routing and adjudication.",
+        "min": 1,
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBInstitutionalClaimSubType",
+              "code": "inpatient"
+            }
+          ]
+        },
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBInstitutionalClaimSubType"
+        }
+      },
+      {
+        "id": "Claim.subType.coding",
+        "path": "Claim.subType.coding",
+        "min": 1
+      },
+      {
+        "id": "Claim.subType.coding.system",
+        "path": "Claim.subType.coding.system",
+        "min": 1
+      },
+      {
+        "id": "Claim.subType.coding.code",
+        "path": "Claim.subType.coding.code",
+        "min": 1
+      },
+      {
+        "id": "Claim.patient",
+        "path": "Claim.patient",
+        "definition": "[HEDIS] The party to whom the professional services and/or products have been supplied or are being considered and for whom actual or forecast reimbursement is sought.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Claim.billablePeriod",
+        "path": "Claim.billablePeriod",
+        "definition": "[CARIN-BB] The period for which charges are being submitted.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.billablePeriod.start",
+        "path": "Claim.billablePeriod.start",
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.billablePeriod.end",
+        "path": "Claim.billablePeriod.end",
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.careTeam",
+        "path": "Claim.careTeam",
+        "definition": "[CARIN-BB] The members of the team who provided the products and services.",
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.careTeam.sequence",
+        "path": "Claim.careTeam.sequence",
+        "definition": "[HEDIS] A number to uniquely identify care team entries.",
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.careTeam.provider",
+        "path": "Claim.careTeam.provider",
+        "definition": "[HEDIS][CARIN-BB] Member of the team who provided the product or service.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Organization",
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.supportingInfo",
+        "path": "Claim.supportingInfo",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "category"
+            }
+          ],
+          "rules": "open"
+        },
+        "definition": "[CARIN-BB] Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.supportingInfo.category",
+        "path": "Claim.supportingInfo.category",
+        "definition": "[CARIN-BB] The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBSupportingInfoType"
+        }
+      },
+      {
+        "id": "Claim.supportingInfo:admissionperiod",
+        "path": "Claim.supportingInfo",
+        "sliceName": "admissionperiod",
+        "short": "Admission Period",
+        "definition": "[CARIN-BB] Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+        "comment": "The Period.start date corresponds with the date the beneficiary was admitted to a facility and the onset of services. May precede the Statement From Date if this claim is for a beneficiary who has been continuously under care. The Period.end date corresponds with the date beneficiary was discharged from the facility, or died. Matches the final Statement Thru Date. When there is a discharge date, the Patient Discharge Status Code indicates the final disposition of the patient after discharge. (18, 19)",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.supportingInfo:admissionperiod.category",
+        "path": "Claim.supportingInfo.category",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+              "code": "admissionperiod"
+            }
+          ]
+        },
+        "mustSupport": true,
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBSupportingInfoType"
+        }
+      },
+      {
+        "id": "Claim.supportingInfo:admissionperiod.category.coding",
+        "path": "Claim.supportingInfo.category.coding",
+        "min": 1
+      },
+      {
+        "id": "Claim.supportingInfo:admissionperiod.category.coding.system",
+        "path": "Claim.supportingInfo.category.coding.system",
+        "min": 1,
+        "fixedUri": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType"
+      },
+      {
+        "id": "Claim.supportingInfo:admissionperiod.category.coding.code",
+        "path": "Claim.supportingInfo.category.coding.code",
+        "min": 1,
+        "fixedCode": "admissionperiod"
+      },
+      {
+        "id": "Claim.supportingInfo:admissionperiod.timing[x]",
+        "path": "Claim.supportingInfo.timing[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        },
+        "min": 1
+      },
+      {
+        "id": "Claim.supportingInfo:admissionperiod.timing[x]:timingPeriod",
+        "path": "Claim.supportingInfo.timing[x]",
+        "sliceName": "timingPeriod",
+        "min": 1,
+        "type": [
+          {
+            "code": "Period"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.supportingInfo:admissionperiod.value[x]",
+        "path": "Claim.supportingInfo.value[x]",
+        "comment": "Could be used to provide references to other resources, document. For example, could contain a PDF in an Attachment of the Police Report for an Accident."
+      },
+      {
+        "id": "Claim.supportingInfo:typeofbill",
+        "path": "Claim.supportingInfo",
+        "sliceName": "typeofbill",
+        "short": "Type of bill",
+        "definition": "[CARIN-BB] Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+        "comment": "UB04 (Form Locator 4) type of bill code provides specific information for payer purposes. The first digit of the three-digit number denotes the type of institution, the second digit classifies the type of care being billed, and the third digit  identifies the frequency of the bill for a specific course of treatment or inpatient confinement. (17)",
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.supportingInfo:typeofbill.category",
+        "path": "Claim.supportingInfo.category",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+              "code": "typeofbill"
+            }
+          ]
+        },
+        "mustSupport": true,
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBSupportingInfoType"
+        }
+      },
+      {
+        "id": "Claim.supportingInfo:typeofbill.category.coding",
+        "path": "Claim.supportingInfo.category.coding",
+        "min": 1,
+        "patternCoding": {
+          "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+          "code": "typeofbill"
+        }
+      },
+      {
+        "id": "Claim.supportingInfo:typeofbill.category.coding.system",
+        "path": "Claim.supportingInfo.category.coding.system",
+        "min": 1
+      },
+      {
+        "id": "Claim.supportingInfo:typeofbill.category.coding.code",
+        "path": "Claim.supportingInfo.category.coding.code",
+        "min": 1
+      },
+      {
+        "id": "Claim.supportingInfo:typeofbill.code",
+        "path": "Claim.supportingInfo.code",
+        "comment": "This may contain the local bill type codes such as the US UB-04 bill type code.",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCTypeOfBill"
+        }
+      },
+      {
+        "id": "Claim.supportingInfo:typeofbill.value[x]",
+        "path": "Claim.supportingInfo.value[x]",
+        "comment": "Could be used to provide references to other resources, document. For example, could contain a PDF in an Attachment of the Police Report for an Accident."
+      },
+      {
+        "id": "Claim.diagnosis",
+        "path": "Claim.diagnosis",
+        "definition": "[CARIN-BB] Information about diagnoses relevant to the claim items.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.diagnosis.sequence",
+        "path": "Claim.diagnosis.sequence",
+        "definition": "[HEDIS] A number to uniquely identify diagnosis entries.",
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.diagnosis.diagnosis[x]",
+        "path": "Claim.diagnosis.diagnosis[x]",
+        "definition": "[CARIN-BB] The nature of illness or problem in a coded form or as a reference to an external defined Condition.",
+        "comment": "Provides information about diagnoses relevant to claim items.",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "description": "ICD10 Diagnostic codes.",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/CDCICD910CMDiagnosisCodes"
+        }
+      },
+      {
+        "id": "Claim.diagnosis.type",
+        "path": "Claim.diagnosis.type",
+        "definition": "[CARIN-BB] When the condition was observed or the relative ranking.",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimInpatientInstitutionalDiagnosisType"
+        }
+      },
+      {
+        "id": "Claim.procedure",
+        "path": "Claim.procedure",
+        "definition": "[CARIN-BB] Procedures performed on the patient relevant to the billing items with the claim.",
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.procedure.sequence",
+        "path": "Claim.procedure.sequence",
+        "definition": "[HEDIS] A number to uniquely identify procedure entries.",
+        "requirements": "This element is necessary to maintain the order of the diagnosis items and provide a mechanism to link to claim details.",
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.procedure.procedure[x]",
+        "path": "Claim.procedure.procedure[x]",
+        "definition": "[CARIN-BB] The code or reference to a Procedure resource which identifies the clinical intervention performed.",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/CMSICD910PCSProcedureCodes"
+        }
+      },
+      {
+        "id": "Claim.item",
+        "path": "Claim.item",
+        "definition": "[HEDIS][CARIN-BB] A claim line. Either a simple  product or service or a 'group' of details which can each be a simple items or groups of sub-details.",
+        "comment": "This element is mandatory to align with the HEDIS Core ExplanationOfBenefit profiles.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.item.sequence",
+        "path": "Claim.item.sequence",
+        "definition": "[CARIN-BB] A number to uniquely identify item entries.",
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.item.diagnosisSequence",
+        "path": "Claim.item.diagnosisSequence",
+        "definition": "[HEDIS] Diagnosis applicable for this service or product.",
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.item.procedureSequence",
+        "path": "Claim.item.procedureSequence",
+        "definition": "[HEDIS] Procedures applicable for this service or product.",
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.item.informationSequence",
+        "path": "Claim.item.informationSequence",
+        "definition": "[HEDIS] Exceptions, special conditions and supporting information applicable for this service or product.",
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.item.revenue",
+        "path": "Claim.item.revenue",
+        "definition": "[CARIN-BB] The type of revenue or cost center providing the product and/or service.",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCRevenueCodes"
+        }
+      },
+      {
+        "id": "Claim.item.productOrService",
+        "path": "Claim.item.productOrService",
+        "definition": "[CARIN-BB] When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item.",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBEOBInstitutionalProcedureCodes"
+        }
+      },
+      {
+        "id": "Claim.item.modifier",
+        "path": "Claim.item.modifier",
+        "definition": "[CARIN-BB] Item typification or modifiers codes to convey additional context for the product or service.",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/AMACPTCMSHCPCSModifiers"
+        }
+      },
+      {
+        "id": "Claim.item.serviced[x]",
+        "path": "Claim.item.serviced[x]",
+        "definition": "[HEDIS] The date or dates when the service or product was supplied, performed or completed.",
+        "comment": "The line item SHALL contain the date of service for an outpatient event or the admit and  discharge date for an inpatient event in ‘serviced’. This may mean iterating the admit and discharge date onto multiple rows if there are multiple line items. For pharmacy claims, this date  SHALL be the date of the dispensing event.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Claim.item.quantity",
+        "path": "Claim.item.quantity",
+        "definition": "[CARIN-BB] The number of repetitions of a service or product.",
+        "mustSupport": true
+      }
+    ]
+  }
+}

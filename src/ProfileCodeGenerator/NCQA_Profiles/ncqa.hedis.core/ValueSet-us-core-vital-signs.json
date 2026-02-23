@@ -1,0 +1,61 @@
+{
+  "resourceType": "ValueSet",
+  "status": "active",
+  "name": "USCoreVitalSigns",
+  "id": "us-core-vital-signs",
+  "title": "US Core Vital Signs ValueSet",
+  "description": "The vital sign codes from the base FHIR and US Core Vital Signs.",
+  "url": "https://ncqa.org/fhir/ValueSet/us-core-vital-signs",
+  "version": "5.0.1",
+  "experimental": false,
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "code": "US",
+          "system": "urn:iso:std:iso:3166"
+        }
+      ]
+    }
+  ],
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "compose": {
+    "include": [
+      {
+        "system": "http://loinc.org",
+        "concept": [
+          {
+            "code": "59576-9",
+            "display": "Body mass index (BMI) [Percentile] Per age and sex"
+          },
+          {
+            "code": "8289-1",
+            "display":"Head Occipital-frontal circumference Percentil"
+          },
+          {
+            "code": "77606-2",
+            "display":"Weight-for-length Per age and sex"
+          },
+          {
+            "code": "59408-5",
+            "display":"Oxygen saturation in Arterial blood by Pulse oximetry"
+          },
+          {
+            "code": "3150-0",
+            "display":"Inhaled oxygen concentration"
+          },
+          {
+            "code": "3151-8",
+            "display":"Inhaled oxygen flow rate"
+          }
+        ]
+      },
+      {
+        "valueSet": [
+          "http://hl7.org/fhir/ValueSet/observation-vitalsignresult"
+        ]
+      }
+    ]
+  }
+}

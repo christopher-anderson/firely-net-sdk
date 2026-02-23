@@ -1,0 +1,102 @@
+{
+  "resourceType": "PractitionerRole",
+  "id": "hedis-core-practitionerrole-01",
+  "meta": {
+    "tag": [
+      {
+        "code": "administrative",
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+        "display": "Administrative"
+      }
+    ],
+    "profile": [
+      "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitionerrole"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "http://www.acme.org/practitioners",
+      "value": "23"
+    }
+  ],
+  "extension": [
+    {
+      "url": "https://ncqa.org/fhir/StructureDefinition/ext-practitionerrole.presc",
+      "valueBoolean": true
+    }
+  ],
+  "active": true,
+  "period": {
+    "start": "2012-01-01",
+    "end": "2012-03-31"
+  },
+  "practitioner": {
+    "reference": "Practitioner/hedis-core-practitioner-01",
+    "display": "Dr Adam Careful"
+  },
+  "organization": {
+    "reference": "Organization/hedis-core-organization-01"
+  },
+  "code": [
+    {
+      "coding": [
+        {
+          "code": "207V00000X",
+          "system": "http://nucc.org/provider-taxonomy"
+        }
+      ]
+    }
+  ],
+  "specialty": [
+    {
+      "coding": [
+        {
+          "code": "408443003",
+          "system": "http://snomed.info/sct/731000124108",
+          "display": "General medical practice"
+        }
+      ]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "(03) 5555 6473",
+      "use": "work"
+    },
+    {
+      "system": "email",
+      "value": "adam.southern@example.org",
+      "use": "work"
+    }
+  ],
+  "availableTime": [
+    {
+      "daysOfWeek": [
+        "mon",
+        "tue",
+        "wed"
+      ],
+      "availableStartTime": "09:00:00",
+      "availableEndTime": "16:30:00"
+    },
+    {
+      "daysOfWeek": [
+        "thu",
+        "fri"
+      ],
+      "availableStartTime": "09:00:00",
+      "availableEndTime": "12:00:00"
+    }
+  ],
+  "notAvailable": [
+    {
+      "description": "Adam will be on extended leave during May 2017",
+      "during": {
+        "start": "2017-05-01",
+        "end": "2017-05-20"
+      }
+    }
+  ],
+  "availabilityExceptions": "Adam is generally unavailable on public holidays and during the Christmas/New Year break"
+}

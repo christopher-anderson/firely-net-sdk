@@ -1,0 +1,77 @@
+{
+  "resourceType": "Observation",
+  "id": "hedis-core-laboratory-result-observation-01",
+  "meta": {
+    "tag": [
+      {
+        "code": "ehr",
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+        "display": "EHR"
+      }
+    ],
+    "profile": [
+      "https://ncqa.org/fhir/StructureDefinition/hedis-core-laboratory-result-observation"
+    ]
+  },
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "code": "laboratory",
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "display": "Laboratory"
+        }
+      ],
+      "text": "Laboratory"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "code": "718-7",
+        "system": "http://loinc.org",
+        "display": "Hgb Bld-mCnc"
+      }
+    ],
+    "text": "Hgb Bld-mCnc"
+  },
+  "subject": {
+    "reference": "Patient/hedis-core-patient-01",
+    "display": "Amy Shaw"
+  },
+  "effectiveDateTime": "2005-07-05",
+  "valueQuantity": {
+    "value": 17,
+    "system": "http://unitsofmeasure.org",
+    "unit": "g/dL"
+  },
+  "referenceRange": [
+    {
+      "low": {
+        "value": 16.5,
+        "code": "g/dL",
+        "system": "http://unitsofmeasure.org",
+        "unit": "g/dL"
+      },
+      "high": {
+        "value": 21.5,
+        "code": "g/dL",
+        "system": "http://unitsofmeasure.org",
+        "unit": "g/dL"
+      },
+      "appliesTo": [
+        {
+          "coding": [
+            {
+              "code": "normal",
+              "system": "http://terminology.hl7.org/CodeSystem/referencerange-meaning",
+              "display": "Normal Range"
+            }
+          ],
+          "text": "Normal Range"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-encounter",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-encounter",
+  "name": "HEDISCoreEncounter",
+  "title": "HEDIS Core Encounter",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core Encounter profile extends the US Core requirements to include requirements for measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Encounter",
+  "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Encounter.meta",
+        "path": "Encounter.meta",
+        "definition": "[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Meta",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Encounter.identifier",
+        "path": "Encounter.identifier",
+        "definition": "[US Core] Identifier(s) by which this encounter is known."
+      },
+      {
+        "id": "Encounter.identifier.system",
+        "path": "Encounter.identifier.system",
+        "definition": "[US Core] Establishes the namespace for the value - that is, a URL that describes a set values that are unique."
+      },
+      {
+        "id": "Encounter.identifier.value",
+        "path": "Encounter.identifier.value",
+        "definition": "[US Core] The portion of the identifier typically relevant to the user and which is unique within the context of the system."
+      },
+      {
+        "id": "Encounter.status",
+        "path": "Encounter.status",
+        "definition": "[US Core] planned | arrived | triaged | in-progress | onleave | finished | cancelled +."
+      },
+      {
+        "id": "Encounter.class",
+        "path": "Encounter.class",
+        "definition": "[US Core] Concepts representing classification of patient encounter such as ambulatory (outpatient), inpatient, emergency, home health or others due to local variations."
+      },
+      {
+        "id": "Encounter.type",
+        "path": "Encounter.type",
+        "definition": "[US Core] Specific type of encounter (e.g. e-mail consultation, surgical day-care, skilled nursing, rehabilitation)."
+      },
+      {
+        "id": "Encounter.subject",
+        "path": "Encounter.subject",
+        "short": "The patient present at the encounter",
+        "definition": "[HEDIS] The patient present at the encounter.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Encounter.participant",
+        "path": "Encounter.participant",
+        "definition": "[US Core] The list of people responsible for providing the service."
+      },
+      {
+        "id": "Encounter.participant.type",
+        "path": "Encounter.participant.type",
+        "definition": "[US Core] Role of participant in encounter."
+      },
+      {
+        "id": "Encounter.participant.period",
+        "path": "Encounter.participant.period",
+        "definition": "[US Core] The period of time that the specified participant participated in the encounter. These can overlap or be sub-sets of the overall encounter's period."
+      },
+      {
+        "id": "Encounter.participant.individual",
+        "path": "Encounter.participant.individual",
+        "definition": "[HEDIS][US Core] Persons involved in the encounter other than the patient.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Encounter.period",
+        "path": "Encounter.period",
+        "definition": "[HEDIS][US Core] The start and end time of the encounter.",
+        "comment": "Period of the encounter is a critical factor for most HEDIS measures and cannot be omitted.",
+        "min": 1
+      },
+      {
+        "id": "Encounter.reasonCode",
+        "path": "Encounter.reasonCode",
+        "definition": "[US Core] Reason the encounter takes place, expressed as a code. For admissions, this can be used for a coded admission diagnosis."
+      },
+      {
+        "id": "Encounter.diagnosis",
+        "path": "Encounter.diagnosis",
+        "definition": "[HEDIS] The list of diagnosis relevant to this encounter.",
+        "mustSupport": true
+      },
+      {
+        "id": "Encounter.diagnosis.condition",
+        "path": "Encounter.diagnosis.condition",
+        "definition": "[HEDIS] Reason the encounter takes place, as specified using information from another resource. For admissions, this is the admission diagnosis. The indication will typically be a Condition (with other resources referenced in the evidence.detail), or a Procedure.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-condition-encounter-diagnosis",
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-procedure"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Encounter.hospitalization",
+        "path": "Encounter.hospitalization",
+        "definition": "[US Core] Details about the admission to a healthcare service."
+      },
+      {
+        "id": "Encounter.hospitalization.dischargeDisposition",
+        "path": "Encounter.hospitalization.dischargeDisposition",
+        "definition": "[US Core] Category or kind of location after discharge."
+      },
+      {
+        "id": "Encounter.location",
+        "path": "Encounter.location",
+        "definition": "[US Core] List of locations where  the patient has been during this encounter."
+      },
+      {
+        "id": "Encounter.location.location",
+        "path": "Encounter.location.location",
+        "definition": "[US Core] The location where the encounter takes place."
+      }
+    ]
+  }
+}

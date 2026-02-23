@@ -1,0 +1,19 @@
+{
+  "resourceType": "ValueSet",
+  "id": "hedis-data-source",
+  "url": "https://ncqa.org/fhir/ValueSet/hedis-data-source",
+  "name": "HEDISDataSource",
+  "title": "HEDIS Data Source Codes",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "This value set defines codes to identify the source of data per HEDIS audit rules.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "compose": {
+    "include": [
+      {
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source"
+      }
+    ]
+  }
+}

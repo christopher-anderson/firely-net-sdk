@@ -1,0 +1,81 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-immunization",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-immunization",
+  "name": "HEDISCoreImmunization",
+  "title": "HEDIS Core Immunization",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core Immunization profile extends the US Core requirements to include requirements for measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Immunization",
+  "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Immunization.meta",
+        "path": "Immunization.meta",
+        "definition": "[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Meta",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Immunization.status",
+        "path": "Immunization.status",
+        "definition": "[US Core] Indicates the current status of the immunization event."
+      },
+      {
+        "id": "Immunization.statusReason",
+        "path": "Immunization.statusReason",
+        "definition": "[US Core] Indicates the reason the immunization event was not performed."
+      },
+      {
+        "id": "Immunization.vaccineCode",
+        "path": "Immunization.vaccineCode",
+        "definition": "[US Core] Vaccine that was administered or was to be administered."
+      },
+      {
+        "id": "Immunization.patient",
+        "path": "Immunization.patient",
+        "definition": "[HEDIS] [US Core] The patient who either received or did not receive the immunization.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Immunization.occurrence[x]",
+        "path": "Immunization.occurrence[x]",
+        "definition": "[HEDIS][US Core] Date vaccine administered or was to be administered.",
+        "comment": "Strings are excluded from this element , it would not be use for calculating estimated or actual date.",
+        "type": [
+          {
+            "code": "dateTime"
+          }
+        ]
+      },
+      {
+        "id": "Immunization.primarySource",
+        "path": "Immunization.primarySource",
+        "definition": "[US Core] An indication that the content of the record is based on information from the person who administered the vaccine. This reflects the context under which the data was originally recorded."
+      }
+    ]
+  }
+}

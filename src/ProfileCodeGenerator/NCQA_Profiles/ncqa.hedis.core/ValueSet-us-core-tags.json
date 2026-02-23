@@ -1,0 +1,30 @@
+{
+  "resourceType": "ValueSet",
+  "id": "us-core-tags",
+  "url": "https://ncqa.org/fhir/ValueSet/us-core-tags",
+  "version": "5.0.1",
+  "name": "USCoreTagsValueSet",
+  "title": "US Core Tags ValueSet",
+  "status": "active",
+  "date": "2025-09-19",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "Used to tag patient submitted resources for writing and searching from EHRs",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "US"
+        }
+      ]
+    }
+  ],
+  "compose": {
+    "include": [
+      {
+        "system": "https://ncqa.org/fhir/CodeSystem/us-core-tags"
+      }
+    ]
+  }
+}

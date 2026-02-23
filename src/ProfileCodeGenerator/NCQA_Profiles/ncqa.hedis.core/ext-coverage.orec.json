@@ -1,0 +1,42 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ext-coverage.orec",
+  "url": "https://ncqa.org/fhir/StructureDefinition/ext-coverage.orec",
+  "name": "ExtCoverageOREC",
+  "title": "Ext Coverage OREC",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The Original Reason for Entitlement Code (OREC) Item captures the socioeconomic status of a patient for the purposes of categorizing coverage.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "Coverage"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://ncqa.org/fhir/StructureDefinition/ext-coverage.orec"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "us-core-tags",
+  "url": "https://ncqa.org/fhir/CodeSystem/us-core-tags",
+  "version": "5.0.1",
+  "name": "USCoreTagsCodeSystem",
+  "title": "US Core Tags CodeSystem",
+  "status": "active",
+  "date": "2025-09-19",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "Codes used in US Core `meta.tag` and 'category' profiles. The are typically used when there is a need for categorization or workflow hints.",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "US"
+        }
+      ]
+    }
+  ],
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "caseSensitive": true,
+  "content": "complete",
+  "concept": [
+    {
+      "code": "sdoh",
+      "display": "SDOH",
+      "definition": "Social Determinants of Health Category"
+    }
+  ]
+}

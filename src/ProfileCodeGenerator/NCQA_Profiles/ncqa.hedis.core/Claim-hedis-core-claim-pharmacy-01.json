@@ -1,0 +1,145 @@
+{
+  "resourceType": "Claim",
+  "id": "hedis-core-claim-pharmacy-01",
+  "meta": {
+    "profile": [
+      "https://ncqa.org/fhir/StructureDefinition/hedis-core-claim-pharmacy"
+    ],
+    "tag": [
+      {
+        "code": "administrative",
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+        "display": "Administrative"
+      }
+    ]
+  },
+  "identifier": [
+    {
+      "system": "https://www.xxxplan.com/fhir/ClaimIdentifier",
+      "value": "MED-00050"
+    }
+  ],
+  "status": "active",
+  "type": {
+    "coding": [
+      {
+        "code": "pharmacy",
+        "system": "http://terminology.hl7.org/CodeSystem/claim-type"
+      }
+    ]
+  },
+  "use": "claim",
+  "patient": {
+    "reference": "Patient/hedis-core-patient-01"
+  },
+  "created": "2015-10-16T00:00:00-07:00",
+  "insurer": {
+    "reference": "Organization/hedis-core-organization-01"
+  },
+  "provider": {
+    "reference": "Organization/hedis-core-organization-01"
+  },
+  "priority": {
+    "coding": [
+      {
+        "code": "normal"
+      }
+    ]
+  },
+  "payee": {
+    "type": {
+      "coding": [
+        {
+          "code": "provider",
+          "system": "http://terminology.hl7.org/CodeSystem/payeetype"
+        }
+      ]
+    },
+    "party": {
+      "reference": "Organization/hedis-core-organization-01"
+    }
+  },
+  "careTeam": [
+    {
+      "sequence": 1,
+      "provider": {
+        "reference": "Practitioner/hedis-core-practitioner-01"
+      }
+    }
+  ],
+  "supportingInfo": [
+    {
+      "sequence": 1,
+      "category": {
+        "coding": [
+          {
+            "code": "dayssupply",
+            "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType"
+          }
+        ]
+      },
+      "timingPeriod": {
+        "start": "2015-10-01T00:00:00-07:00",
+        "end": "2015-10-05T00:00:00-07:00"
+      },
+      "valueQuantity": {
+        "value": 30
+      }
+    }
+  ],
+  "insurance": [
+    {
+      "sequence": 1,
+      "focal": true,
+      "identifier": {
+        "system": "http://CedarArmsMedicalCenter.com/claim",
+        "value": "MED-00050"
+      },
+      "coverage": {
+        "reference": "Coverage/hedis-core-coverage-01"
+      }
+    }
+  ],
+  "item": [
+    {
+      "sequence": 1,
+      "informationSequence": [
+        1
+      ],
+      "productOrService": {
+        "coding": [
+          {
+            "code": "0002-0800-01",
+            "system": "http://hl7.org/fhir/sid/ndc",
+            "display": "Sterile Diluent, 1 VIAL in 1 CARTON (0002-0800-01) > 10 mL in 1 VIAL (package)"
+          }
+        ]
+      },
+      "servicedDate": "2015-10-13",
+      "locationCodeableConcept": {
+        "coding": [
+          {
+            "code": "24",
+            "system": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set",
+            "display": "Ambulatory Surgical Center"
+          }
+        ]
+      },
+      "quantity": {
+        "value": 1
+      },
+      "unitPrice": {
+        "value": 125,
+        "currency": "USD"
+      },
+      "net": {
+        "value": 125,
+        "currency": "USD"
+      }
+    }
+  ],
+  "total": {
+    "value": 125,
+    "currency": "USD"
+  }
+}

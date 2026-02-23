@@ -1,0 +1,44 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "hedis-raceandethnicity-datasource",
+  "url": "https://ncqa.org/fhir/CodeSystem/hedis-raceandethnicity-datasource",
+  "name": "HEDISRaceAndEthnicityDataSource",
+  "title": "HEDIS Race And Ethnicity DataSource",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "This code system defines codes to identify race and ethnicity datasource relevant to HEDIS",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "content": "complete",
+  "count": 7,
+  "concept": [
+    {
+      "code": "CMS/State Databases (Enrollment Files)",
+      "display": "CMS/State Databases (Enrollment Files)"
+    },
+    {
+      "code": "No Data",
+      "display": "No Data"
+    },
+    {
+      "code": "Surname Analysis (Imputed)",
+      "display": "Surname Analysis (Imputed)"
+    },
+    {
+      "code": "Geo-Coding Analysis (Imputed)",
+      "display": "Geo-Coding Analysis (Imputed)"
+    },
+    {
+      "code": "Health Plan Collected",
+      "display": "Health Plan Collected"
+    },
+    {
+      "code": "Unknown Data Collection Method",
+      "display": "unknown data collection method"
+    },
+      {
+      "code": "Other Direct",
+      "display": "Other Direct"
+    }
+  ]
+}

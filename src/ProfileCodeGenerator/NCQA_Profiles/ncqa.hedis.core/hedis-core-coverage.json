@@ -1,0 +1,248 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-coverage",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-coverage",
+  "name": "HEDISCoreCoverage",
+  "title": "HEDIS Core Coverage",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core Coverage profile extends CARIN for Blue Button® to include requirements for measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Coverage",
+  "baseDefinition": "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Coverage",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Coverage.meta",
+        "path": "Coverage.meta",
+        "definition": "[HEDIS][CARIN-BB] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+        "type": [
+          {
+            "code": "Meta",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Coverage.meta.profile",
+        "path": "Coverage.meta.profile"
+      },
+      {
+        "id": "Coverage.meta.profile:supportedProfile",
+        "path": "Coverage.meta.profile",
+        "sliceName": "supportedProfile",
+        "definition": "[CARIN-BB] A list of profiles (references to [StructureDefinition](structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url)."
+      },
+      {
+        "id": "Coverage.extension:inHospice",
+        "path": "Coverage.extension",
+        "sliceName": "inHospice",
+        "definition": "[HEDIS] Indicates members who use hospice services or elect to use a hospice benefit",
+        "comment": "Exclude members who use hospice services or elect to use a hospice benefit any time during the measurement year, regardless of when the services began. These members may be identified using various methods, which may include but are not limited to enrollment data, medical record, claims/ encounter data (Hospice Encounter Value Set; Hospice Intervention Value Set) or supplemental data for this required exclusion. If organizations use the Monthly Membership Detail Data File to identify these members, use only the run date of the file to determine if the member elected to use a hospice benefit during the measurement year.",
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/ext-coverage.inhospice"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Coverage.extension:lti",
+        "path": "Coverage.extension",
+        "sliceName": "lti",
+        "definition": "[HEDIS] Indicate members who live long-term in an institution ",
+        "comment": "Living long-term in an institution any time during the measurement year as identified by the LTI flag in the Monthly Membership Detail Data File. Use the run date of the file to determine if a member had an LTI flag during the measurement year.",
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/ext-coverage.lti"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Coverage.extension:orec",
+        "path": "Coverage.extension",
+        "sliceName": "orec",
+        "definition": "[HEDIS] Original Reason for Entitlement Code (OREC)",
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/ext-coverage.orec"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Coverage.extension:orec.value[x]",
+        "path": "Coverage.extension.value[x]",
+        "min": 1
+      },
+      {
+        "id": "Coverage.extension:lisHist",
+        "path": "Coverage.extension",
+        "sliceName": "lisHist",
+        "definition": "[HEDIS]  Low Income Subsidy History",
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/ext-coverage.lishist"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Coverage.extension:lisHist.value[x]",
+        "path": "Coverage.extension.value[x]",
+        "min": 1
+      },
+      {
+        "id": "Coverage.identifier",
+        "path": "Coverage.identifier",
+        "definition": "[CARIN-BB] A unique identifier assigned to this coverage."
+      },
+      {
+        "id": "Coverage.status",
+        "path": "Coverage.status",
+        "definition": "[CARIN-BB] The status of the resource instance."
+      },
+      {
+        "id": "Coverage.type",
+        "path": "Coverage.type",
+        "definition": "[HEDIS][CARIN-BB] The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization.",
+        "comment": "Coverage.type must include payer (using https://ncqa.org/fhir/CodeSystem/hedis-coverage-type) and benefit type (using http://terminology.hl7.org/CodeSystem/v3-ActCode)",
+        "mustSupport": true,
+        "binding": {
+          "strength": "extensible",
+          "description": "The HEDIS product line designation code.",
+          "valueSet": "https://ncqa.org/fhir/ValueSet/hedis-coverage-type"
+        }
+      },
+      {
+        "id": "Coverage.subscriberId",
+        "path": "Coverage.subscriberId",
+        "definition": "[CARIN-BB] The insurer assigned ID for the Subscriber."
+      },
+      {
+        "id": "Coverage.beneficiary",
+        "path": "Coverage.beneficiary",
+        "definition": "[HEDIS][CARIN-BB] The party who benefits from the insurance coverage; the patient when products and/or services are provided.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Coverage.relationship",
+        "path": "Coverage.relationship",
+        "definition": "[CARIN-BB] The relationship of beneficiary (patient) to the subscriber."
+      },
+      {
+        "id": "Coverage.period",
+        "path": "Coverage.period",
+        "definition": "[HEDIS][CARIN-BB]  Date that the contract became effective and Date that the contract was terminated or coverage changed.Time period during which the coverage is in force. A missing start date indicates the start date isn't known, a missing end date means the coverage is continuing to be in force.",
+        "comment": "Date that the contract became effective and Date that the contract was terminated or coverage changed.Coverage end dates and start dates are expected to be in the day precision level."
+      },
+      {
+        "id": "Coverage.period.start",
+        "path": "Coverage.period.start",
+        "definition": "[HEDIS] The start of the period. The boundary is inclusive.",
+        "constraint": [
+          {
+            "key": "hedis-core-coverage-01",
+            "severity": "error",
+            "human": "Datetime must be at least to day",
+            "expression": "$this.toString().length() >= 10"
+          }
+        ]
+      },
+      {
+        "id": "Coverage.period.end",
+        "path": "Coverage.period.end",
+        "definition": "[HEDIS] The end of the period. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.",
+        "constraint": [
+          {
+            "key": "hedis-core-coverage-01",
+            "severity": "error",
+            "human": "Datetime must be at least to day",
+            "expression": "$this.toString().length() >= 10"
+          }
+        ]
+      },
+      {
+        "id": "Coverage.payor",
+        "path": "Coverage.payor",
+        "definition": "[CARIN-BB] The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements."
+      },
+      {
+        "id": "Coverage.class",
+        "path": "Coverage.class",
+        "definition": "[CARIN-BB] A suite of underwriter specific classifiers."
+      },
+      {
+        "id": "Coverage.class:group",
+        "path": "Coverage.class",
+        "sliceName": "group",
+        "definition": "[CARIN-BB] A suite of underwriter specific classifiers."
+      },
+      {
+        "id": "Coverage.class:group.type.coding",
+        "path": "Coverage.class.type.coding",
+        "definition": "[CARIN-BB] A reference to a code defined by a terminology system."
+      },
+      {
+        "id": "Coverage.class:group.value",
+        "path": "Coverage.class.value",
+        "definition": "[CARIN-BB] The alphanumeric string value associated with the insurer issued label."
+      },
+      {
+        "id": "Coverage.class:plan",
+        "path": "Coverage.class",
+        "sliceName": "plan",
+        "definition": "[CARIN-BB] A suite of underwriter specific classifiers."
+      },
+      {
+        "id": "Coverage.class:plan.type",
+        "path": "Coverage.class.type",
+        "definition": "[CARIN-BB] The type of classification for which an insurer-specific class label or number and optional name is provided, for example may be used to identify a class of coverage or employer group, Policy, Plan."
+      },
+      {
+        "id": "Coverage.class:plan.type.coding",
+        "path": "Coverage.class.type.coding",
+        "definition": "[CARIN-BB] A reference to a code defined by a terminology system."
+      },
+      {
+        "id": "Coverage.class:plan.value",
+        "path": "Coverage.class.value",
+        "definition": "[CARIN-BB] The alphanumeric string value associated with the insurer issued label."
+      }
+    ]
+  }
+}

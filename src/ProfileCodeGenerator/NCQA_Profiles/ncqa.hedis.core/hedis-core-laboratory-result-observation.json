@@ -1,0 +1,97 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-laboratory-result-observation",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-laboratory-result-observation",
+  "name": "HEDISCoreLaboratoryResultObservation",
+  "title": "HEDIS Core Laboratory Result Observation",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core Laboratory Result Observation profile extends the US Core requirements to include requirements for measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.meta",
+        "path": "Observation.meta",
+        "definition": "[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Meta",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "Observation.status",
+        "path": "Observation.status",
+        "definition": "[US Core] The status of the result value."
+      },
+      {
+        "id": "Observation.category:Laboratory",
+        "path": "Observation.category",
+        "sliceName": "Laboratory",
+        "definition": "[US Core] A code that classifies the general type of observation being made."
+      },
+      {
+        "id": "Observation.category:Laboratory.coding",
+        "path": "Observation.category.coding",
+        "min": 1
+      },
+      {
+        "id": "Observation.category:Laboratory.coding.system",
+        "path": "Observation.category.coding.system",
+        "min": 1
+      },
+      {
+        "id": "Observation.category:Laboratory.coding.code",
+        "path": "Observation.category.coding.code",
+        "min": 1
+      },
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "definition": "[US Core] The test that was performed.  A LOINC **SHALL** be used if the concept is present in LOINC."
+      },
+      {
+        "id": "Observation.subject",
+        "path": "Observation.subject",
+        "definition": "[HEDIS][US Core] The patient, or group of patients, location, or device this observation is about and into whose record the observation is placed. If the actual focus of the observation is different from the subject (or a sample of, part, or region of the subject), the `focus` element or the `code` itself specifies the actual focus of the observation.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]",
+        "definition": "[HEDIS][US Core] For lab tests this is the specimen collection date.  For Ask at Order Entry Questions (AOE)'s this is the date the question was asked.",
+        "min": 1
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "definition": "[US Core] The Laboratory result value.  If a coded value,  the valueCodeableConcept.code **SHOULD**  be selected from [SNOMED CT](http://hl7.org/fhir/ValueSet/uslab-obs-codedresults).  If a numeric value, valueQuantity.code **SHALL** be selected from [UCUM](http://unitsofmeasure.org).  A FHIR [UCUM Codes value set](http://hl7.org/fhir/STU3/valueset-ucum-units.html) that defines all UCUM codes is in the FHIR specification."
+      },
+      {
+        "id": "Observation.dataAbsentReason",
+        "path": "Observation.dataAbsentReason",
+        "definition": "[US Core] Provides a reason why the expected value in the element Observation.value[x] is missing."
+      }
+    ]
+  }
+}

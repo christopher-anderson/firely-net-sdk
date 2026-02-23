@@ -1,0 +1,49 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ext-questionnaireresponse.questionnaire-uri",
+  "url": "https://ncqa.org/fhir/StructureDefinition/ext-questionnaireresponse.questionnaire-uri",
+  "name": "ExtQuestionnaireResponseQuestionnaireURI",
+  "title": "Ext QuestionnaireResponse Questionnaire URI",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "This extension is used when the survey,form, or questionnaire which is being anwered is not a FHIR Questionnaire, otherwise the canonical url for the FHIR Questionnaire is used.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "QuestionnaireResponse.questionnaire"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "The location where a non-FHIR questionnaire/survey form can be found.",
+        "definition": "This extension is used when the survey,form, or questionnaire which is being anwered is not a FHIR [Questionnaire](https://www.hl7.org/fhir/questionnaire.html), otherwise the [canonical url](https://www.hl7.org/fhir/questionnaire.html#canonical) for the FHIR Questionnaire is used.",
+        "max": "1"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://ncqa.org/fhir/StructureDefinition/ext-questionnaireresponse.questionnaire-uri"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "type": [
+          {
+            "code": "uri"
+          }
+        ]
+      }
+    ]
+  }
+}

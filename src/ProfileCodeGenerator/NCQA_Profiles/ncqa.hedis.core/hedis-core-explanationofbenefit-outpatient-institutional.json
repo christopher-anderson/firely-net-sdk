@@ -1,0 +1,1405 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "hedis-core-explanationofbenefit-outpatient-institutional",
+  "url": "https://ncqa.org/fhir/StructureDefinition/hedis-core-explanationofbenefit-outpatient-institutional",
+  "name": "HEDISCoreExplanationOfBenefitOutpatientInstitutional",
+  "title": "HEDIS Core ExplanationOfBenefit Outpatient Institutional",
+  "status": "active",
+  "date": "2024-05-11T03:16:15.0371833+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "The HEDIS Core ExplanationOfBenefit Outpatient Institutional profile extends CARIN for Blue Button® to include requirements for measure calculation.",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ExplanationOfBenefit",
+  "baseDefinition": "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-ExplanationOfBenefit",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ExplanationOfBenefit",
+        "path": "ExplanationOfBenefit",
+        "constraint": [
+          {
+            "key": "EOB-inst-pointoforigin",
+            "severity": "error",
+            "human": "Where Admission Type and Point of Origin slices exist, if Type of Admission code is Newborn, Point of Origin must be from Point of Origin - Newborn CodeSystem  or Type of Admission is not Newborn and Point of Origin must be from Point of Origin Nonnewborn CodeSystem.",
+            "expression": "(supportingInfo.where(code.coding.system = 'https://www.nubc.org/CodeSystem/PriorityTypeOfAdmitOrVisit' and code.coding.code = '4').exists() and supportingInfo.where(code.coding.system='AHANUBCPointOfOriginForAdmissionOrVisitNonnewborn').exists()).not() and (supportingInfo.where(code.coding.system = 'https://www.nubc.org/CodeSystem/PriorityTypeOfAdmitOrVisit' and code.coding.code != '4').exists() and supportingInfo.where(code.coding.system = 'https://www.nubc.org/CodeSystem/PointOfOriginNewborn').exists() ).not()",
+            "source": "https://ncqa.org/fhir/StructureDefinition/hedis-core-explanationofbenefit-outpatient-institutional"
+          },
+          {
+            "key": "EOB-institutional-item-or-header-adjudication",
+            "severity": "error",
+            "human": "Institutional EOB:  Should have adjudication with adjudicationamounttype slice at the item or header level, but not both",
+            "expression": "adjudication.where(category.memberOf('http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBAdjudication')).exists() != item.adjudication.where(category.memberOf('http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBAdjudication')).exists()",
+            "source": "https://ncqa.org/fhir/StructureDefinition/hedis-core-explanationofbenefit-outpatient-institutional"
+          }
+        ]
+      },
+      {
+        "id": "ExplanationOfBenefit.meta",
+        "path": "ExplanationOfBenefit.meta",
+        "definition": "[HEDIS][CARIN-BB] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+        "type": [
+          {
+            "code": "Meta",
+            "profile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-meta"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ExplanationOfBenefit.meta.lastUpdated",
+        "path": "ExplanationOfBenefit.meta.lastUpdated",
+        "definition": "[CARIN-BB] When the resource last changed - e.g. when the version changed."
+      },
+      {
+        "id": "ExplanationOfBenefit.meta.profile",
+        "path": "ExplanationOfBenefit.meta.profile",
+        "definition": "[CARIN-BB]  A list of profiles (references to [StructureDefinition](structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url)."
+      },
+      {
+        "id": "ExplanationOfBenefit.meta.profile:supportedProfile",
+        "path": "ExplanationOfBenefit.meta.profile",
+        "sliceName": "supportedProfile",
+        "definition": "[HEDIS] A list of profiles (references to [StructureDefinition](structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url).",
+        "patternCanonical": "https://ncqa.org/fhir/StructureDefinition/hedis-core-explanationofbenefit-outpatient-institutional"
+      },
+      {
+        "id": "ExplanationOfBenefit.identifier",
+        "path": "ExplanationOfBenefit.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "type"
+            }
+          ],
+          "description": "Slice based on value pattern",
+          "rules": "open"
+        },
+        "definition": "[CARIN-BB] A unique identifier assigned to this explanation of benefit.",
+        "isModifier": false,
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.identifier.type",
+        "path": "ExplanationOfBenefit.identifier.type",
+        "definition": "[CARIN-BB] A coded type for the identifier that can be used to determine which identifier to use for a specific purpose."
+      },
+      {
+        "id": "ExplanationOfBenefit.identifier:uniqueclaimid",
+        "path": "ExplanationOfBenefit.identifier",
+        "sliceName": "uniqueclaimid",
+        "short": "Unique Claim Identifier",
+        "definition": "[CARIN-BB] A unique identifier assigned to this explanation of benefit.",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "ExplanationOfBenefit.identifier:uniqueclaimid.type",
+        "path": "ExplanationOfBenefit.identifier.type",
+        "definition": "[CARIN-BB] A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.",
+        "comment": "This element deals only with general categories of identifiers.  It SHOULD not be used for codes that correspond 1..1 with the Identifier.system. Some identifiers may fall into multiple categories due to common usage.   Where the system is known, a type is unnecessary because the type is always part of the system definition. However systems often need to handle identifiers where the system is not known. There is not a 1:1 relationship between type and system, since many different systems have the same type.tes that the claim identifier is that assigned by a payer for a claim received from a provider or subscriber. (183)",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+              "code": "uc"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.identifier:uniqueclaimid.type.coding",
+        "path": "ExplanationOfBenefit.identifier.type.coding",
+        "definition": "[CARIN-BB] A reference to a code defined by a terminology system.",
+        "min": 1,
+        "patternCoding": {
+          "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBIdentifierType",
+          "code": "uc"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.identifier:uniqueclaimid.type.coding.system",
+        "path": "ExplanationOfBenefit.identifier.type.coding.system",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.identifier:uniqueclaimid.type.coding.code",
+        "path": "ExplanationOfBenefit.identifier.type.coding.code",
+        "definition": "[CARIN-BB] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.identifier:uniqueclaimid.value",
+        "path": "ExplanationOfBenefit.identifier.value",
+        "definition": "[CARIN-BB] The portion of the identifier typically relevant to the user and which is unique within the context of the system.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.status",
+        "path": "ExplanationOfBenefit.status",
+        "definition": "[CARIN-BB] The status of the resource instance."
+      },
+      {
+        "id": "ExplanationOfBenefit.type",
+        "path": "ExplanationOfBenefit.type",
+        "definition": "[CARIN-BB] The category of claim, e.g. oral, pharmacy, vision, institutional, professional."
+      },
+      {
+        "id": "ExplanationOfBenefit.type.coding",
+        "path": "ExplanationOfBenefit.type.coding",
+        "definition": "[CARIN-BB] A reference to a code defined by a terminology system.",
+        "min": 1,
+        "patternCoding": {
+          "system": "http://terminology.hl7.org/CodeSystem/claim-type",
+          "code": "institutional"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.type.coding.system",
+        "path": "ExplanationOfBenefit.type.coding.system",
+        "definition": "[CARIN-BB] The identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.type.coding.code",
+        "path": "ExplanationOfBenefit.type.coding.code",
+        "definition": "[CARIN-BB] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.subType",
+        "path": "ExplanationOfBenefit.subType",
+        "definition": "[CARIN-BB] A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBInstitutionalClaimSubType"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.subType.coding",
+        "path": "ExplanationOfBenefit.subType.coding",
+        "definition": "[CARIN-BB] A reference to a code defined by a terminology system.",
+        "min": 1,
+        "patternCoding": {
+          "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBInstitutionalClaimSubType",
+          "code": "outpatient"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.subType.coding.system",
+        "path": "ExplanationOfBenefit.subType.coding.system",
+        "definition": "[CARIN-BB] The identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.subType.coding.code",
+        "path": "ExplanationOfBenefit.subType.coding.code",
+        "definition": "[CARIN-BB] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.use",
+        "path": "ExplanationOfBenefit.use",
+        "definition": "[CARIN-BB] A code to indicate whether the nature of the request is: to request adjudication of products and services previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding adjudication of the listed products and services which could be provided in the future."
+      },
+      {
+        "id": "ExplanationOfBenefit.patient",
+        "path": "ExplanationOfBenefit.patient",
+        "definition": "[HEDIS][CARIN-BB]  The party to whom the professional services and/or products have been supplied or are being considered and for whom actual for forecast reimbursement is sought.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-patient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ExplanationOfBenefit.billablePeriod",
+        "path": "ExplanationOfBenefit.billablePeriod",
+        "definition": "[HEDIS][CARIN-BB] The period for which charges are being submitted.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.billablePeriod.start",
+        "path": "ExplanationOfBenefit.billablePeriod.start",
+        "definition": "[CARIN-BB] The start of the period. The boundary is inclusive.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.created",
+        "path": "ExplanationOfBenefit.created",
+        "definition": "[CARIN-BB] The date this resource was created.",
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.insurer",
+        "path": "ExplanationOfBenefit.insurer",
+        "definition": "[CARIN-BB] The party responsible for authorization, adjudication and reimbursement."
+      },
+      {
+        "id": "ExplanationOfBenefit.provider",
+        "path": "ExplanationOfBenefit.provider",
+        "definition": "[CARIN-BB] The provider which is responsible for the claim, predetermination or preauthorization.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ExplanationOfBenefit.related",
+        "path": "ExplanationOfBenefit.related",
+        "definition": "[CARIN-BB] Other claims which are related to this claim such as prior submissions or claims for related services or for the same event."
+      },
+      {
+        "id": "ExplanationOfBenefit.related.relationship",
+        "path": "ExplanationOfBenefit.related.relationship",
+        "definition": "[CARIN-BB] A code to convey how the claims are related."
+      },
+      {
+        "id": "ExplanationOfBenefit.related.reference",
+        "path": "ExplanationOfBenefit.related.reference",
+        "definition": "[CARIN-BB] An alternate organizational reference to the case or file to which this particular claim pertains."
+      },
+      {
+        "id": "ExplanationOfBenefit.payee",
+        "path": "ExplanationOfBenefit.payee",
+        "definition": "[CARIN-BB] The party to be reimbursed for cost of the products and services according to the terms of the policy."
+      },
+      {
+        "id": "ExplanationOfBenefit.payee.type",
+        "path": "ExplanationOfBenefit.payee.type",
+        "definition": "[CARIN-BB] Type of Party to be reimbursed: Subscriber, provider, other."
+      },
+      {
+        "id": "ExplanationOfBenefit.payee.party",
+        "path": "ExplanationOfBenefit.payee.party",
+        "definition": "[CARIN-BB] Reference to the individual or organization to whom any payment will be made."
+      },
+      {
+        "id": "ExplanationOfBenefit.outcome",
+        "path": "ExplanationOfBenefit.outcome",
+        "definition": "[CARIN-BB] The outcome of the claim, predetermination, or preauthorization processing."
+      },
+      {
+        "id": "ExplanationOfBenefit.careTeam",
+        "path": "ExplanationOfBenefit.careTeam",
+        "definition": "[CARIN-BB] The members of the team who provided the products and services.",
+        "constraint": [
+   {
+   "key": "EOB-inst-careTeam-practitioner",
+   "severity": "error",
+   "human": "Institutional EOB: Careteam roles refer to a practitioner",
+   "expression": "( role.where(coding.where(code in ('attending' | 'primary' | 'referring' | 'supervisor')).exists()).exists() implies provider.all(resolve() is Practitioner) )",
+   "source": "https://ncqa.org/fhir/StructureDefinition/hedis-core-explanationofbenefit-outpatient-institutional"
+    },
+ {
+   "key": "EOB-inst-careTeam-organization",
+   "severity": "error",
+   "human": "Institutional EOB: Careteam roles refer to an organization",
+   "expression": "( role.where(coding.where(code in ('performing' )).exists()).exists() implies provider.all(resolve() is Organization) )",
+    "source": "https://ncqa.org/fhir/StructureDefinition/hedis-core-explanationofbenefit-outpatient-institutional"
+   },
+ {
+   "key": "EOB-careteam-qualification",
+   "severity": "error",
+   "human": "Care Team Performing physician's qualifications are from US-Core-Provider-Specialty Value Set",
+  "expression": "where(role.where(coding.code in ('performing')).exists().not() or qualification.memberOf('http://hl7.org/fhir/us/core/ValueSet/us-core-provider-specialty')).exists()",
+  "source": "https://ncqa.org/fhir/StructureDefinition/hedis-core-explanationofbenefit-outpatient-institutional"
+ }
+        ]
+      },
+      {
+        "id": "ExplanationOfBenefit.careTeam.sequence",
+        "path": "ExplanationOfBenefit.careTeam.sequence",
+        "definition": "[HEDIS] A number to uniquely identify care team entries.",
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.careTeam.provider",
+        "path": "ExplanationOfBenefit.careTeam.provider",
+        "definition": "[HEDIS][CARIN-BB] Member of the team who provided the product or service.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/us/carin-bb/StructureDefinition/C4BB-Organization",
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ExplanationOfBenefit.careTeam.role",
+        "path": "ExplanationOfBenefit.careTeam.role",
+        "definition": "[CARIN-BB] The lead, assisting or supervising practitioner and their discipline if a multidisciplinary team.",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimInstitutionalCareTeamRole"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.careTeam.qualification",
+        "path": "ExplanationOfBenefit.careTeam.qualification",
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/core/ValueSet/us-core-provider-specialty"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo",
+        "path": "ExplanationOfBenefit.supportingInfo",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "category"
+            }
+          ],
+          "description": "Slice based on $this pattern",
+          "ordered": false,
+          "rules": "open"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus",
+        "path": "ExplanationOfBenefit.supportingInfo",
+        "sliceName": "billingnetworkcontractingstatus",
+        "definition": "[CARIN-BB] Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+        "comment": "Indicates that the Billing Provider has a contract with the Plan (regardless of the network) as of the effective date of service or admission. (101)",
+        "max": "1"
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.category",
+        "path": "ExplanationOfBenefit.supportingInfo.category",
+        "definition": "[CARIN-BB] The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+              "code": "billingnetworkcontractingstatus"
+            }
+          ]
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.category.coding",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding",
+        "definition": "[CARIN-BB] A reference to a code defined by a terminology system.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.category.coding.system",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.system",
+        "definition": "[CARIN-BB] identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.category.coding.code",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.code",
+        "definition": "[CARIN-BB] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:billingnetworkcontractingstatus.code",
+        "path": "ExplanationOfBenefit.supportingInfo.code",
+        "definition": "[CARIN-BB] System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought.",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBPayerProviderContractingStatus"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:clmrecvddate",
+        "path": "ExplanationOfBenefit.supportingInfo",
+        "sliceName": "clmrecvddate",
+        "definition": "[CARIN-BB] Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+        "comment": "The date the claim was received by the payer (88)",
+        "max": "1"
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:clmrecvddate.category",
+        "path": "ExplanationOfBenefit.supportingInfo.category",
+        "definition": "[CARIN-BB] general class of the information supplied: information; exception; accident, employment; onset, etc.",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+              "code": "clmrecvddate"
+            }
+          ]
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:clmrecvddate.category.coding",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding",
+        "definition": "[CARIN-BB] A reference to a code defined by a terminology system.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:clmrecvddate.category.coding.system",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.system",
+        "definition": "[CARIN-BB] The identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:clmrecvddate.category.coding.code",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.code",
+        "definition": "[CARIN-BB] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:clmrecvddate.timing[x]",
+        "path": "ExplanationOfBenefit.supportingInfo.timing[x]",
+        "definition": "[CARIN-BB] The date when or period to which this information refers.",
+        "min": 1,
+        "type": [
+          {
+            "code": "date"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:typeofbill",
+        "path": "ExplanationOfBenefit.supportingInfo",
+        "sliceName": "typeofbill",
+        "definition": "[CARIN-BB] Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+        "comment": "UB04 (Form Locator 4) type of bill code provides specific information for payer purposes. The first digit of the three-digit number denotes the type of institution, the second digit classifies the type of care being billed, and the third digit  identifies the frequency of the bill for a specific course of treatment or inpatient confinement. (17)",
+        "max": "1"
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:typeofbill.category",
+        "path": "ExplanationOfBenefit.supportingInfo.category",
+        "definition": "[CARIN-BB] The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+              "code": "typeofbill"
+            }
+          ]
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:typeofbill.category.coding",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:typeofbill.category.coding.system",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.system",
+        "definition": "[CARIN-BB] The identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:typeofbill.category.coding.code",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.code",
+        "definition": "[CARIN-BB] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:typeofbill.code",
+        "path": "ExplanationOfBenefit.supportingInfo.code",
+        "definition": "[CARIN-BB] System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought.",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCTypeOfBill"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:pointoforigin",
+        "path": "ExplanationOfBenefit.supportingInfo",
+        "sliceName": "pointoforigin",
+        "definition": "[CARIN-BB] Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+        "comment": "Identifies the place where the patient was identified as needing admission to an institution. This is a two position code mapped from the standard values for the UB-04 Source of Admission code (FL-15). (13)",
+        "max": "1"
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:pointoforigin.category",
+        "path": "ExplanationOfBenefit.supportingInfo.category",
+        "definition": "[CARIN-BB] The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+              "code": "pointoforigin"
+            }
+          ]
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:pointoforigin.category.coding",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:pointoforigin.category.coding.system",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.system",
+        "definition": "[CARIN-BB] The identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:pointoforigin.category.coding.code",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.code",
+        "definition": "[CARIN-BB] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:pointoforigin.code",
+        "path": "ExplanationOfBenefit.supportingInfo.code",
+        "definition": "[CARIN-BB] System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought.",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCPointOfOriginForAdmissionOrVisit"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:admtype",
+        "path": "ExplanationOfBenefit.supportingInfo",
+        "sliceName": "admtype",
+        "definition": "[CARIN-BB] Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+        "comment": "Priority of the admission. Information located on (UB04 Form Locator 14). For example, an admission type of elective indicates that the patient's condition permitted time for medical services to be scheduled. (14)",
+        "max": "1"
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:admtype.category",
+        "path": "ExplanationOfBenefit.supportingInfo.category",
+        "definition": "[CARIN-BB] The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+              "code": "admtype"
+            }
+          ]
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:admtype.category.coding",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding",
+        "definition": "[CARIN-BB] A reference to a code defined by a terminology system.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:admtype.category.coding.system",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.system",
+        "definition": "[CARIN-BB] The identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:admtype.category.coding.code",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.code",
+        "definition": "[CARIN-BB] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:admtype.code",
+        "path": "ExplanationOfBenefit.supportingInfo.code",
+        "definition": "[CARIN-BB] System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought.",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCPriorityTypeOfAdmissionOrVisit"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:discharge-status",
+        "path": "ExplanationOfBenefit.supportingInfo",
+        "sliceName": "discharge-status",
+        "definition": "[CARIN-BB] Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+        "comment": "Patient’s status as of the discharge date for a facility stay. Information located on UB04. (Form Locator 17). (117)",
+        "max": "1"
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:discharge-status.category",
+        "path": "ExplanationOfBenefit.supportingInfo.category",
+        "definition": "[CARIN-BB] The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+              "code": "discharge-status"
+            }
+          ]
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:discharge-status.category.coding",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding",
+        "definition": "[CARIN-BB] A reference to a code defined by a terminology system.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:discharge-status.category.coding.system",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.system",
+        "definition": "[CARIN-BB] The identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:discharge-status.category.coding.code",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.code",
+        "definition": "[CARIN-BB] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:discharge-status.code",
+        "path": "ExplanationOfBenefit.supportingInfo.code",
+        "definition": "[CARIN-BB] System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought.",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCPatientDischargeStatus"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:medicalrecordnumber",
+        "path": "ExplanationOfBenefit.supportingInfo",
+        "sliceName": "medicalrecordnumber",
+        "definition": "[CARIN-BB] Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+        "comment": "Provider submitted medical record number that can be included on the claim. (109)",
+        "max": "1"
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:medicalrecordnumber.category",
+        "path": "ExplanationOfBenefit.supportingInfo.category",
+        "definition": "[CARIN-BB] The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+              "code": "medicalrecordnumber"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:medicalrecordnumber.category.coding",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:medicalrecordnumber.category.coding.system",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.system",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:medicalrecordnumber.category.coding.code",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.code",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:medicalrecordnumber.value[x]",
+        "path": "ExplanationOfBenefit.supportingInfo.value[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "closed"
+        },
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:medicalrecordnumber.value[x]:valueString",
+        "path": "ExplanationOfBenefit.supportingInfo.value[x]",
+        "sliceName": "valueString",
+        "definition": "[CARIN-BB] Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.",
+        "min": 1,
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:patientaccountnumber",
+        "path": "ExplanationOfBenefit.supportingInfo",
+        "sliceName": "patientaccountnumber",
+        "definition": "[CARIN-BB] Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+        "comment": "Provider assigned patient account number that can be included on the claim. (109)",
+        "max": "1"
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:patientaccountnumber.category",
+        "path": "ExplanationOfBenefit.supportingInfo.category",
+        "definition": "[CARIN-BB] The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBSupportingInfoType",
+              "code": "patientaccountnumber"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:patientaccountnumber.category.coding",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding",
+        "definition": "[CARIN-BB] A reference to a code defined by a terminology system.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:patientaccountnumber.category.coding.system",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.system",
+        "definition": "[CARIN-BB] The identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:patientaccountnumber.category.coding.code",
+        "path": "ExplanationOfBenefit.supportingInfo.category.coding.code",
+        "definition": "[CARIN-BB] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:patientaccountnumber.value[x]",
+        "path": "ExplanationOfBenefit.supportingInfo.value[x]",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "type",
+              "path": "$this"
+            }
+          ],
+          "ordered": false,
+          "rules": "closed"
+        },
+        "min": 1,
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "ExplanationOfBenefit.supportingInfo:patientaccountnumber.value[x]:valueString",
+        "path": "ExplanationOfBenefit.supportingInfo.value[x]",
+        "sliceName": "valueString",
+        "definition": "[CARIN-BB] Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.",
+        "min": 1,
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.diagnosis",
+        "path": "ExplanationOfBenefit.diagnosis",
+        "definition": "[HEDIS][CARIN-BB] Information about diagnoses relevant to the claim items.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.diagnosis.sequence",
+        "path": "ExplanationOfBenefit.diagnosis.sequence",
+        "definition": "[HEDIS] A number to uniquely identify diagnosis entries.",
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.diagnosis.diagnosis[x]",
+        "path": "ExplanationOfBenefit.diagnosis.diagnosis[x]",
+        "comment": "[CARIN-BB] This element needs to be supported based on the HEDIS specification.",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/CDCICD910CMDiagnosisCodes"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.diagnosis.type",
+        "path": "ExplanationOfBenefit.diagnosis.type",
+        "definition": "[CARIN-BB] When the condition was observed or the relative ranking.",
+        "min": 1,
+        "max": "1",
+        "binding": {
+          "strength": "required",
+          "description": "Indicates if the outpatient institutional diagnosis is principal, other, an external cause of injury or a patient reason for visit.",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBClaimOutpatientInstitutionalDiagnosisType"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.procedure",
+        "path": "ExplanationOfBenefit.procedure",
+        "definition": "[HEDIS] Procedures performed on the patient relevant to the billing items with the claim.",
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.procedure.sequence",
+        "path": "ExplanationOfBenefit.procedure.sequence",
+        "definition": "[HEDIS] A number to uniquely identify procedure entries.",
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.procedure.procedure[x]",
+        "path": "ExplanationOfBenefit.procedure.procedure[x]",
+        "definition": "[HEDIS] The code or reference to a Procedure resource which identifies the clinical intervention performed.",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://ncqa.org/fhir/StructureDefinition/hedis-core-procedure"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ExplanationOfBenefit.insurance",
+        "path": "ExplanationOfBenefit.insurance",
+        "definition": "[CARIN-BB] Financial instruments for reimbursement for the health care products and services specified on the claim."
+      },
+      {
+        "id": "ExplanationOfBenefit.insurance.focal",
+        "path": "ExplanationOfBenefit.insurance.focal",
+        "definition": "[CARIN-BB] A flag to indicate that this Coverage is to be used for adjudication of this claim when set to true."
+      },
+      {
+        "id": "ExplanationOfBenefit.insurance.coverage",
+        "path": "ExplanationOfBenefit.insurance.coverage",
+        "definition": "[CARIN-BB] Reference to the insurance card level information contained in the Coverage resource. The coverage issuing insurer will use these details to locate the patient's actual coverage within the insurer's information system."
+      },
+      {
+        "id": "ExplanationOfBenefit.item",
+        "path": "ExplanationOfBenefit.item",
+        "definition": "[HEDIS][CARIN-BB] A claim line. Either a simple (a product or service) or a 'group' of details which can also be a simple items or groups of sub-details.",
+        "min": 1,
+        "constraint": [
+          {
+            "key": "adjudication-has-amount-type-slice",
+            "severity": "error",
+            "human": "If Adjudication is present, it must have at least one adjudicationamounttype slice",
+            "expression": "(adjudication.exists().not() or adjudication.where(category.memberOf('http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBAdjudication')).exists())",
+            "source": "https://ncqa.org/fhir/StructureDefinition/hedis-core-explanationofbenefit-outpatient-institutional"
+          }
+        ]
+      },
+      {
+        "id": "ExplanationOfBenefit.item.sequence",
+        "path": "ExplanationOfBenefit.item.sequence",
+        "definition": "[CARIN-BB] A number to uniquely identify item entries."
+      },
+      {
+        "id": "ExplanationOfBenefit.item.diagnosisSequence",
+        "path": "ExplanationOfBenefit.item.diagnosisSequence",
+        "definition": "[HEDIS] Diagnoses applicable for this service or product.",
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.item.procedureSequence",
+        "path": "ExplanationOfBenefit.item.procedureSequence",
+        "definition": "[HEDIS] Procedures applicable for this service or product.",
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.item.informationSequence",
+        "path": "ExplanationOfBenefit.item.informationSequence",
+        "definition": "[HEDIS] Exceptions, special conditions and supporting information applicable for this service or product.",
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.item.revenue",
+        "path": "ExplanationOfBenefit.item.revenue",
+        "definition": "[CARIN-BB] The type of revenue or cost center providing the product and/or service.",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/AHANUBCRevenueCodes"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.item.productOrService",
+        "path": "ExplanationOfBenefit.item.productOrService",
+        "definition": "[CARIN-BB] When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item.",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBEOBInstitutionalProcedureCodes"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.item.modifier",
+        "path": "ExplanationOfBenefit.item.modifier",
+        "definition": "[CARIN-BB] Item typification or modifiers codes to convey additional context for the product or service.",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/AMACPTCMSHCPCSModifiers"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.item.serviced[x]",
+        "path": "ExplanationOfBenefit.item.serviced[x]",
+        "definition": "[HEDIS][CARIN-BB] The date or dates when the service or product was supplied, performed or completed.",
+        "min": 1,
+        "type": [
+          {
+            "code": "date"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.item.quantity",
+        "path": "ExplanationOfBenefit.item.quantity",
+        "definition": "[CARIN-BB] The number of repetitions of a service or product.",
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.item.noteNumber",
+        "path": "ExplanationOfBenefit.item.noteNumber",
+        "definition": "[CARIN-BB] The numbers associated with notes below which apply to the adjudication of this item."
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication",
+        "path": "ExplanationOfBenefit.item.adjudication",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "category"
+            }
+          ],
+          "rules": "open"
+        },
+        "definition": "[CARIN-BB] If this item is a group then the values here are a summary of the adjudication of the detail items. If this item is a simple product or service then this is the result of the adjudication of this item.",
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication.category",
+        "path": "ExplanationOfBenefit.item.adjudication.category",
+        "definition": "[CARIN-BB] A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in-aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.",
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBAdjudicationCategoryDiscriminator"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:adjudicationamounttype",
+        "path": "ExplanationOfBenefit.item.adjudication",
+        "sliceName": "adjudicationamounttype",
+        "short": "Line level adjudication type and amount",
+        "definition": "[CARIN-BB] If this item is a group then the values here are a summary of the adjudication of the detail items. If this item is a simple product or service then this is the result of the adjudication of this item.",
+        "comment": "Describes the various amount fields used when payers receive and adjudicate a claim. (187)",
+        "mustSupport": true,
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:adjudicationamounttype.id",
+        "path": "ExplanationOfBenefit.item.adjudication.id",
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:adjudicationamounttype.category",
+        "path": "ExplanationOfBenefit.item.adjudication.category",
+        "definition": "[CARIN-BB] A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in-aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.",
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBAdjudication"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:adjudicationamounttype.reason",
+        "path": "ExplanationOfBenefit.item.adjudication.reason",
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:adjudicationamounttype.amount",
+        "path": "ExplanationOfBenefit.item.adjudication.amount",
+        "definition": "[CARIN-BB] Monetary amount associated with the category.",
+        "min": 1,
+        "mustSupport": true,
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:adjudicationamounttype.value",
+        "path": "ExplanationOfBenefit.item.adjudication.value",
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:denialreason",
+        "path": "ExplanationOfBenefit.item.adjudication",
+        "sliceName": "denialreason",
+        "short": "Reason codes used to interpret the Non-Covered Amount (92)",
+        "definition": "[CARIN-BB] If this item is a group then the values here are a summary of the adjudication of the detail items. If this item is a simple product or service then this is the result of the adjudication of this item.",
+        "comment": "Reason codes used to interpret the Non-Covered Amount that are provided to the Provider. (92)",
+        "mustSupport": true,
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:denialreason.id",
+        "path": "ExplanationOfBenefit.item.adjudication.id",
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:denialreason.category",
+        "path": "ExplanationOfBenefit.item.adjudication.category",
+        "definition": "[CARIN-BB] A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in-aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
+              "code": "denialreason"
+            }
+          ]
+        },
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:denialreason.category.coding",
+        "path": "ExplanationOfBenefit.item.adjudication.category.coding",
+        "definition": "[CARIN-BB] A reference to a code defined by a terminology system.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:denialreason.category.coding.system",
+        "path": "ExplanationOfBenefit.item.adjudication.category.coding.system",
+        "definition": "[CARIN-BB] The identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:denialreason.category.coding.code",
+        "path": "ExplanationOfBenefit.item.adjudication.category.coding.code",
+        "definition": "[CARIN-BB] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:denialreason.reason",
+        "path": "ExplanationOfBenefit.item.adjudication.reason",
+        "min": 1,
+        "mustSupport": true,
+        "isSummary": false,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/X12ClaimAdjustmentReasonCodesCMSRemittanceAdviceRemarkCodes"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:denialreason.amount",
+        "path": "ExplanationOfBenefit.item.adjudication.amount",
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:denialreason.value",
+        "path": "ExplanationOfBenefit.item.adjudication.value",
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:allowedunits",
+        "path": "ExplanationOfBenefit.item.adjudication",
+        "sliceName": "allowedunits",
+        "short": "The quantity of units, times, days, visits, services, or treatments for the service described by the HCPCS code, revenue code or procedure code, submitted by the provider.  (149)",
+        "definition": "[CARIN-BB] If this item is a group then the values here are a summary of the adjudication of the detail items. If this item is a simple product or service then this is the result of the adjudication of this item.",
+        "comment": "The quantity of units, times, days, visits, services, or treatments allowed for the service described by the HCPCS code, revenue code or procedure code, submitted by the provider. (149)",
+        "max": "1",
+        "mustSupport": true,
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:allowedunits.id",
+        "path": "ExplanationOfBenefit.item.adjudication.id",
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:allowedunits.category",
+        "path": "ExplanationOfBenefit.item.adjudication.category",
+        "definition": "[CARIN-BB] A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in-aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
+              "code": "allowedunits"
+            }
+          ]
+        },
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:allowedunits.category.coding",
+        "path": "ExplanationOfBenefit.item.adjudication.category.coding",
+        "definition": "[CARIN-BB] A reference to a code defined by a terminology system.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:allowedunits.category.coding.system",
+        "path": "ExplanationOfBenefit.item.adjudication.category.coding.system",
+        "definition": "[CARIN-BB] The identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:allowedunits.category.coding.code",
+        "path": "ExplanationOfBenefit.item.adjudication.category.coding.code",
+        "definition": "[CARIN-BB] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:allowedunits.reason",
+        "path": "ExplanationOfBenefit.item.adjudication.reason",
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:allowedunits.amount",
+        "path": "ExplanationOfBenefit.item.adjudication.amount",
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.item.adjudication:allowedunits.value",
+        "path": "ExplanationOfBenefit.item.adjudication.value",
+        "definition": "[CARIN-BB] A non-monetary value associated with the category. Mutually exclusive to the amount element above.",
+        "min": 1,
+        "mustSupport": true,
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.adjudication",
+        "path": "ExplanationOfBenefit.adjudication",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "category"
+            }
+          ],
+          "description": "Slice based on value pattern",
+          "ordered": false,
+          "rules": "closed"
+        },
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.adjudication.category",
+        "path": "ExplanationOfBenefit.adjudication.category",
+        "definition": "[CARIN-BB] A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in-aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.",
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBAdjudicationCategoryDiscriminator"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.adjudication:adjudicationamounttype",
+        "path": "ExplanationOfBenefit.adjudication",
+        "sliceName": "adjudicationamounttype",
+        "definition": "[CARIN-BB] The adjudication results which are presented at the header level rather than at the line-item or add-item levels.",
+        "comment": "[CARIN-BB] Describes the various amount fields used when payers receive and adjudicate a claim. (187)",
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.adjudication:adjudicationamounttype.category",
+        "path": "ExplanationOfBenefit.adjudication.category",
+        "definition": "[CARIN-BB] A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in-aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.",
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBAdjudication"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.adjudication:adjudicationamounttype.amount",
+        "path": "ExplanationOfBenefit.adjudication.amount",
+        "definition": "[CARIN-BB] Monetary amount associated with the category.",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.adjudication:denialreason",
+        "path": "ExplanationOfBenefit.adjudication",
+        "sliceName": "denialreason",
+        "definition": "[CARIN-BB] The adjudication results which are presented at the header level rather than at the line-item or add-item levels.",
+        "comment": "Reason codes used to interpret the Non-Covered Amount that are provided to the Provider. (92)",
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.adjudication:denialreason.category",
+        "path": "ExplanationOfBenefit.adjudication.category",
+        "definition": "[CARIN-BB] A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in-aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.",
+        "patternCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/us/carin-bb/CodeSystem/C4BBAdjudicationDiscriminator",
+              "code": "denialreason"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.adjudication:denialreason.category.coding",
+        "path": "ExplanationOfBenefit.adjudication.category.coding",
+        "definition": "[CARIN-BB] A reference to a code defined by a terminology system.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.adjudication:denialreason.category.coding.system",
+        "path": "ExplanationOfBenefit.adjudication.category.coding.system",
+        "definition": "[CARIN-BB] The identification of the code system that defines the meaning of the symbol in the code.",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.adjudication:denialreason.category.coding.code",
+        "path": "ExplanationOfBenefit.adjudication.category.coding.code",
+        "definition": "[CARIN-BB] A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.adjudication:denialreason.reason",
+        "path": "ExplanationOfBenefit.adjudication.reason",
+        "definition": "[CARIN-BB] A code supporting the understanding of the adjudication result and explaining variance from expected amount.",
+        "comment": "Reason codes used to interpret the Non-Covered Amount that are provided to the Provider. (92)",
+        "min": 1,
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/X12ClaimAdjustmentReasonCodesCMSRemittanceAdviceRemarkCodes"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.total",
+        "path": "ExplanationOfBenefit.total",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "category"
+            }
+          ],
+          "description": "Slice based on value pattern",
+          "rules": "open"
+        },
+        "min": 2
+      },
+      {
+        "id": "ExplanationOfBenefit.total.category",
+        "path": "ExplanationOfBenefit.total.category",
+        "definition": "[CARIN-BB] A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.",
+        "mustSupport": true,
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBTotalCategoryDiscriminator"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.total:adjudicationamounttype",
+        "path": "ExplanationOfBenefit.total",
+        "sliceName": "adjudicationamounttype",
+        "definition": "[CARIN-BB] Categorized monetary totals for the adjudication.",
+        "comment": "Describes the various amount fields used when payers receive and adjudicate a claim. (187)",
+        "min": 1
+      },
+      {
+        "id": "ExplanationOfBenefit.total:adjudicationamounttype.id",
+        "path": "ExplanationOfBenefit.total.id",
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.total:adjudicationamounttype.category",
+        "path": "ExplanationOfBenefit.total.category",
+        "definition": "[CARIN-BB] A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.",
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBAdjudication"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.total:adjudicationamounttype.amount",
+        "path": "ExplanationOfBenefit.total.amount",
+        "definition": "[CARIN-BB] Monetary total amount associated with the category.",
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.total:benefitpaymentstatus",
+        "path": "ExplanationOfBenefit.total",
+        "sliceName": "benefitpaymentstatus",
+        "definition": "[CARIN-BB] Categorized monetary totals for the adjudication.",
+        "comment": "Indicates the in network or out of network payment status of the claim. (142)",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "ExplanationOfBenefit.total:benefitpaymentstatus.id",
+        "path": "ExplanationOfBenefit.total.id",
+        "isSummary": false
+      },
+      {
+        "id": "ExplanationOfBenefit.total:benefitpaymentstatus.category",
+        "path": "ExplanationOfBenefit.total.category",
+        "definition": "[CARIN-BB] A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.",
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://hl7.org/fhir/us/carin-bb/ValueSet/C4BBPayerBenefitPaymentStatus"
+        }
+      },
+      {
+        "id": "ExplanationOfBenefit.total:benefitpaymentstatus.amount",
+        "path": "ExplanationOfBenefit.total.amount",
+        "definition": "[CARIN-BB] Monetary total amount associated with the category."
+      },
+      {
+        "id": "ExplanationOfBenefit.payment",
+        "path": "ExplanationOfBenefit.payment",
+        "definition": "[CARIN-BB] Payment details for the adjudication of the claim."
+      },
+      {
+        "id": "ExplanationOfBenefit.payment.type",
+        "path": "ExplanationOfBenefit.payment.type",
+        "definition": "[CARIN-BB] Whether this represents partial or complete payment of the benefits payable."
+      },
+      {
+        "id": "ExplanationOfBenefit.payment.date",
+        "path": "ExplanationOfBenefit.payment.date",
+        "definition": "[CARIN-BB] Estimated date the payment will be issued or the actual issue date of payment.",
+        "mustSupport": true
+      },
+      {
+        "id": "ExplanationOfBenefit.processNote",
+        "path": "ExplanationOfBenefit.processNote",
+        "definition": "[CARIN-BB] A note that describes or explains adjudication results in a human readable form."
+      },
+      {
+        "id": "ExplanationOfBenefit.processNote.text",
+        "path": "ExplanationOfBenefit.processNote.text",
+        "definition": "[CARIN-BB] The explanation or description associated with the processing.",
+        "mustSupport": true
+      }
+    ]
+  }
+}

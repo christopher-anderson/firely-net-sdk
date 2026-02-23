@@ -1,0 +1,42 @@
+{
+  "resourceType": "Device",
+  "id": "hedis-core-device-01",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device"
+    ]
+  },
+  "udiCarrier": [
+    {
+      "deviceIdentifier": "99863313444316",
+      "carrierHRF": "(01)99863313444316(17)220101(10)M320(21)AC221",
+      "entryType": "rfid"
+    }
+  ],
+  "status": "active",
+  "manufacturer": "ACME Biomedical",
+  "expirationDate": "2022-01-01",
+  "lotNumber": "M320",
+  "serialNumber": "AC221",
+  "deviceName": [
+    {
+      "name": "ACME Defibrillator Analyzer, with Transcutaneous Pacemaker Input",
+      "type": "udi-label-name"
+    }
+  ],
+  "modelNumber": "1.0",
+  "type": {
+    "coding": [
+      {
+        "code": "19257004",
+        "system": "http://snomed.info/sct/731000124108",
+        "display": "Defibrillator, device"
+      }
+    ],
+    "text": "Implant"
+  },
+  "patient": {
+    "reference": "Patient/hedis-core-patient-01",
+    "display": "Amy Shaw"
+  }
+}

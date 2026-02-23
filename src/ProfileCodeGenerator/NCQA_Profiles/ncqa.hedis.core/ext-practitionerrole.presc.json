@@ -1,0 +1,47 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ext-practitionerrole.presc",
+  "url": "https://ncqa.org/fhir/StructureDefinition/ext-practitionerrole.presc",
+  "name": "ExtPractitionerRolePresc",
+  "title": "Ext PractitionerRole Presc",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "This extension is used to indicate if a Practitioner has prescribing authority",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "PractitionerRole"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "max": "1"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://ncqa.org/fhir/StructureDefinition/ext-practitionerrole.presc"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "ext-patient.sex-parameter-for-clinical-use",
+  "url": "https://ncqa.org/fhir/StructureDefinition/ext-patient.sex-parameter-for-clinical-use",
+  "name": "ExtPatientSexParameterForClinicalUse",
+  "title": "Ext Patient Sex Parameter For Clinical Use",
+  "status": "active",
+  "date": "2024-05-08T15:19:06.9365026+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "A Sex Parameter for Clinical Use is a parameter that provides guidance on how a recipient should apply settings or reference ranges that are derived from observable information such as an organ inventory, recent hormone lab tests, genetic testing, menstrual status, obstetric history, etc..",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "fhirVersion": "4.0.1",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "Patient"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "A context-specific sex parameter for clinical use",
+        "definition": "A parameter that provides guidance on how a recipient should apply settings or reference ranges that are derived from observable information such as an organ inventory, recent hormone lab tests, genetic testing, menstrual status, obstetric history, etc..",
+        "comment": "A context-specific sex parameter for clinical use"
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "min": 2
+      },
+      {
+        "id": "Extension.extension:value",
+        "path": "Extension.extension",
+        "sliceName": "value",
+        "short": "A context-specific sex parameter for clinical use",
+        "definition": "A parameter that provides guidance on how a recipient should apply settings or reference ranges that are derived from observable information such as an organ inventory, recent hormone lab tests, genetic testing, menstrual status, obstetric history, etc..",
+        "comment": "Sex parameters for clinical use may be contexual. For example, the sex parameter for clinical use for mammogram health maintenance may by different than the sex parameter for clinical use for the purpose of selecting a reference range for a lab test.",
+        "requirements": "A context-specific sex parameter for clinical use",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:value.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "value"
+      },
+      {
+        "id": "Extension.extension:value.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "description": "This value set defines codes to identify the sex parameter of a patient.",
+          "valueSet": "https://ncqa.org/fhir/ValueSet/hedis-sex-parameter-for-clinical-use"
+        }
+      },
+      {
+        "id": "Extension.extension:period",
+        "path": "Extension.extension",
+        "sliceName": "period",
+        "short": "A context-specific sex parameter for clinical use",
+        "definition": "The time period during which the sex parameter for clinical use applies.",
+        "requirements": "When the sex for clinical use applies",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Extension.extension:period.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "period"
+      },
+      {
+        "id": "Extension.extension:period.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "Period"
+          }
+        ]
+      },
+      {
+        "id": "Extension.extension:comment",
+        "path": "Extension.extension",
+        "sliceName": "comment",
+        "short": "A context-specific sex parameter for clinical use",
+        "definition": "Further explanation about the context for the sex parameter for clinical use",
+        "max": "1"
+      },
+      {
+        "id": "Extension.extension:comment.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "comment"
+      },
+      {
+        "id": "Extension.extension:comment.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "https://ncqa.org/fhir/StructureDefinition/ext-patient.sex-parameter-for-clinical-use"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "max": "0"
+      }
+    ]
+  }
+}

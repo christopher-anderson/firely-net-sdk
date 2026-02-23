@@ -1,0 +1,33 @@
+{
+  "resourceType": "Immunization",
+  "id": "hedis-core-immunization-01",
+  "meta": {
+    "profile": [
+      "https://ncqa.org/fhir/StructureDefinition/hedis-core-immunization"
+    ],
+    "tag": [
+      {
+        "code": "administrative",
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+        "display": "Administrative"
+      }
+    ]
+  },
+  "status": "completed",
+  "vaccineCode": {
+    "coding": [
+      {
+        "code": "197",
+        "system": "http://hl7.org/fhir/sid/cvx",
+        "display": "Influenza, high-dose, quadrivalent, PF"
+      }
+    ],
+    "text": "Influenza, high-dose, quadrivalent, PF"
+  },
+  "patient": {
+    "reference": "Patient/hedis-core-patient-01",
+    "display": "Amy Shaw"
+  },
+  "occurrenceDateTime": "2023-03-01T12:00:00-08:00",
+  "primarySource": false
+}

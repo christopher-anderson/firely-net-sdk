@@ -1,0 +1,63 @@
+{
+  "resourceType": "Encounter",
+  "id": "hedis-core-encounter-01",
+  "meta": {
+    "profile": [
+      "https://ncqa.org/fhir/StructureDefinition/hedis-core-encounter"
+    ],
+    "tag": [
+      {
+        "code": "ehr",
+        "system": "https://ncqa.org/fhir/CodeSystem/hedis-data-source",
+        "display": "EHR"
+      }
+    ]
+  },
+  "status": "in-progress",
+  "class": {
+    "code": "IMP",
+    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+    "display": "inpatient encounter"
+  },
+  "type": [
+    {
+      "coding": [
+        {
+          "code": "261665006",
+          "system": "http://snomed.info/sct/731000124108",
+          "display": "Unknown (qualifier value)"
+        }
+      ],
+      "text": "Unknown (qualifier value)"
+    }
+  ],
+  "subject": {
+    "reference": "Patient/hedis-core-patient-01"
+  },
+  "diagnosis": [
+    {
+      "condition": {
+        "reference": "Procedure/hedis-core-procedure-01"
+      }
+    }
+  ],
+  "period": {
+    "start": "2023-01-01T17:00:14-05:00",
+    "end": "2023-01-01T18:00:14-05:00"
+  },
+  "participant": [
+    {
+      "type": [
+        {
+          "coding": [
+            {
+              "code": "ADM",
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+              "display": "admitter"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

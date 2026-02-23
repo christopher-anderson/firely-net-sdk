@@ -1,0 +1,116 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "hedis-coverage-type",
+  "url": "https://ncqa.org/fhir/CodeSystem/hedis-coverage-type",
+  "name": "HEDISCoverageType",
+  "title": "HEDIS Coverage Type and Self-Pay",
+  "status": "active",
+  "date": "2024-04-08T15:53:50.523088+00:00",
+  "publisher": "National Committee for Quality Assurance (NCQA)",
+  "description": "This code system defines codes to identify payer types relevant to HEDIS",
+  "copyright": "2023 National Committee for Quality Assurance (NCQA). All rights reserved.",
+  "content": "complete",
+  "count": 25,
+  "concept": [
+    {
+      "code": "PPO",
+      "display": "Commercial PPO"
+    },
+    {
+      "code": "POS",
+      "display": "Commercial POS"
+    },
+    {
+      "code": "CEP",
+      "display": "Commercial EPO"
+    },
+    {
+      "code": "HMO",
+      "display": "Commercial HMO"
+    },
+    {
+      "code": "MCR",
+      "display": "Medicare Advantage HMO"
+    },
+    {
+      "code": "MP",
+      "display": "Medicare Advantage PPO"
+    },
+    {
+      "code": "MC",
+      "display": "Medicare Cost"
+    },
+    {
+      "code": "SN1",
+      "display": "Special Needs Plan—Chronic Condition"
+    },
+    {
+      "code": "SN2",
+      "display": "Special Needs Plan—Institutionalized"
+    },
+    {
+      "code": "SN3",
+      "display": "Special Needs Plan—Dual Eligible"
+    },
+    {
+      "code": "MCS",
+      "display": "Medicare Advantage POS"
+    },
+    {
+      "code": "MMP",
+      "display": "Medicare-Medicaid Plans"
+    },
+    {
+      "code": "MDE",
+      "display": "Medicaid Dual Eligible HMO"
+    },
+    {
+      "code": "MD",
+      "display": "Medicaid Disabled HMO"
+    },
+    {
+      "code": "MLI",
+      "display": "Medicaid Low Income HMO"
+    },
+    {
+      "code": "MRB",
+      "display": "Medicaid Restricted Benefit HMO"
+    },
+    {
+      "code": "MCD",
+      "display": "Medicaid"
+    },
+    {
+      "code": "MMO",
+      "display": "Exchange HMO"
+    },
+    {
+      "code": "MOS",
+      "display": "Exchange POS"
+    },
+    {
+      "code": "MPO",
+      "display": "Exchange PPO"
+    },
+    {
+      "code": "MEP",
+      "display": "Exchange EPO"
+    },
+    {
+      "code": "IPMENTPOL",
+      "display": "Inpatient mental health policy"
+    },
+    {
+      "code": "OEMENTPOL",
+      "display": "Outpatient ED mental health policy"
+    },
+    {
+      "code": "IPSUBPOL",
+      "display": "Inpatient substance use policy"
+    },
+    {
+      "code": "OESUBPOL",
+      "display": "Outpatient ED substance use policy"
+    }
+  ]
+}
