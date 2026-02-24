@@ -41,10 +41,10 @@ class Program
 
     static async Task RunHedisBatchGeneration(string[] args)
     {
-        // Default paths
+        // Default paths - new year-independent namespace
         var profilesPath = args.Length > 1 ? args[1] : @"NCQA_Profiles\ncqa.hedis.core";
-        var outputPath = args.Length > 2 ? args[2] : @"..\..\..\..\Ncqa.Hedis.Core.2025";
-        var @namespace = "Ncqa.Hedis.Core._2025";
+        var outputPath = args.Length > 2 ? args[2] : @"..\..\..\..\Ncqa.Hedis.Core";
+        var @namespace = "Ncqa.Hedis.Core";
 
         // Parse namespace option
         for (int i = 3; i < args.Length; i++)
@@ -81,8 +81,8 @@ class Program
         Console.WriteLine();
         Console.WriteLine("  Generates DTOs from all HEDIS Core profiles.");
         Console.WriteLine("  Default profiles-path: NCQA_Profiles\\ncqa.hedis.core");
-        Console.WriteLine("  Default output-path:   ..\\..\\..\\..\\Ncqa.Hedis.Core.2025");
-        Console.WriteLine("  Default namespace:     Ncqa.Hedis.Core._2025");
+        Console.WriteLine("  Default output-path:   ..\\..\\..\\..\\Ncqa.Hedis.Core");
+        Console.WriteLine("  Default namespace:     Ncqa.Hedis.Core");
         Console.WriteLine();
     }
 
