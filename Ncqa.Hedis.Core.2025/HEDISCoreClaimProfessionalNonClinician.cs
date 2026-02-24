@@ -13,146 +13,146 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core Claim DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-claim-professional-nonclinician</para>
 /// </summary>
-public sealed class HEDISCoreClaimProfessionalNonClinician
+public sealed record HEDISCoreClaimProfessionalNonClinician
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "Claim";
+    public string ResourceType { get; init; } = "Claim";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS][CARIN-BB] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>[CARIN-BB] The category of claim, e.g. oral, pharmacy, vision, institutional, professional.</summary>
     [JsonPropertyName("type")]
-    public ClaimProfessionalNonClinicianTypeComponent? Type { get; set; }
+    public ClaimProfessionalNonClinicianTypeComponent? Type { get; init; }
 
     /// <summary>[HEDIS][CARIN-BB] The party to whom the professional services and/or products have been supplied or are being considered and for whom actual or forecast reimbursement is sought.</summary>
     [JsonPropertyName("patient")]
-    public ResourceReference? Patient { get; set; }
+    public ResourceReference? Patient { get; init; }
 
     [JsonPropertyName("billablePeriod")]
-    public object? BillablePeriod { get; set; }
+    public object? BillablePeriod { get; init; }
 
     [JsonPropertyName("careTeam")]
-    public ClaimProfessionalNonClinicianCareTeamComponent? CareTeam { get; set; }
+    public ClaimProfessionalNonClinicianCareTeamComponent? CareTeam { get; init; }
 
     /// <summary>[HEDIS] Information about diagnoses relevant to the claim items.</summary>
     [JsonPropertyName("diagnosis")]
-    public ClaimProfessionalNonClinicianDiagnosisComponent? Diagnosis { get; set; }
+    public ClaimProfessionalNonClinicianDiagnosisComponent? Diagnosis { get; init; }
 
     /// <summary>[HEDIS] Procedures performed on the patient relevant to the billing items with the claim.</summary>
     [JsonPropertyName("procedure")]
-    public ClaimProfessionalNonClinicianProcedureComponent? Procedure { get; set; }
+    public ClaimProfessionalNonClinicianProcedureComponent? Procedure { get; init; }
 
     /// <summary>[HEDIS][CARIN-BB] A claim line. Either a simple  product or service or a 'group' of details which can each be a simple items or groups of sub-details.</summary>
     [JsonPropertyName("item")]
-    public ClaimProfessionalNonClinicianItemComponent? Item { get; set; }
+    public ClaimProfessionalNonClinicianItemComponent? Item { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Claim.type
 /// </summary>
-public sealed class ClaimProfessionalNonClinicianTypeComponent
+public sealed record ClaimProfessionalNonClinicianTypeComponent
 {
     [JsonPropertyName("coding")]
-    public object? Coding { get; set; }
+    public object? Coding { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Claim.careTeam
 /// </summary>
-public sealed class ClaimProfessionalNonClinicianCareTeamComponent
+public sealed record ClaimProfessionalNonClinicianCareTeamComponent
 {
     /// <summary>[HEDIS] A number to uniquely identify care team entries.</summary>
     [JsonPropertyName("sequence")]
-    public object? Sequence { get; set; }
+    public object? Sequence { get; init; }
 
     /// <summary>[HEDIS][CARIN-BB] Member of the team who provided the product or service.</summary>
     [JsonPropertyName("provider")]
-    public ResourceReference? Provider { get; set; }
+    public ResourceReference? Provider { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Claim.diagnosis
 /// </summary>
-public sealed class ClaimProfessionalNonClinicianDiagnosisComponent
+public sealed record ClaimProfessionalNonClinicianDiagnosisComponent
 {
     /// <summary>[HEDIS] A number to uniquely identify diagnosis entries.</summary>
     [JsonPropertyName("sequence")]
-    public object? Sequence { get; set; }
+    public object? Sequence { get; init; }
 
     /// <summary>[CARIN-BB] The nature of illness or problem in a coded form or as a reference to an external defined Condition.</summary>
     [JsonPropertyName("diagnosis")]
-    public object? Diagnosis { get; set; }
+    public object? Diagnosis { get; init; }
 
     /// <summary>[CARIN-BB] When the condition was observed or the relative ranking.</summary>
     [JsonPropertyName("type")]
-    public object? Type { get; set; }
+    public object? Type { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Claim.procedure
 /// </summary>
-public sealed class ClaimProfessionalNonClinicianProcedureComponent
+public sealed record ClaimProfessionalNonClinicianProcedureComponent
 {
     /// <summary>[HEDIS] A number to uniquely identify procedure entries.</summary>
     [JsonPropertyName("sequence")]
-    public object? Sequence { get; set; }
+    public object? Sequence { get; init; }
 
     /// <summary>[HEDIS] The code or reference to a Procedure resource which identifies the clinical intervention performed.</summary>
     [JsonPropertyName("procedure")]
-    public CodeableConcept? Procedure { get; set; }
+    public CodeableConcept? Procedure { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Claim.item
 /// </summary>
-public sealed class ClaimProfessionalNonClinicianItemComponent
+public sealed record ClaimProfessionalNonClinicianItemComponent
 {
     /// <summary>[CARIN-BB] A number to uniquely identify item entries.</summary>
     [JsonPropertyName("sequence")]
-    public object? Sequence { get; set; }
+    public object? Sequence { get; init; }
 
     /// <summary>[HEDIS] Diagnosis applicable for this service or product.</summary>
     [JsonPropertyName("diagnosisSequence")]
-    public object? DiagnosisSequence { get; set; }
+    public object? DiagnosisSequence { get; init; }
 
     /// <summary>[HEDIS] Procedures applicable for this service or product.</summary>
     [JsonPropertyName("procedureSequence")]
-    public object? ProcedureSequence { get; set; }
+    public object? ProcedureSequence { get; init; }
 
     /// <summary>[HEDIS] The type of revenue or cost center providing the product and/or service.</summary>
     [JsonPropertyName("revenue")]
-    public object? Revenue { get; set; }
+    public object? Revenue { get; init; }
 
     /// <summary>[CARIN-BB] When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item.</summary>
     [JsonPropertyName("productOrService")]
-    public object? ProductOrService { get; set; }
+    public object? ProductOrService { get; init; }
 
     /// <summary>[CARIN-BB] Item typification or modifiers codes to convey additional context for the product or service.</summary>
     [JsonPropertyName("modifier")]
-    public object? Modifier { get; set; }
+    public object? Modifier { get; init; }
 
     /// <summary>[HEDIS] The date or dates when the service or product was supplied, performed or completed.</summary>
     [JsonPropertyName("serviced")]
-    public object? Serviced { get; set; }
+    public object? Serviced { get; init; }
 
     /// <summary>[HEDIS][CARIN-BB] Where the product or service was provided.</summary>
     [JsonPropertyName("location")]
-    public CodeableConcept? Location { get; set; }
+    public CodeableConcept? Location { get; init; }
 
     /// <summary>[HEDIS] The number of repetitions of a service or product.</summary>
     [JsonPropertyName("quantity")]
-    public object? Quantity { get; set; }
+    public object? Quantity { get; init; }
 
 }

@@ -13,54 +13,54 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core ClaimResponse DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-claimresponse</para>
 /// </summary>
-public sealed class HEDISCoreClaimResponse
+public sealed record HEDISCoreClaimResponse
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "ClaimResponse";
+    public string ResourceType { get; init; } = "ClaimResponse";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>[HEDIS] A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.</summary>
     [JsonPropertyName("type")]
-    public object? Type { get; set; }
+    public object? Type { get; init; }
 
     /// <summary>[HEDIS] The party to whom the professional services and/or products have been supplied or are being considered and for whom actual for facast reimbursement is sought.</summary>
     [JsonPropertyName("patient")]
-    public ResourceReference? Patient { get; set; }
+    public ResourceReference? Patient { get; init; }
 
     /// <summary>[HEDIS] Original request resource reference.</summary>
     [JsonPropertyName("request")]
-    public object? Request { get; set; }
+    public object? Request { get; init; }
 
     /// <summary>[HEDIS] The first-tier service adjudications for payor added product or service lines.</summary>
     [JsonPropertyName("addItem")]
-    public ClaimResponseAddItemComponent? AddItem { get; set; }
+    public ClaimResponseAddItemComponent? AddItem { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ClaimResponse.item
 /// </summary>
-public sealed class ClaimResponseItemComponent
+public sealed record ClaimResponseItemComponent
 {
     [JsonPropertyName("itemSequence")]
-    public object? ItemSequence { get; set; }
+    public object? ItemSequence { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ClaimResponse.addItem
 /// </summary>
-public sealed class ClaimResponseAddItemComponent
+public sealed record ClaimResponseAddItemComponent
 {
     [JsonPropertyName("serviced")]
-    public object? Serviced { get; set; }
+    public object? Serviced { get; init; }
 
 }

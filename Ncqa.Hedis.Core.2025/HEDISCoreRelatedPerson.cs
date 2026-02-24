@@ -13,42 +13,42 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core RelatedPerson DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-relatedperson</para>
 /// </summary>
-public sealed class HEDISCoreRelatedPerson
+public sealed record HEDISCoreRelatedPerson
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "RelatedPerson";
+    public string ResourceType { get; init; } = "RelatedPerson";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>[US Core] Whether this related person record is in active use.</summary>
     [JsonPropertyName("active")]
-    public object? Active { get; set; }
+    public object? Active { get; init; }
 
     /// <summary>[HEDIS] The patient this person is related to.</summary>
     [JsonPropertyName("patient")]
-    public ResourceReference? Patient { get; set; }
+    public ResourceReference? Patient { get; init; }
 
     /// <summary>[US Core] The nature of the relationship between a patient and the related person.</summary>
     [JsonPropertyName("relationship")]
-    public object? Relationship { get; set; }
+    public object? Relationship { get; init; }
 
     /// <summary>[US Core]  A name associated with the person.</summary>
     [JsonPropertyName("name")]
-    public object? Name { get; set; }
+    public object? Name { get; init; }
 
     /// <summary>[US Core] A contact detail for the person, e.g. a telephone number or an email address.</summary>
     [JsonPropertyName("telecom")]
-    public object? Telecom { get; set; }
+    public object? Telecom { get; init; }
 
     /// <summary>[US Core] Address where the related person can be contacted or visited.</summary>
     [JsonPropertyName("address")]
-    public object? Address { get; set; }
+    public object? Address { get; init; }
 
 }

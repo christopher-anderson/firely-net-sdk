@@ -13,37 +13,37 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core Observation DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-observation</para>
 /// </summary>
-public sealed class HEDISCoreObservation
+public sealed record HEDISCoreObservation
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "Observation";
+    public string ResourceType { get; init; } = "Observation";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     [JsonPropertyName("meta")]
-    public object? Meta { get; set; }
+    public object? Meta { get; init; }
 
     [JsonPropertyName("status")]
-    public object? Status { get; set; }
+    public object? Status { get; init; }
 
     /// <summary>[HEDIS][US Core] A code that classifies the general type of observation being made.</summary>
     [JsonPropertyName("category")]
-    public object? Category { get; set; }
+    public object? Category { get; init; }
 
     [JsonPropertyName("code")]
-    public object? Code { get; set; }
+    public object? Code { get; init; }
 
     /// <summary>[HEDIS][US Core] The patient, or group of patients, location, or device this observation is about and into whose record the observation is placed. If the actual focus of the observation is different from the subject (or a sample of, part, or region of the subject), the `focus` element or the `code` itself specifies the actual focus of the observation.</summary>
     [JsonPropertyName("subject")]
-    public object? Subject { get; set; }
+    public object? Subject { get; init; }
 
     [JsonPropertyName("effective")]
-    public object? Effective { get; set; }
+    public object? Effective { get; init; }
 
     [JsonPropertyName("value")]
-    public object? Value { get; set; }
+    public object? Value { get; init; }
 
 }

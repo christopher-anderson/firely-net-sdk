@@ -13,42 +13,42 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core Immunization DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-immunization</para>
 /// </summary>
-public sealed class HEDISCoreImmunization
+public sealed record HEDISCoreImmunization
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "Immunization";
+    public string ResourceType { get; init; } = "Immunization";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>[US Core] Indicates the current status of the immunization event.</summary>
     [JsonPropertyName("status")]
-    public object? Status { get; set; }
+    public object? Status { get; init; }
 
     /// <summary>[US Core] Indicates the reason the immunization event was not performed.</summary>
     [JsonPropertyName("statusReason")]
-    public object? StatusReason { get; set; }
+    public object? StatusReason { get; init; }
 
     /// <summary>[US Core] Vaccine that was administered or was to be administered.</summary>
     [JsonPropertyName("vaccineCode")]
-    public object? VaccineCode { get; set; }
+    public object? VaccineCode { get; init; }
 
     /// <summary>[HEDIS] [US Core] The patient who either received or did not receive the immunization.</summary>
     [JsonPropertyName("patient")]
-    public ResourceReference? Patient { get; set; }
+    public ResourceReference? Patient { get; init; }
 
     /// <summary>[HEDIS][US Core] Date vaccine administered or was to be administered.</summary>
     [JsonPropertyName("occurrence")]
-    public string? Occurrence { get; set; }
+    public string? Occurrence { get; init; }
 
     /// <summary>[US Core] An indication that the content of the record is based on information from the person who administered the vaccine. This reflects the context under which the data was originally recorded.</summary>
     [JsonPropertyName("primarySource")]
-    public object? PrimarySource { get; set; }
+    public object? PrimarySource { get; init; }
 
 }

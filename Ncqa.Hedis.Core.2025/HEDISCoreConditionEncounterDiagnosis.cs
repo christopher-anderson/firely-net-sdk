@@ -13,53 +13,53 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core Condition DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-condition-encounter-diagnosis</para>
 /// </summary>
-public sealed class HEDISCoreConditionEncounterDiagnosis
+public sealed record HEDISCoreConditionEncounterDiagnosis
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "Condition";
+    public string ResourceType { get; init; } = "Condition";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>[US Core] The clinical status of the condition.</summary>
     [JsonPropertyName("clinicalStatus")]
-    public object? ClinicalStatus { get; set; }
+    public object? ClinicalStatus { get; init; }
 
     /// <summary>[US Core] The verification status to support the clinical status of the condition.</summary>
     [JsonPropertyName("verificationStatus")]
-    public object? VerificationStatus { get; set; }
+    public object? VerificationStatus { get; init; }
 
     [JsonPropertyName("category")]
-    public object? Category { get; set; }
+    public object? Category { get; init; }
 
     /// <summary>[US Core] Identification of the condition, problem or diagnosis.</summary>
     [JsonPropertyName("code")]
-    public object? Code { get; set; }
+    public object? Code { get; init; }
 
     /// <summary>[HEDIS] Indicates the patient or group who the condition record is associated with.</summary>
     [JsonPropertyName("subject")]
-    public ResourceReference? Subject { get; set; }
+    public ResourceReference? Subject { get; init; }
 
     /// <summary>[US Core] The Encounter during which this Condition was created or to which the creation of this record is tightly associated.</summary>
     [JsonPropertyName("encounter")]
-    public ResourceReference? Encounter { get; set; }
+    public ResourceReference? Encounter { get; init; }
 
     /// <summary>[HEDIS][US Core] Estimated or actual date or date-time  the condition began, in the opinion of the clinician.</summary>
     [JsonPropertyName("onset")]
-    public string? Onset { get; set; }
+    public string? Onset { get; init; }
 
     /// <summary>[HEDIS][US Core] The date or estimated date that the condition resolved or went into remission. This is called "abatement" because of the many overloaded connotations associated with "remission" or "resolution" - Conditions are never really resolved, but they can abate.</summary>
     [JsonPropertyName("abatement")]
-    public string? Abatement { get; set; }
+    public string? Abatement { get; init; }
 
     /// <summary>[US Core] The recordedDate represents when this particular Condition record was created in the system, which is often a system-generated date.</summary>
     [JsonPropertyName("recordedDate")]
-    public object? RecordedDate { get; set; }
+    public object? RecordedDate { get; init; }
 
 }

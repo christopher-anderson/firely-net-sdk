@@ -13,104 +13,104 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core Coverage DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-coverage</para>
 /// </summary>
-public sealed class HEDISCoreCoverage
+public sealed record HEDISCoreCoverage
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "Coverage";
+    public string ResourceType { get; init; } = "Coverage";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS][CARIN-BB] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>[CARIN-BB] A unique identifier assigned to this coverage.</summary>
     [JsonPropertyName("identifier")]
-    public object? Identifier { get; set; }
+    public object? Identifier { get; init; }
 
     /// <summary>[CARIN-BB] The status of the resource instance.</summary>
     [JsonPropertyName("status")]
-    public object? Status { get; set; }
+    public object? Status { get; init; }
 
     /// <summary>[HEDIS][CARIN-BB] The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization.</summary>
     [JsonPropertyName("type")]
-    public object? Type { get; set; }
+    public object? Type { get; init; }
 
     /// <summary>[CARIN-BB] The insurer assigned ID for the Subscriber.</summary>
     [JsonPropertyName("subscriberId")]
-    public object? SubscriberId { get; set; }
+    public object? SubscriberId { get; init; }
 
     /// <summary>[HEDIS][CARIN-BB] The party who benefits from the insurance coverage; the patient when products and/or services are provided.</summary>
     [JsonPropertyName("beneficiary")]
-    public ResourceReference? Beneficiary { get; set; }
+    public ResourceReference? Beneficiary { get; init; }
 
     /// <summary>[CARIN-BB] The relationship of beneficiary (patient) to the subscriber.</summary>
     [JsonPropertyName("relationship")]
-    public object? Relationship { get; set; }
+    public object? Relationship { get; init; }
 
     /// <summary>[HEDIS][CARIN-BB]  Date that the contract became effective and Date that the contract was terminated or coverage changed.Time period during which the coverage is in force. A missing start date indicates the start date isn't known, a missing end date means the coverage is continuing to be in force.</summary>
     [JsonPropertyName("period")]
-    public CoveragePeriodComponent? Period { get; set; }
+    public CoveragePeriodComponent? Period { get; init; }
 
     /// <summary>[CARIN-BB] The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements.</summary>
     [JsonPropertyName("payor")]
-    public object? Payor { get; set; }
+    public object? Payor { get; init; }
 
     /// <summary>[CARIN-BB] A suite of underwriter specific classifiers.</summary>
     [JsonPropertyName("class")]
-    public CoverageClassComponent? Class { get; set; }
+    public CoverageClassComponent? Class { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Coverage.meta
 /// </summary>
-public sealed class CoverageMetaComponent
+public sealed record CoverageMetaComponent
 {
     [JsonPropertyName("profile")]
-    public object? Profile { get; set; }
+    public object? Profile { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Coverage.extension
 /// </summary>
-public sealed class CoverageExtensionComponent
+public sealed record CoverageExtensionComponent
 {
     [JsonPropertyName("value")]
-    public object? Value { get; set; }
+    public object? Value { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Coverage.period
 /// </summary>
-public sealed class CoveragePeriodComponent
+public sealed record CoveragePeriodComponent
 {
     /// <summary>[HEDIS] The start of the period. The boundary is inclusive.</summary>
     [JsonPropertyName("start")]
-    public object? Start { get; set; }
+    public object? Start { get; init; }
 
     /// <summary>[HEDIS] The end of the period. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.</summary>
     [JsonPropertyName("end")]
-    public object? End { get; set; }
+    public object? End { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Coverage.class
 /// </summary>
-public sealed class CoverageClassComponent
+public sealed record CoverageClassComponent
 {
     /// <summary>[CARIN-BB] The alphanumeric string value associated with the insurer issued label.</summary>
     [JsonPropertyName("value")]
-    public object? Value { get; set; }
+    public object? Value { get; init; }
 
     /// <summary>[CARIN-BB] The type of classification for which an insurer-specific class label or number and optional name is provided, for example may be used to identify a class of coverage or employer group, Policy, Plan.</summary>
     [JsonPropertyName("type")]
-    public object? Type { get; set; }
+    public object? Type { get; init; }
 
 }

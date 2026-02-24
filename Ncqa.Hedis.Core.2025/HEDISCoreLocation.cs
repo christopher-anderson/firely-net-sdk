@@ -13,74 +13,74 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core Location DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-location</para>
 /// </summary>
-public sealed class HEDISCoreLocation
+public sealed record HEDISCoreLocation
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "Location";
+    public string ResourceType { get; init; } = "Location";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     [JsonPropertyName("identifier")]
-    public LocationIdentifierComponent? Identifier { get; set; }
+    public LocationIdentifierComponent? Identifier { get; init; }
 
     /// <summary>[US Core] Name of the location as used by humans. Does not need to be unique.</summary>
     [JsonPropertyName("name")]
-    public object? Name { get; set; }
+    public object? Name { get; init; }
 
     /// <summary>[HEDIS] Indicates the type of function performed at the location.</summary>
     [JsonPropertyName("type")]
-    public object? Type { get; set; }
+    public object? Type { get; init; }
 
     /// <summary>[US Core] The contact details of communication devices available at the location. This can include phone numbers, fax numbers, mobile numbers, email addresses and web sites.</summary>
     [JsonPropertyName("telecom")]
-    public object? Telecom { get; set; }
+    public object? Telecom { get; init; }
 
     /// <summary>[US Core] Physical location.</summary>
     [JsonPropertyName("address")]
-    public LocationAddressComponent? Address { get; set; }
+    public LocationAddressComponent? Address { get; init; }
 
     /// <summary>[US Core] The organization responsible for the provisioning and upkeep of the location.</summary>
     [JsonPropertyName("managingOrganization")]
-    public object? ManagingOrganization { get; set; }
+    public object? ManagingOrganization { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Location.identifier
 /// </summary>
-public sealed class LocationIdentifierComponent
+public sealed record LocationIdentifierComponent
 {
     [JsonPropertyName("system")]
-    public object? System { get; set; }
+    public object? System { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Location.address
 /// </summary>
-public sealed class LocationAddressComponent
+public sealed record LocationAddressComponent
 {
     /// <summary>[US Core] This component contains the house number, apartment number, street name, street direction,  P.O. Box number, delivery hints, and similar address information.</summary>
     [JsonPropertyName("line")]
-    public object? Line { get; set; }
+    public object? Line { get; init; }
 
     /// <summary>[US Core] The name of the city, town, suburb, village or other community or delivery center.</summary>
     [JsonPropertyName("city")]
-    public object? City { get; set; }
+    public object? City { get; init; }
 
     /// <summary>[US Core] Sub-unit of a country with limited sovereignty in a federally organized country. A code may be used if codes are in common use (e.g. US 2 letter state codes).</summary>
     [JsonPropertyName("state")]
-    public object? State { get; set; }
+    public object? State { get; init; }
 
     /// <summary>[US Core] A postal code designating a region defined by the postal service.</summary>
     [JsonPropertyName("postalCode")]
-    public object? PostalCode { get; set; }
+    public object? PostalCode { get; init; }
 
 }

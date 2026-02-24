@@ -13,50 +13,50 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core DiagnosticReport DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-diagnosticreport-note</para>
 /// </summary>
-public sealed class HEDISCoreDiagnosticReportNote
+public sealed record HEDISCoreDiagnosticReportNote
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "DiagnosticReport";
+    public string ResourceType { get; init; } = "DiagnosticReport";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS] The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>[US Core] The status of the diagnostic report.</summary>
     [JsonPropertyName("status")]
-    public object? Status { get; set; }
+    public object? Status { get; init; }
 
     /// <summary>[US Core]  A code that classifies the clinical discipline, department or diagnostic service that created the report (e.g. cardiology, biochemistry, hematology, MRI). This is used for searching, sorting and display purposes.</summary>
     [JsonPropertyName("category")]
-    public object? Category { get; set; }
+    public object? Category { get; init; }
 
     /// <summary>[US Core] The test, panel, report, or note that was ordered.</summary>
     [JsonPropertyName("code")]
-    public object? Code { get; set; }
+    public object? Code { get; init; }
 
     /// <summary>[HEDIS][US Core] The subject of the report. Usually, but not always, this is a patient. However diagnostic services also perform analyses on specimens collected from a variety of other sources.</summary>
     [JsonPropertyName("subject")]
-    public object? Subject { get; set; }
+    public object? Subject { get; init; }
 
     /// <summary>[US Core] The healthcare event  (e.g. a patient and healthcare provider interaction) which this DiagnosticReport is about.</summary>
     [JsonPropertyName("encounter")]
-    public object? Encounter { get; set; }
+    public object? Encounter { get; init; }
 
     /// <summary>[US Core] This is the Datetime or Period when the report or note was written.</summary>
     [JsonPropertyName("effective")]
-    public object? Effective { get; set; }
+    public object? Effective { get; init; }
 
     /// <summary>[US Core] The diagnostic service that is responsible for issuing the report.</summary>
     [JsonPropertyName("performer")]
-    public object? Performer { get; set; }
+    public object? Performer { get; init; }
 
     /// <summary>[US Core] Rich text representation of the entire result as issued by the diagnostic service. Multiple formats are allowed but they SHALL be semantically equivalent.</summary>
     [JsonPropertyName("presentedForm")]
-    public object? PresentedForm { get; set; }
+    public object? PresentedForm { get; init; }
 
 }

@@ -13,171 +13,171 @@ namespace Ncqa.Hedis.Core._2025;
 /// Information about an individual or animal receiving health care services.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-patient</para>
 /// </summary>
-public sealed class Patient
+public sealed record Patient
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "Patient";
+    public string ResourceType { get; init; } = "Patient";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>The metadata about a resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>A set of rules under which this content was created.</summary>
     [JsonPropertyName("implicitRules")]
-    public string? ImplicitRules { get; set; }
+    public string? ImplicitRules { get; init; }
 
     /// <summary>Language of the resource content.</summary>
     [JsonPropertyName("language")]
-    public string? Language { get; set; }
+    public string? Language { get; init; }
 
     /// <summary>Text summary of the resource.</summary>
     [JsonPropertyName("text")]
-    public Narrative? Text { get; set; }
+    public Narrative? Text { get; init; }
 
     /// <summary>Additional content defined by implementations.</summary>
     [JsonPropertyName("extension")]
-    public List<Extension>? Extension { get; set; }
+    public List<Extension>? Extension { get; init; }
 
     /// <summary>Extensions that cannot be ignored.</summary>
     [JsonPropertyName("modifierExtension")]
-    public List<Extension>? ModifierExtension { get; set; }
+    public List<Extension>? ModifierExtension { get; init; }
 
     /// <summary>An identifier for this patient.</summary>
     [JsonPropertyName("identifier")]
-    public List<Identifier>? Identifier { get; set; }
+    public List<Identifier>? Identifier { get; init; }
 
     /// <summary>Whether this patient's record is in active use.</summary>
     [JsonPropertyName("active")]
-    public bool? Active { get; set; }
+    public bool? Active { get; init; }
 
     /// <summary>A name associated with the patient.</summary>
     [JsonPropertyName("name")]
-    public List<HumanName>? Name { get; set; }
+    public List<HumanName>? Name { get; init; }
 
     /// <summary>A contact detail for the individual.</summary>
     [JsonPropertyName("telecom")]
-    public List<ContactPoint>? Telecom { get; set; }
+    public List<ContactPoint>? Telecom { get; init; }
 
     /// <summary>male | female | other | unknown.</summary>
     [JsonPropertyName("gender")]
-    public string? Gender { get; set; }
+    public string? Gender { get; init; }
 
     /// <summary>The date of birth for the individual.</summary>
     [JsonPropertyName("birthDate")]
-    public string? BirthDate { get; set; }
+    public string? BirthDate { get; init; }
 
     /// <summary>Indicates if the individual is deceased (boolean).</summary>
     [JsonPropertyName("deceasedBoolean")]
-    public bool? DeceasedBoolean { get; set; }
+    public bool? DeceasedBoolean { get; init; }
 
     /// <summary>Indicates if the individual is deceased (dateTime).</summary>
     [JsonPropertyName("deceasedDateTime")]
-    public string? DeceasedDateTime { get; set; }
+    public string? DeceasedDateTime { get; init; }
 
     /// <summary>An address for the individual.</summary>
     [JsonPropertyName("address")]
-    public List<Address>? Address { get; set; }
+    public List<Address>? Address { get; init; }
 
     /// <summary>Marital (civil) status of a patient.</summary>
     [JsonPropertyName("maritalStatus")]
-    public CodeableConcept? MaritalStatus { get; set; }
+    public CodeableConcept? MaritalStatus { get; init; }
 
     /// <summary>Whether patient is part of a multiple birth (boolean).</summary>
     [JsonPropertyName("multipleBirthBoolean")]
-    public bool? MultipleBirthBoolean { get; set; }
+    public bool? MultipleBirthBoolean { get; init; }
 
     /// <summary>Whether patient is part of a multiple birth (order).</summary>
     [JsonPropertyName("multipleBirthInteger")]
-    public int? MultipleBirthInteger { get; set; }
+    public int? MultipleBirthInteger { get; init; }
 
     /// <summary>Image of the patient.</summary>
     [JsonPropertyName("photo")]
-    public List<Attachment>? Photo { get; set; }
+    public List<Attachment>? Photo { get; init; }
 
     /// <summary>A contact party (e.g. guardian, partner, friend) for the patient.</summary>
     [JsonPropertyName("contact")]
-    public List<ContactComponent>? Contact { get; set; }
+    public List<ContactComponent>? Contact { get; init; }
 
     /// <summary>A language which may be used to communicate with the patient.</summary>
     [JsonPropertyName("communication")]
-    public List<CommunicationComponent>? Communication { get; set; }
+    public List<CommunicationComponent>? Communication { get; init; }
 
     /// <summary>Patient's nominated primary care provider.</summary>
     [JsonPropertyName("generalPractitioner")]
-    public List<ResourceReference>? GeneralPractitioner { get; set; }
+    public List<ResourceReference>? GeneralPractitioner { get; init; }
 
     /// <summary>Organization that is the custodian of the patient record.</summary>
     [JsonPropertyName("managingOrganization")]
-    public ResourceReference? ManagingOrganization { get; set; }
+    public ResourceReference? ManagingOrganization { get; init; }
 
     /// <summary>Link to another patient resource that concerns the same actual person.</summary>
     [JsonPropertyName("link")]
-    public List<LinkComponent>? Link { get; set; }
+    public List<LinkComponent>? Link { get; init; }
 
     /// <summary>
     /// A contact party (e.g. guardian, partner, friend) for the patient.
     /// </summary>
-    public sealed class ContactComponent
+    public sealed record ContactComponent
     {
         /// <summary>The kind of relationship.</summary>
         [JsonPropertyName("relationship")]
-        public List<CodeableConcept>? Relationship { get; set; }
+        public List<CodeableConcept>? Relationship { get; init; }
 
         /// <summary>A name associated with the contact person.</summary>
         [JsonPropertyName("name")]
-        public HumanName? Name { get; set; }
+        public HumanName? Name { get; init; }
 
         /// <summary>A contact detail for the person.</summary>
         [JsonPropertyName("telecom")]
-        public List<ContactPoint>? Telecom { get; set; }
+        public List<ContactPoint>? Telecom { get; init; }
 
         /// <summary>Address for the contact person.</summary>
         [JsonPropertyName("address")]
-        public Address? Address { get; set; }
+        public Address? Address { get; init; }
 
         /// <summary>male | female | other | unknown.</summary>
         [JsonPropertyName("gender")]
-        public string? Gender { get; set; }
+        public string? Gender { get; init; }
 
         /// <summary>Organization that is associated with the contact.</summary>
         [JsonPropertyName("organization")]
-        public ResourceReference? Organization { get; set; }
+        public ResourceReference? Organization { get; init; }
 
         /// <summary>The period during which this contact person is valid.</summary>
         [JsonPropertyName("period")]
-        public Period? Period { get; set; }
+        public Period? Period { get; init; }
     }
 
     /// <summary>
     /// A language which may be used to communicate with the patient about his or her health.
     /// </summary>
-    public sealed class CommunicationComponent
+    public sealed record CommunicationComponent
     {
         /// <summary>The language which can be used to communicate with the patient.</summary>
         [JsonPropertyName("language")]
-        public CodeableConcept? Language { get; set; }
+        public CodeableConcept? Language { get; init; }
 
         /// <summary>Language preference indicator.</summary>
         [JsonPropertyName("preferred")]
-        public bool? Preferred { get; set; }
+        public bool? Preferred { get; init; }
     }
 
     /// <summary>
     /// Link to another patient resource that concerns the same actual patient.
     /// </summary>
-    public sealed class LinkComponent
+    public sealed record LinkComponent
     {
         /// <summary>The other patient resource that the link refers to.</summary>
         [JsonPropertyName("other")]
-        public ResourceReference? Other { get; set; }
+        public ResourceReference? Other { get; init; }
 
         /// <summary>replaced-by | replaces | refer | seealso.</summary>
         [JsonPropertyName("type")]
-        public string? Type { get; set; }
+        public string? Type { get; init; }
     }
 }

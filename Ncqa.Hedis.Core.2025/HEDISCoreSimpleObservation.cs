@@ -13,50 +13,50 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core Observation DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-simple-observation</para>
 /// </summary>
-public sealed class HEDISCoreSimpleObservation
+public sealed record HEDISCoreSimpleObservation
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "Observation";
+    public string ResourceType { get; init; } = "Observation";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>[US Core] The status of the result value.</summary>
     [JsonPropertyName("status")]
-    public object? Status { get; set; }
+    public object? Status { get; init; }
 
     /// <summary>[HEDIS] A code that classifies the general type of observation being made.</summary>
     [JsonPropertyName("category")]
-    public object? Category { get; set; }
+    public object? Category { get; init; }
 
     /// <summary>[US Core] Describes what was observed. Sometimes this is called the observation "name".</summary>
     [JsonPropertyName("code")]
-    public object? Code { get; set; }
+    public object? Code { get; init; }
 
     /// <summary>[HEDIS] [US Core] The patient, or group of patients, location, or device this observation is about and into whose record the observation is placed. If the actual focus of the observation is different from the subject (or a sample of, part, or region of the subject), the `focus` element or the `code` itself specifies the actual focus of the observation.</summary>
     [JsonPropertyName("subject")]
-    public ResourceReference? Subject { get; set; }
+    public ResourceReference? Subject { get; init; }
 
     /// <summary>[HEDIS][US Core] The time or time-period the observed value is asserted as being true. For biological subjects - e.g. human patients - this is usually called the "physiologically relevant time".</summary>
     [JsonPropertyName("effective")]
-    public object? Effective { get; set; }
+    public object? Effective { get; init; }
 
     /// <summary>[HEDIS][US Core] Who was responsible for asserting the observed value as "true".</summary>
     [JsonPropertyName("performer")]
-    public ResourceReference? Performer { get; set; }
+    public ResourceReference? Performer { get; init; }
 
     /// <summary>[US Core] The information determined as a result of making the observation, if the information has a simple value.</summary>
     [JsonPropertyName("value")]
-    public object? Value { get; set; }
+    public object? Value { get; init; }
 
     /// <summary>Related Observation(s) or other resource the observation is made from</summary>
     [JsonPropertyName("derivedFrom")]
-    public ResourceReference? DerivedFrom { get; set; }
+    public ResourceReference? DerivedFrom { get; init; }
 
 }

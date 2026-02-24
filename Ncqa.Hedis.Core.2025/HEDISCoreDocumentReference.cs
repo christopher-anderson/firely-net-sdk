@@ -13,88 +13,88 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core DocumentReference DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-documentreference</para>
 /// </summary>
-public sealed class HEDISCoreDocumentReference
+public sealed record HEDISCoreDocumentReference
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "DocumentReference";
+    public string ResourceType { get; init; } = "DocumentReference";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>[US Core] Other identifiers associated with the document, including version independent identifiers.</summary>
     [JsonPropertyName("identifier")]
-    public object? Identifier { get; set; }
+    public object? Identifier { get; init; }
 
     /// <summary>[US Core] The status of this document reference.</summary>
     [JsonPropertyName("status")]
-    public object? Status { get; set; }
+    public object? Status { get; init; }
 
     /// <summary>[US Core] Specifies the particular kind of document referenced  (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the document referenced.</summary>
     [JsonPropertyName("type")]
-    public object? Type { get; set; }
+    public object? Type { get; init; }
 
     /// <summary>[US Core] A categorization for the type of document referenced - helps for indexing and searching. This may be implied by or derived from the code specified in the DocumentReference.type.</summary>
     [JsonPropertyName("category")]
-    public object? Category { get; set; }
+    public object? Category { get; init; }
 
     /// <summary>[HEDIS][US Core] Who or what the document is about. The document can be about a person, (patient or healthcare practitioner), a device (e.g. a machine) or even a group of subjects (such as a document about a herd of farm animals, or a set of patients that share a common exposure).</summary>
     [JsonPropertyName("subject")]
-    public ResourceReference? Subject { get; set; }
+    public ResourceReference? Subject { get; init; }
 
     /// <summary>[US Core] When the document reference was created.</summary>
     [JsonPropertyName("date")]
-    public object? Date { get; set; }
+    public object? Date { get; init; }
 
     /// <summary>[US Core] Identifies who is responsible for adding the information to the document.</summary>
     [JsonPropertyName("author")]
-    public object? Author { get; set; }
+    public object? Author { get; init; }
 
     /// <summary>[US Core] Identifies the organization or group who is responsible for ongoing maintenance of and access to the document.</summary>
     [JsonPropertyName("custodian")]
-    public object? Custodian { get; set; }
+    public object? Custodian { get; init; }
 
     /// <summary>[US Core] The document and format referenced. There may be multiple content element repetitions, each with a different format.</summary>
     [JsonPropertyName("content")]
-    public DocumentReferenceContentComponent? Content { get; set; }
+    public DocumentReferenceContentComponent? Content { get; init; }
 
     /// <summary>[US Core] The clinical context in which the document was prepared.</summary>
     [JsonPropertyName("context")]
-    public DocumentReferenceContextComponent? Context { get; set; }
+    public DocumentReferenceContextComponent? Context { get; init; }
 
 }
 
 /// <summary>
 /// Component class for DocumentReference.content
 /// </summary>
-public sealed class DocumentReferenceContentComponent
+public sealed record DocumentReferenceContentComponent
 {
     /// <summary>[US Core] The document or URL of the document along with critical metadata to prove content has integrity.</summary>
     [JsonPropertyName("attachment")]
-    public object? Attachment { get; set; }
+    public object? Attachment { get; init; }
 
     /// <summary>[US Core] An identifier of the document encoding, structure, and template that the document conforms to beyond the base format indicated in the mimeType.</summary>
     [JsonPropertyName("format")]
-    public object? Format { get; set; }
+    public object? Format { get; init; }
 
 }
 
 /// <summary>
 /// Component class for DocumentReference.context
 /// </summary>
-public sealed class DocumentReferenceContextComponent
+public sealed record DocumentReferenceContextComponent
 {
     /// <summary>[US Core] Describes the clinical encounter or type of care that the document content is associated with.</summary>
     [JsonPropertyName("encounter")]
-    public object? Encounter { get; set; }
+    public object? Encounter { get; init; }
 
     /// <summary>[US Core] The time period over which the service that is described by the document was provided.</summary>
     [JsonPropertyName("period")]
-    public object? Period { get; set; }
+    public object? Period { get; init; }
 
 }

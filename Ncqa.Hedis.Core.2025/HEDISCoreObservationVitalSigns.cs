@@ -13,80 +13,80 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core Observation DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-observation-vital-signs</para>
 /// </summary>
-public sealed class HEDISCoreObservationVitalSigns
+public sealed record HEDISCoreObservationVitalSigns
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "Observation";
+    public string ResourceType { get; init; } = "Observation";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>[HEDIS][US Core] The status of the result value.</summary>
     [JsonPropertyName("status")]
-    public object? Status { get; set; }
+    public object? Status { get; init; }
 
     /// <summary>[US Core] A code that classifies the general type of observation being made.</summary>
     [JsonPropertyName("category")]
-    public ObservationVitalSignsCategoryComponent? Category { get; set; }
+    public ObservationVitalSignsCategoryComponent? Category { get; init; }
 
     /// <summary>[HEDIS][US Core] Describes what was observed. Sometimes this is called the observation "name".</summary>
     [JsonPropertyName("code")]
-    public object? Code { get; set; }
+    public object? Code { get; init; }
 
     /// <summary>[HEDIS][US Core] The patient, or group of patients, location, or device this observation is about and into whose record the observation is placed. If the actual focus of the observation is different from the subject (or a sample of, part, or region of the subject), the `focus` element or the `code` itself specifies the actual focus of the observation.</summary>
     [JsonPropertyName("subject")]
-    public ResourceReference? Subject { get; set; }
+    public ResourceReference? Subject { get; init; }
 
     /// <summary>[US Core] The time or time-period the observed value is asserted as being true. For biological subjects - e.g. human patients - this is usually called the "physiologically relevant time". This is usually either the time of the procedure or of specimen collection, but very often the source of the date/time is not known, only the date/time itself.</summary>
     [JsonPropertyName("effective")]
-    public string? Effective { get; set; }
+    public string? Effective { get; init; }
 
     /// <summary>[HEDIS][US Core] The information determined as a result of making the observation, if the information has a simple value.</summary>
     [JsonPropertyName("value")]
-    public Quantity? Value { get; set; }
+    public Quantity? Value { get; init; }
 
     /// <summary>[HEDIS][US Core] Provides a reason why the expected value in the element Observation.value[x] is missing.</summary>
     [JsonPropertyName("dataAbsentReason")]
-    public object? DataAbsentReason { get; set; }
+    public object? DataAbsentReason { get; init; }
 
     /// <summary>[US Core] Some observations have multiple component observations.  These component observations are expressed as separate code value pairs that share the same attributes.  Examples include systolic and diastolic component observations for blood pressure measurement and multiple component observations for genetics observations.</summary>
     [JsonPropertyName("component")]
-    public ObservationVitalSignsComponentComponent? Component { get; set; }
+    public ObservationVitalSignsComponentComponent? Component { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Observation.category
 /// </summary>
-public sealed class ObservationVitalSignsCategoryComponent
+public sealed record ObservationVitalSignsCategoryComponent
 {
     /// <summary>[US Core] A reference to a code defined by a terminology system.</summary>
     [JsonPropertyName("coding")]
-    public object? Coding { get; set; }
+    public object? Coding { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Observation.component
 /// </summary>
-public sealed class ObservationVitalSignsComponentComponent
+public sealed record ObservationVitalSignsComponentComponent
 {
     /// <summary>[US Core] Describes what was observed. Sometimes this is called the observation "code".</summary>
     [JsonPropertyName("code")]
-    public object? Code { get; set; }
+    public object? Code { get; init; }
 
     /// <summary>[HEDIS][US Core] The information determined as a result of making the observation, if the information has a simple value.</summary>
     [JsonPropertyName("value")]
-    public Quantity? Value { get; set; }
+    public Quantity? Value { get; init; }
 
     /// <summary>[US Core] Provides a reason why the expected value in the element Observation.component.value[x] is missing.</summary>
     [JsonPropertyName("dataAbsentReason")]
-    public object? DataAbsentReason { get; set; }
+    public object? DataAbsentReason { get; init; }
 
 }

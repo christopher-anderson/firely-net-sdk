@@ -13,41 +13,41 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core Procedure DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-procedure</para>
 /// </summary>
-public sealed class HEDISCoreProcedure
+public sealed record HEDISCoreProcedure
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "Procedure";
+    public string ResourceType { get; init; } = "Procedure";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>[US Core] A code specifying the state of the procedure. Generally, this will be the in-progress or completed state.</summary>
     [JsonPropertyName("status")]
-    public object? Status { get; set; }
+    public object? Status { get; init; }
 
     [JsonPropertyName("category")]
-    public object? Category { get; set; }
+    public object? Category { get; init; }
 
     /// <summary>[US Core] The specific procedure that is performed. Use text if the exact nature of the procedure cannot be coded (e.g. "Laparoscopic Appendectomy").</summary>
     [JsonPropertyName("code")]
-    public object? Code { get; set; }
+    public object? Code { get; init; }
 
     /// <summary>[HEDIS][US Core] The person, animal or group on which the procedure was performed.</summary>
     [JsonPropertyName("subject")]
-    public ResourceReference? Subject { get; set; }
+    public ResourceReference? Subject { get; init; }
 
     /// <summary>[US Core] Estimated or actual date, date-time, period, or age when the procedure was performed.  Allows a period to support complex procedures that span more than one date, and also allows for the length of the procedure to be captured.</summary>
     [JsonPropertyName("performed")]
-    public object? Performed { get; set; }
+    public object? Performed { get; init; }
 
     /// <summary>[HEDIS] Detailed and structured anatomical location information. Multiple locations are allowed - e.g. multiple punch biopsies of a lesion.</summary>
     [JsonPropertyName("bodySite")]
-    public object? BodySite { get; set; }
+    public object? BodySite { get; init; }
 
 }

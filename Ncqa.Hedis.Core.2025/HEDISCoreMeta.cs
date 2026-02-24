@@ -13,17 +13,17 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core Meta DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-meta</para>
 /// </summary>
-public sealed class HEDISCoreMeta
+public sealed record HEDISCoreMeta
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "Meta";
+    public string ResourceType { get; init; } = "Meta";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     [JsonPropertyName("tag")]
-    public object? Tag { get; set; }
+    public object? Tag { get; init; }
 
 }

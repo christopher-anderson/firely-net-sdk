@@ -13,64 +13,64 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core PractitionerRole DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-practitionerrole</para>
 /// </summary>
-public sealed class HEDISCorePractitionerRole
+public sealed record HEDISCorePractitionerRole
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "PractitionerRole";
+    public string ResourceType { get; init; } = "PractitionerRole";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     [JsonPropertyName("period")]
-    public object? Period { get; set; }
+    public object? Period { get; init; }
 
     /// <summary>[US Core] Practitioner that is able to provide the defined services for the organization.</summary>
     [JsonPropertyName("practitioner")]
-    public object? Practitioner { get; set; }
+    public object? Practitioner { get; init; }
 
     /// <summary>[US Core] The organization where the Practitioner performs the roles associated.</summary>
     [JsonPropertyName("organization")]
-    public object? Organization { get; set; }
+    public object? Organization { get; init; }
 
     /// <summary>[US Core] Roles which this practitioner is authorized to perform for the organization.</summary>
     [JsonPropertyName("code")]
-    public object? Code { get; set; }
+    public object? Code { get; init; }
 
     /// <summary>[US Core] Specific specialty of the practitioner.</summary>
     [JsonPropertyName("specialty")]
-    public object? Specialty { get; set; }
+    public object? Specialty { get; init; }
 
     /// <summary>[US Core] The location(s) at which this practitioner provides care.</summary>
     [JsonPropertyName("location")]
-    public object? Location { get; set; }
+    public object? Location { get; init; }
 
     /// <summary>[US Core] Contact details that are specific to the role/location/service.</summary>
     [JsonPropertyName("telecom")]
-    public PractitionerRoleTelecomComponent? Telecom { get; set; }
+    public PractitionerRoleTelecomComponent? Telecom { get; init; }
 
     /// <summary>[US Core] Technical endpoints providing access to services operated for the practitioner with this role.</summary>
     [JsonPropertyName("endpoint")]
-    public object? Endpoint { get; set; }
+    public object? Endpoint { get; init; }
 
 }
 
 /// <summary>
 /// Component class for PractitionerRole.telecom
 /// </summary>
-public sealed class PractitionerRoleTelecomComponent
+public sealed record PractitionerRoleTelecomComponent
 {
     /// <summary>[US Core] Telecommunications form for contact point - what communications system is required to make use of the contact.</summary>
     [JsonPropertyName("system")]
-    public object? System { get; set; }
+    public object? System { get; init; }
 
     /// <summary>[US Core] The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).</summary>
     [JsonPropertyName("value")]
-    public object? Value { get; set; }
+    public object? Value { get; init; }
 
 }

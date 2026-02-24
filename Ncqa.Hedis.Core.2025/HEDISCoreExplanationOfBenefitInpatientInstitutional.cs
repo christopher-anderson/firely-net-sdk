@@ -13,431 +13,431 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core ExplanationOfBenefit DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-explanationofbenefit-inpatient-institutional</para>
 /// </summary>
-public sealed class HEDISCoreExplanationOfBenefitInpatientInstitutional
+public sealed record HEDISCoreExplanationOfBenefitInpatientInstitutional
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "ExplanationOfBenefit";
+    public string ResourceType { get; init; } = "ExplanationOfBenefit";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS][CARIN-BB] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>[CARIN-BB] A unique identifier assigned to this explanation of benefit.</summary>
     [JsonPropertyName("identifier")]
-    public ExplanationOfBenefitInpatientInstitutionalIdentifierComponent? Identifier { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalIdentifierComponent? Identifier { get; init; }
 
     /// <summary>[CARIN-BB] The status of the resource instance.</summary>
     [JsonPropertyName("status")]
-    public object? Status { get; set; }
+    public object? Status { get; init; }
 
     /// <summary>[CARIN-BB] The category of claim, e.g. oral, pharmacy, vision, institutional, professional.</summary>
     [JsonPropertyName("type")]
-    public ExplanationOfBenefitInpatientInstitutionalTypeComponent? Type { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalTypeComponent? Type { get; init; }
 
     /// <summary>[CARIN-BB] A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.</summary>
     [JsonPropertyName("subType")]
-    public ExplanationOfBenefitInpatientInstitutionalSubTypeComponent? SubType { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalSubTypeComponent? SubType { get; init; }
 
     /// <summary>[CARIN-BB] A code to indicate whether the nature of the request is: to request adjudication of products and services previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding adjudication of the listed products and services which could be provided in the future.</summary>
     [JsonPropertyName("use")]
-    public object? Use { get; set; }
+    public object? Use { get; init; }
 
     /// <summary>[HEDIS][CARIN-BB] The party to whom the professional services and/or products have been supplied or are being considered and for whom actual for forecast reimbursement is sought.</summary>
     [JsonPropertyName("patient")]
-    public ResourceReference? Patient { get; set; }
+    public ResourceReference? Patient { get; init; }
 
     /// <summary>[CARIN-BB] The period for which charges are being submitted.</summary>
     [JsonPropertyName("billablePeriod")]
-    public ExplanationOfBenefitInpatientInstitutionalBillablePeriodComponent? BillablePeriod { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalBillablePeriodComponent? BillablePeriod { get; init; }
 
     /// <summary>[CARIN-BB] The date this resource was created.</summary>
     [JsonPropertyName("created")]
-    public object? Created { get; set; }
+    public object? Created { get; init; }
 
     /// <summary>[CARIN-BB] The party responsible for authorization, adjudication and reimbursement.</summary>
     [JsonPropertyName("insurer")]
-    public object? Insurer { get; set; }
+    public object? Insurer { get; init; }
 
     /// <summary>[CARIN-BB] The provider which is responsible for the claim, predetermination or preauthorization.</summary>
     [JsonPropertyName("provider")]
-    public ResourceReference? Provider { get; set; }
+    public ResourceReference? Provider { get; init; }
 
     /// <summary>[CARIN-BB] The provider-required urgency of processing the request. Typical values include: stat, routine deferred.</summary>
     [JsonPropertyName("priority")]
-    public object? Priority { get; set; }
+    public object? Priority { get; init; }
 
     /// <summary>[CARIN-BB] Other claims which are related to this claim such as prior submissions or claims for related services or for the same event.</summary>
     [JsonPropertyName("related")]
-    public ExplanationOfBenefitInpatientInstitutionalRelatedComponent? Related { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalRelatedComponent? Related { get; init; }
 
     /// <summary>[CARIN-BB] The party to be reimbursed for cost of the products and services according to the terms of the policy.</summary>
     [JsonPropertyName("payee")]
-    public ExplanationOfBenefitInpatientInstitutionalPayeeComponent? Payee { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalPayeeComponent? Payee { get; init; }
 
     /// <summary>[CARIN-BB] The outcome of the claim, predetermination, or preauthorization processing.</summary>
     [JsonPropertyName("outcome")]
-    public object? Outcome { get; set; }
+    public object? Outcome { get; init; }
 
     /// <summary>[CARIN-BB] The members of the team who provided the products and services.</summary>
     [JsonPropertyName("careTeam")]
-    public ExplanationOfBenefitInpatientInstitutionalCareTeamComponent? CareTeam { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalCareTeamComponent? CareTeam { get; init; }
 
     /// <summary>[CARIN-BB] Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.</summary>
     [JsonPropertyName("supportingInfo")]
-    public ExplanationOfBenefitInpatientInstitutionalSupportingInfoComponent? SupportingInfo { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalSupportingInfoComponent? SupportingInfo { get; init; }
 
     /// <summary>[CARIN-BB] Information about diagnoses relevant to the claim items.</summary>
     [JsonPropertyName("diagnosis")]
-    public ExplanationOfBenefitInpatientInstitutionalDiagnosisComponent? Diagnosis { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalDiagnosisComponent? Diagnosis { get; init; }
 
     /// <summary>[CARIN-BB] Procedures performed on the patient relevant to the billing items with the claim.</summary>
     [JsonPropertyName("procedure")]
-    public ExplanationOfBenefitInpatientInstitutionalProcedureComponent? Procedure { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalProcedureComponent? Procedure { get; init; }
 
     /// <summary>[CARIN-BB] Financial instruments for reimbursement for the health care products and services specified on the claim.</summary>
     [JsonPropertyName("insurance")]
-    public ExplanationOfBenefitInpatientInstitutionalInsuranceComponent? Insurance { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalInsuranceComponent? Insurance { get; init; }
 
     /// <summary>[HEDIS][CARIN-BB] A claim line. Either a simple (a product or service) or a 'group' of details which can also be a simple items or groups of sub-details.</summary>
     [JsonPropertyName("item")]
-    public ExplanationOfBenefitInpatientInstitutionalItemComponent? Item { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalItemComponent? Item { get; init; }
 
     /// <summary>[CARIN-BB] The adjudication results which are presented at the header level rather than at the line-item or add-item levels.</summary>
     [JsonPropertyName("adjudication")]
-    public ExplanationOfBenefitInpatientInstitutionalAdjudicationComponent? Adjudication { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalAdjudicationComponent? Adjudication { get; init; }
 
     /// <summary>[CARIN-BB] Categorized monetary totals for the adjudication.</summary>
     [JsonPropertyName("total")]
-    public ExplanationOfBenefitInpatientInstitutionalTotalComponent? Total { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalTotalComponent? Total { get; init; }
 
     /// <summary>[CARIN-BB] Payment details for the adjudication of the claim.</summary>
     [JsonPropertyName("payment")]
-    public ExplanationOfBenefitInpatientInstitutionalPaymentComponent? Payment { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalPaymentComponent? Payment { get; init; }
 
     /// <summary>[CARIN-BB]  A note that describes or explains adjudication results in a human readable form.</summary>
     [JsonPropertyName("processNote")]
-    public ExplanationOfBenefitInpatientInstitutionalProcessNoteComponent? ProcessNote { get; set; }
+    public ExplanationOfBenefitInpatientInstitutionalProcessNoteComponent? ProcessNote { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.meta
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalMetaComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalMetaComponent
 {
     /// <summary>[CARIN-BB] When the resource last changed - e.g. when the version changed.</summary>
     [JsonPropertyName("lastUpdated")]
-    public object? LastUpdated { get; set; }
+    public object? LastUpdated { get; init; }
 
     [JsonPropertyName("profile")]
-    public object? Profile { get; set; }
+    public object? Profile { get; init; }
 
     /// <summary>[HEDIS] Tags applied to this resource. Tags are intended to be used to identify and relate resources to process and workflow, and applications are not required to consider the tags when interpreting the meaning of a resource.</summary>
     [JsonPropertyName("tag")]
-    public object? Tag { get; set; }
+    public object? Tag { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.identifier
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalIdentifierComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalIdentifierComponent
 {
     /// <summary>[CARIN-BB] A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.</summary>
     [JsonPropertyName("type")]
-    public object? Type { get; set; }
+    public object? Type { get; init; }
 
     [JsonPropertyName("value")]
-    public object? Value { get; set; }
+    public object? Value { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.type
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalTypeComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalTypeComponent
 {
     /// <summary>[CARIN-BB] A reference to a code defined by a terminology system.</summary>
     [JsonPropertyName("coding")]
-    public object? Coding { get; set; }
+    public object? Coding { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.subType
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalSubTypeComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalSubTypeComponent
 {
     /// <summary>[CARIN-BB] A reference to a code defined by a terminology system.</summary>
     [JsonPropertyName("coding")]
-    public object? Coding { get; set; }
+    public object? Coding { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.billablePeriod
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalBillablePeriodComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalBillablePeriodComponent
 {
     /// <summary>[CARIN-BB] The start of the period. The boundary is inclusive.</summary>
     [JsonPropertyName("start")]
-    public object? Start { get; set; }
+    public object? Start { get; init; }
 
     /// <summary>[CARIN-BB] The end of the period. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.</summary>
     [JsonPropertyName("end")]
-    public object? End { get; set; }
+    public object? End { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.related
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalRelatedComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalRelatedComponent
 {
     /// <summary>[CARIN-BB] A code to convey how the claims are related.</summary>
     [JsonPropertyName("relationship")]
-    public object? Relationship { get; set; }
+    public object? Relationship { get; init; }
 
     /// <summary>[CARIN-BB] An alternate organizational reference to the case or file to which this particular claim pertains.</summary>
     [JsonPropertyName("reference")]
-    public object? Reference { get; set; }
+    public object? Reference { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.payee
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalPayeeComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalPayeeComponent
 {
     /// <summary>[CARIN-BB] Type of Party to be reimbursed: Subscriber, provider, other.</summary>
     [JsonPropertyName("type")]
-    public object? Type { get; set; }
+    public object? Type { get; init; }
 
     /// <summary>[CARIN-BB] Reference to the individual or organization to whom any payment will be made.</summary>
     [JsonPropertyName("party")]
-    public object? Party { get; set; }
+    public object? Party { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.careTeam
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalCareTeamComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalCareTeamComponent
 {
     /// <summary>[HEDIS] A number to uniquely identify care team entries.</summary>
     [JsonPropertyName("sequence")]
-    public object? Sequence { get; set; }
+    public object? Sequence { get; init; }
 
     /// <summary>[HEDIS][CARIN-BB]  Member of the team who provided the product or service.</summary>
     [JsonPropertyName("provider")]
-    public ResourceReference? Provider { get; set; }
+    public ResourceReference? Provider { get; init; }
 
     /// <summary>[CARIN-BB] The lead, assisting or supervising practitioner and their discipline if a multidisciplinary team.</summary>
     [JsonPropertyName("role")]
-    public object? Role { get; set; }
+    public object? Role { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.supportingInfo
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalSupportingInfoComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalSupportingInfoComponent
 {
     /// <summary>[CARIN-BB] The general class of the information supplied: information; exception; accident, employment; onset, etc.</summary>
     [JsonPropertyName("category")]
-    public object? Category { get; set; }
+    public object? Category { get; init; }
 
     /// <summary>[CARIN-BB] System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought.</summary>
     [JsonPropertyName("code")]
-    public object? Code { get; set; }
+    public object? Code { get; init; }
 
     /// <summary>[CARIN-BB] The date when or period to which this information refers.</summary>
     [JsonPropertyName("timing")]
-    public Period? Timing { get; set; }
+    public Period? Timing { get; init; }
 
     [JsonPropertyName("value")]
-    public string? Value { get; set; }
+    public string? Value { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.diagnosis
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalDiagnosisComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalDiagnosisComponent
 {
     /// <summary>[HEDIS] A number to uniquely identify diagnosis entries.</summary>
     [JsonPropertyName("sequence")]
-    public object? Sequence { get; set; }
+    public object? Sequence { get; init; }
 
     /// <summary>[CARIN-BB] The nature of illness or problem in a coded form or as a reference to an external defined Condition.</summary>
     [JsonPropertyName("diagnosis")]
-    public CodeableConcept? Diagnosis { get; set; }
+    public CodeableConcept? Diagnosis { get; init; }
 
     /// <summary>[CARIN-BB] When the condition was observed or the relative ranking.</summary>
     [JsonPropertyName("type")]
-    public object? Type { get; set; }
+    public object? Type { get; init; }
 
     /// <summary>[CARIN-BB] Indication of whether the diagnosis was present on admission to a facility.</summary>
     [JsonPropertyName("onAdmission")]
-    public object? OnAdmission { get; set; }
+    public object? OnAdmission { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.procedure
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalProcedureComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalProcedureComponent
 {
     /// <summary>[HEDIS] A number to uniquely identify procedure entries.</summary>
     [JsonPropertyName("sequence")]
-    public object? Sequence { get; set; }
+    public object? Sequence { get; init; }
 
     /// <summary>[CARIN-BB] When the condition was observed or the relative ranking.</summary>
     [JsonPropertyName("type")]
-    public object? Type { get; set; }
+    public object? Type { get; init; }
 
     /// <summary>[CARIN-BB] Date and optionally time the procedure was performed.</summary>
     [JsonPropertyName("date")]
-    public object? Date { get; set; }
+    public object? Date { get; init; }
 
     /// <summary>[CARIN-BB] The code or reference to a Procedure resource which identifies the clinical intervention performed.</summary>
     [JsonPropertyName("procedure")]
-    public CodeableConcept? Procedure { get; set; }
+    public CodeableConcept? Procedure { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.insurance
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalInsuranceComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalInsuranceComponent
 {
     /// <summary>[CARIN-BB] A flag to indicate that this Coverage is to be used for adjudication of this claim when set to true.</summary>
     [JsonPropertyName("focal")]
-    public object? Focal { get; set; }
+    public object? Focal { get; init; }
 
     /// <summary>[CARIN-BB] Reference to the insurance card level information contained in the Coverage resource. The coverage issuing insurer will use these details to locate the patient's actual coverage within the insurer's information system.</summary>
     [JsonPropertyName("coverage")]
-    public object? Coverage { get; set; }
+    public object? Coverage { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.item
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalItemComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalItemComponent
 {
     /// <summary>[CARIN-BB]  A number to uniquely identify item entries.</summary>
     [JsonPropertyName("sequence")]
-    public object? Sequence { get; set; }
+    public object? Sequence { get; init; }
 
     /// <summary>[HEDIS] Diagnoses applicable for this service or product.</summary>
     [JsonPropertyName("diagnosisSequence")]
-    public object? DiagnosisSequence { get; set; }
+    public object? DiagnosisSequence { get; init; }
 
     /// <summary>[HEDIS] Procedures applicable for this service or product.</summary>
     [JsonPropertyName("procedureSequence")]
-    public object? ProcedureSequence { get; set; }
+    public object? ProcedureSequence { get; init; }
 
     /// <summary>[HEDIS] Exceptions, special conditions and supporting information applicable for this service or product.</summary>
     [JsonPropertyName("informationSequence")]
-    public object? InformationSequence { get; set; }
+    public object? InformationSequence { get; init; }
 
     /// <summary>[CARIN-BB] The type of revenue or cost center providing the product and/or service.</summary>
     [JsonPropertyName("revenue")]
-    public object? Revenue { get; set; }
+    public object? Revenue { get; init; }
 
     /// <summary>[CARIN-BB] When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item.</summary>
     [JsonPropertyName("productOrService")]
-    public object? ProductOrService { get; set; }
+    public object? ProductOrService { get; init; }
 
     /// <summary>[CARIN-BB] Item typification or modifiers codes to convey additional context for the product or service.</summary>
     [JsonPropertyName("modifier")]
-    public object? Modifier { get; set; }
+    public object? Modifier { get; init; }
 
     /// <summary>[HEDIS] The date or dates when the service or product was supplied, performed or completed.</summary>
     [JsonPropertyName("serviced")]
-    public object? Serviced { get; set; }
+    public object? Serviced { get; init; }
 
     /// <summary>[CARIN-BB] The number of repetitions of a service or product.</summary>
     [JsonPropertyName("quantity")]
-    public object? Quantity { get; set; }
+    public object? Quantity { get; init; }
 
     /// <summary>[CARIN-BB] The numbers associated with notes below which apply to the adjudication of this item.</summary>
     [JsonPropertyName("noteNumber")]
-    public object? NoteNumber { get; set; }
+    public object? NoteNumber { get; init; }
 
     /// <summary>[CARIN-BB] If this item is a group then the values here are a summary of the adjudication of the detail items. If this item is a simple product or service then this is the result of the adjudication of this item.</summary>
     [JsonPropertyName("adjudication")]
-    public object? Adjudication { get; set; }
+    public object? Adjudication { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.adjudication
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalAdjudicationComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalAdjudicationComponent
 {
     [JsonPropertyName("id")]
-    public object? Id { get; set; }
+    public object? Id { get; init; }
 
     /// <summary>[CARIN-BB] A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in-aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.</summary>
     [JsonPropertyName("category")]
-    public object? Category { get; set; }
+    public object? Category { get; init; }
 
     [JsonPropertyName("reason")]
-    public object? Reason { get; set; }
+    public object? Reason { get; init; }
 
     /// <summary>[CARIN-BB] Monetary amount associated with the category.</summary>
     [JsonPropertyName("amount")]
-    public object? Amount { get; set; }
+    public object? Amount { get; init; }
 
     [JsonPropertyName("value")]
-    public object? Value { get; set; }
+    public object? Value { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.total
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalTotalComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalTotalComponent
 {
     /// <summary>[CARIN-BB] A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.</summary>
     [JsonPropertyName("category")]
-    public object? Category { get; set; }
+    public object? Category { get; init; }
 
     /// <summary>[CARIN-BB] Monetary total amount associated with the category.</summary>
     [JsonPropertyName("amount")]
-    public object? Amount { get; set; }
+    public object? Amount { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.payment
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalPaymentComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalPaymentComponent
 {
     /// <summary>[CARIN-BB] Whether this represents partial or complete payment of the benefits payable.</summary>
     [JsonPropertyName("type")]
-    public object? Type { get; set; }
+    public object? Type { get; init; }
 
     /// <summary>[CARIN-BB] Estimated date the payment will be issued or the actual issue date of payment.</summary>
     [JsonPropertyName("date")]
-    public object? Date { get; set; }
+    public object? Date { get; init; }
 
 }
 
 /// <summary>
 /// Component class for ExplanationOfBenefit.processNote
 /// </summary>
-public sealed class ExplanationOfBenefitInpatientInstitutionalProcessNoteComponent
+public sealed record ExplanationOfBenefitInpatientInstitutionalProcessNoteComponent
 {
     /// <summary>[CARIN-BB] The explanation or description associated with the processing.</summary>
     [JsonPropertyName("text")]
-    public object? Text { get; set; }
+    public object? Text { get; init; }
 
 }

@@ -13,56 +13,56 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core Observation DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-laboratory-result-observation</para>
 /// </summary>
-public sealed class HEDISCoreLaboratoryResultObservation
+public sealed record HEDISCoreLaboratoryResultObservation
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "Observation";
+    public string ResourceType { get; init; } = "Observation";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>[US Core] The status of the result value.</summary>
     [JsonPropertyName("status")]
-    public object? Status { get; set; }
+    public object? Status { get; init; }
 
     /// <summary>[US Core] A code that classifies the general type of observation being made.</summary>
     [JsonPropertyName("category")]
-    public LaboratoryResultObservationCategoryComponent? Category { get; set; }
+    public LaboratoryResultObservationCategoryComponent? Category { get; init; }
 
     /// <summary>[US Core] The test that was performed.  A LOINC **SHALL** be used if the concept is present in LOINC.</summary>
     [JsonPropertyName("code")]
-    public object? Code { get; set; }
+    public object? Code { get; init; }
 
     /// <summary>[HEDIS][US Core] The patient, or group of patients, location, or device this observation is about and into whose record the observation is placed. If the actual focus of the observation is different from the subject (or a sample of, part, or region of the subject), the `focus` element or the `code` itself specifies the actual focus of the observation.</summary>
     [JsonPropertyName("subject")]
-    public ResourceReference? Subject { get; set; }
+    public ResourceReference? Subject { get; init; }
 
     /// <summary>[HEDIS][US Core] For lab tests this is the specimen collection date.  For Ask at Order Entry Questions (AOE)'s this is the date the question was asked.</summary>
     [JsonPropertyName("effective")]
-    public object? Effective { get; set; }
+    public object? Effective { get; init; }
 
     /// <summary>[US Core] The Laboratory result value.  If a coded value,  the valueCodeableConcept.code **SHOULD**  be selected from [SNOMED CT](http://hl7.org/fhir/ValueSet/uslab-obs-codedresults).  If a numeric value, valueQuantity.code **SHALL** be selected from [UCUM](http://unitsofmeasure.org).  A FHIR [UCUM Codes value set](http://hl7.org/fhir/STU3/valueset-ucum-units.html) that defines all UCUM codes is in the FHIR specification.</summary>
     [JsonPropertyName("value")]
-    public object? Value { get; set; }
+    public object? Value { get; init; }
 
     /// <summary>[US Core] Provides a reason why the expected value in the element Observation.value[x] is missing.</summary>
     [JsonPropertyName("dataAbsentReason")]
-    public object? DataAbsentReason { get; set; }
+    public object? DataAbsentReason { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Observation.category
 /// </summary>
-public sealed class LaboratoryResultObservationCategoryComponent
+public sealed record LaboratoryResultObservationCategoryComponent
 {
     [JsonPropertyName("coding")]
-    public object? Coding { get; set; }
+    public object? Coding { get; init; }
 
 }

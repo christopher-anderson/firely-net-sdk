@@ -13,56 +13,56 @@ namespace Ncqa.Hedis.Core._2025;
 /// HEDIS Core Practitioner DTO.
 /// <para>Profile: https://ncqa.org/fhir/StructureDefinition/hedis-core-practitioner</para>
 /// </summary>
-public sealed class HEDISCorePractitioner
+public sealed record HEDISCorePractitioner
 {
     /// <summary>The FHIR resource type.</summary>
     [JsonPropertyName("resourceType")]
-    public string ResourceType { get; set; } = "Practitioner";
+    public string ResourceType { get; init; } = "Practitioner";
 
     /// <summary>Logical id of this artifact.</summary>
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public string? Id { get; init; }
 
     /// <summary>[HEDIS] The metadata about a resource. This is content in the resource that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.</summary>
     [JsonPropertyName("meta")]
-    public Meta? Meta { get; set; }
+    public Meta? Meta { get; init; }
 
     /// <summary>[US Core] An identifier that applies to this person in this role.</summary>
     [JsonPropertyName("identifier")]
-    public PractitionerIdentifierComponent? Identifier { get; set; }
+    public PractitionerIdentifierComponent? Identifier { get; init; }
 
     /// <summary>[US Core] The name(s) associated with the practitioner.</summary>
     [JsonPropertyName("name")]
-    public PractitionerNameComponent? Name { get; set; }
+    public PractitionerNameComponent? Name { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Practitioner.identifier
 /// </summary>
-public sealed class PractitionerIdentifierComponent
+public sealed record PractitionerIdentifierComponent
 {
     /// <summary>[US Core] Establishes the namespace for the value - that is, a URL that describes a set values that are unique.</summary>
     [JsonPropertyName("system")]
-    public object? System { get; set; }
+    public object? System { get; init; }
 
     /// <summary>[US Core] The portion of the identifier typically relevant to the user and which is unique within the context of the system.</summary>
     [JsonPropertyName("value")]
-    public object? Value { get; set; }
+    public object? Value { get; init; }
 
     /// <summary>[CARIN-BB] A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.</summary>
     [JsonPropertyName("type")]
-    public object? Type { get; set; }
+    public object? Type { get; init; }
 
 }
 
 /// <summary>
 /// Component class for Practitioner.name
 /// </summary>
-public sealed class PractitionerNameComponent
+public sealed record PractitionerNameComponent
 {
     /// <summary>[US Core] The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name of his father.</summary>
     [JsonPropertyName("family")]
-    public object? Family { get; set; }
+    public object? Family { get; init; }
 
 }

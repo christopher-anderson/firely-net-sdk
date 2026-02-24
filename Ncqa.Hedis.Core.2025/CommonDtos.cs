@@ -10,253 +10,252 @@ using System.Text.Json.Serialization;
 namespace Ncqa.Hedis.Core._2025;
 
 /// <summary>A name of a human with text, parts and usage information.</summary>
-public sealed class HumanName
+public sealed record HumanName
 {
-    [JsonPropertyName("use")] public string? Use { get; set; }
-    [JsonPropertyName("text")] public string? Text { get; set; }
-    [JsonPropertyName("family")] public string? Family { get; set; }
-    [JsonPropertyName("given")] public List<string>? Given { get; set; }
-    [JsonPropertyName("prefix")] public List<string>? Prefix { get; set; }
-    [JsonPropertyName("suffix")] public List<string>? Suffix { get; set; }
-    [JsonPropertyName("period")] public Period? Period { get; set; }
+    [JsonPropertyName("use")] public string? Use { get; init; }
+    [JsonPropertyName("text")] public string? Text { get; init; }
+    [JsonPropertyName("family")] public string? Family { get; init; }
+    [JsonPropertyName("given")] public List<string>? Given { get; init; }
+    [JsonPropertyName("prefix")] public List<string>? Prefix { get; init; }
+    [JsonPropertyName("suffix")] public List<string>? Suffix { get; init; }
+    [JsonPropertyName("period")] public Period? Period { get; init; }
 }
 
 /// <summary>An address expressed using postal conventions.</summary>
-public sealed class Address
+public sealed record Address
 {
-    [JsonPropertyName("use")] public string? Use { get; set; }
-    [JsonPropertyName("type")] public string? Type { get; set; }
-    [JsonPropertyName("text")] public string? Text { get; set; }
-    [JsonPropertyName("line")] public List<string>? Line { get; set; }
-    [JsonPropertyName("city")] public string? City { get; set; }
-    [JsonPropertyName("district")] public string? District { get; set; }
-    [JsonPropertyName("state")] public string? State { get; set; }
-    [JsonPropertyName("postalCode")] public string? PostalCode { get; set; }
-    [JsonPropertyName("country")] public string? Country { get; set; }
-    [JsonPropertyName("period")] public Period? Period { get; set; }
+    [JsonPropertyName("use")] public string? Use { get; init; }
+    [JsonPropertyName("type")] public string? Type { get; init; }
+    [JsonPropertyName("text")] public string? Text { get; init; }
+    [JsonPropertyName("line")] public List<string>? Line { get; init; }
+    [JsonPropertyName("city")] public string? City { get; init; }
+    [JsonPropertyName("district")] public string? District { get; init; }
+    [JsonPropertyName("state")] public string? State { get; init; }
+    [JsonPropertyName("postalCode")] public string? PostalCode { get; init; }
+    [JsonPropertyName("country")] public string? Country { get; init; }
+    [JsonPropertyName("period")] public Period? Period { get; init; }
 }
 
 /// <summary>Details for all kinds of technology-mediated contact points.</summary>
-public sealed class ContactPoint
+public sealed record ContactPoint
 {
-    [JsonPropertyName("system")] public string? System { get; set; }
-    [JsonPropertyName("value")] public string? Value { get; set; }
-    [JsonPropertyName("use")] public string? Use { get; set; }
-    [JsonPropertyName("rank")] public int? Rank { get; set; }
-    [JsonPropertyName("period")] public Period? Period { get; set; }
+    [JsonPropertyName("system")] public string? System { get; init; }
+    [JsonPropertyName("value")] public string? Value { get; init; }
+    [JsonPropertyName("use")] public string? Use { get; init; }
+    [JsonPropertyName("rank")] public int? Rank { get; init; }
+    [JsonPropertyName("period")] public Period? Period { get; init; }
 }
 
 /// <summary>An identifier intended for computation.</summary>
-public sealed class Identifier
+public sealed record Identifier
 {
-    [JsonPropertyName("use")] public string? Use { get; set; }
-    [JsonPropertyName("type")] public CodeableConcept? Type { get; set; }
-    [JsonPropertyName("system")] public string? System { get; set; }
-    [JsonPropertyName("value")] public string? Value { get; set; }
-    [JsonPropertyName("period")] public Period? Period { get; set; }
-    [JsonPropertyName("assigner")] public ResourceReference? Assigner { get; set; }
+    [JsonPropertyName("use")] public string? Use { get; init; }
+    [JsonPropertyName("type")] public CodeableConcept? Type { get; init; }
+    [JsonPropertyName("system")] public string? System { get; init; }
+    [JsonPropertyName("value")] public string? Value { get; init; }
+    [JsonPropertyName("period")] public Period? Period { get; init; }
+    [JsonPropertyName("assigner")] public ResourceReference? Assigner { get; init; }
 }
 
 /// <summary>Concept - reference to a terminology or just text.</summary>
-public sealed class CodeableConcept
+public sealed record CodeableConcept
 {
-    [JsonPropertyName("coding")] public List<Coding>? Coding { get; set; }
-    [JsonPropertyName("text")] public string? Text { get; set; }
+    [JsonPropertyName("coding")] public List<Coding>? Coding { get; init; }
+    [JsonPropertyName("text")] public string? Text { get; init; }
 }
 
 /// <summary>A reference to a code defined by a terminology system.</summary>
-public sealed class Coding
+public sealed record Coding
 {
-    [JsonPropertyName("system")] public string? System { get; set; }
-    [JsonPropertyName("version")] public string? Version { get; set; }
-    [JsonPropertyName("code")] public string? Code { get; set; }
-    [JsonPropertyName("display")] public string? Display { get; set; }
-    [JsonPropertyName("userSelected")] public bool? UserSelected { get; set; }
+    [JsonPropertyName("system")] public string? System { get; init; }
+    [JsonPropertyName("version")] public string? Version { get; init; }
+    [JsonPropertyName("code")] public string? Code { get; init; }
+    [JsonPropertyName("display")] public string? Display { get; init; }
+    [JsonPropertyName("userSelected")] public bool? UserSelected { get; init; }
 }
 
 /// <summary>A measured or measurable amount.</summary>
-public sealed class Quantity
+public sealed record Quantity
 {
-    [JsonPropertyName("value")] public decimal? Value { get; set; }
-    [JsonPropertyName("comparator")] public string? Comparator { get; set; }
-    [JsonPropertyName("unit")] public string? Unit { get; set; }
-    [JsonPropertyName("system")] public string? System { get; set; }
-    [JsonPropertyName("code")] public string? Code { get; set; }
+    [JsonPropertyName("value")] public decimal? Value { get; init; }
+    [JsonPropertyName("comparator")] public string? Comparator { get; init; }
+    [JsonPropertyName("unit")] public string? Unit { get; init; }
+    [JsonPropertyName("system")] public string? System { get; init; }
+    [JsonPropertyName("code")] public string? Code { get; init; }
 }
 
 /// <summary>Time range defined by start and end date/time.</summary>
-public sealed class Period
+public sealed record Period
 {
-    [JsonPropertyName("start")] public string? Start { get; set; }
-    [JsonPropertyName("end")] public string? End { get; set; }
+    [JsonPropertyName("start")] public string? Start { get; init; }
+    [JsonPropertyName("end")] public string? End { get; init; }
 }
 
 /// <summary>A reference from one resource to another.</summary>
-public sealed class ResourceReference
+public sealed record ResourceReference
 {
-    [JsonPropertyName("reference")] public string? Reference { get; set; }
-    [JsonPropertyName("type")] public string? Type { get; set; }
-    [JsonPropertyName("identifier")] public Identifier? Identifier { get; set; }
-    [JsonPropertyName("display")] public string? Display { get; set; }
+    [JsonPropertyName("reference")] public string? Reference { get; init; }
+    [JsonPropertyName("type")] public string? Type { get; init; }
+    [JsonPropertyName("identifier")] public Identifier? Identifier { get; init; }
+    [JsonPropertyName("display")] public string? Display { get; init; }
 }
 
 /// <summary>Metadata about a resource.</summary>
-public sealed class Meta
+public sealed record Meta
 {
-    [JsonPropertyName("versionId")] public string? VersionId { get; set; }
-    [JsonPropertyName("lastUpdated")] public string? LastUpdated { get; set; }
-    [JsonPropertyName("source")] public string? Source { get; set; }
-    [JsonPropertyName("profile")] public List<string>? Profile { get; set; }
-    [JsonPropertyName("security")] public List<Coding>? Security { get; set; }
-    [JsonPropertyName("tag")] public List<Coding>? Tag { get; set; }
+    [JsonPropertyName("versionId")] public string? VersionId { get; init; }
+    [JsonPropertyName("lastUpdated")] public string? LastUpdated { get; init; }
+    [JsonPropertyName("source")] public string? Source { get; init; }
+    [JsonPropertyName("profile")] public List<string>? Profile { get; init; }
+    [JsonPropertyName("security")] public List<Coding>? Security { get; init; }
+    [JsonPropertyName("tag")] public List<Coding>? Tag { get; init; }
 }
 
 /// <summary>Content in a format defined elsewhere.</summary>
-public sealed class Attachment
+public sealed record Attachment
 {
-    [JsonPropertyName("contentType")] public string? ContentType { get; set; }
-    [JsonPropertyName("language")] public string? Language { get; set; }
-    [JsonPropertyName("data")] public string? Data { get; set; }
-    [JsonPropertyName("url")] public string? Url { get; set; }
-    [JsonPropertyName("size")] public long? Size { get; set; }
-    [JsonPropertyName("hash")] public string? Hash { get; set; }
-    [JsonPropertyName("title")] public string? Title { get; set; }
-    [JsonPropertyName("creation")] public string? Creation { get; set; }
+    [JsonPropertyName("contentType")] public string? ContentType { get; init; }
+    [JsonPropertyName("language")] public string? Language { get; init; }
+    [JsonPropertyName("data")] public string? Data { get; init; }
+    [JsonPropertyName("url")] public string? Url { get; init; }
+    [JsonPropertyName("size")] public long? Size { get; init; }
+    [JsonPropertyName("hash")] public string? Hash { get; init; }
+    [JsonPropertyName("title")] public string? Title { get; init; }
+    [JsonPropertyName("creation")] public string? Creation { get; init; }
 }
 
 /// <summary>A human-readable formatted text, including images.</summary>
-public sealed class Narrative
+public sealed record Narrative
 {
-    [JsonPropertyName("status")] public string? Status { get; set; }
-    [JsonPropertyName("div")] public string? Div { get; set; }
+    [JsonPropertyName("status")] public string? Status { get; init; }
+    [JsonPropertyName("div")] public string? Div { get; init; }
 }
 
 /// <summary>Optional Extensions Element.</summary>
-public sealed class Extension
+public sealed record Extension
 {
-    [JsonPropertyName("url")] public string? Url { get; set; }
-    [JsonPropertyName("valueString")] public string? ValueString { get; set; }
-    [JsonPropertyName("valueBoolean")] public bool? ValueBoolean { get; set; }
-    [JsonPropertyName("valueInteger")] public int? ValueInteger { get; set; }
-    [JsonPropertyName("valueDecimal")] public decimal? ValueDecimal { get; set; }
-    [JsonPropertyName("valueCode")] public string? ValueCode { get; set; }
-    [JsonPropertyName("valueDate")] public string? ValueDate { get; set; }
-    [JsonPropertyName("valueDateTime")] public string? ValueDateTime { get; set; }
-    [JsonPropertyName("valueCoding")] public Coding? ValueCoding { get; set; }
-    [JsonPropertyName("valueCodeableConcept")] public CodeableConcept? ValueCodeableConcept { get; set; }
-    [JsonPropertyName("valueReference")] public ResourceReference? ValueReference { get; set; }
-    [JsonPropertyName("valuePeriod")] public Period? ValuePeriod { get; set; }
-    [JsonPropertyName("valueQuantity")] public Quantity? ValueQuantity { get; set; }
-    [JsonPropertyName("extension")] public List<Extension>? Extension_ { get; set; }
+    [JsonPropertyName("url")] public string? Url { get; init; }
+    [JsonPropertyName("valueString")] public string? ValueString { get; init; }
+    [JsonPropertyName("valueBoolean")] public bool? ValueBoolean { get; init; }
+    [JsonPropertyName("valueInteger")] public int? ValueInteger { get; init; }
+    [JsonPropertyName("valueDecimal")] public decimal? ValueDecimal { get; init; }
+    [JsonPropertyName("valueCode")] public string? ValueCode { get; init; }
+    [JsonPropertyName("valueDate")] public string? ValueDate { get; init; }
+    [JsonPropertyName("valueDateTime")] public string? ValueDateTime { get; init; }
+    [JsonPropertyName("valueCoding")] public Coding? ValueCoding { get; init; }
+    [JsonPropertyName("valueCodeableConcept")] public CodeableConcept? ValueCodeableConcept { get; init; }
+    [JsonPropertyName("valueReference")] public ResourceReference? ValueReference { get; init; }
+    [JsonPropertyName("valuePeriod")] public Period? ValuePeriod { get; init; }
+    [JsonPropertyName("valueQuantity")] public Quantity? ValueQuantity { get; init; }
+    [JsonPropertyName("extension")] public List<Extension>? Extension_ { get; init; }
 }
 
 /// <summary>Set of values bounded by low and high.</summary>
-public sealed class Range
+public sealed record Range
 {
-    [JsonPropertyName("low")] public Quantity? Low { get; set; }
-    [JsonPropertyName("high")] public Quantity? High { get; set; }
+    [JsonPropertyName("low")] public Quantity? Low { get; init; }
+    [JsonPropertyName("high")] public Quantity? High { get; init; }
 }
 
 /// <summary>A ratio of two Quantity values.</summary>
-public sealed class Ratio
+public sealed record Ratio
 {
-    [JsonPropertyName("numerator")] public Quantity? Numerator { get; set; }
-    [JsonPropertyName("denominator")] public Quantity? Denominator { get; set; }
+    [JsonPropertyName("numerator")] public Quantity? Numerator { get; init; }
+    [JsonPropertyName("denominator")] public Quantity? Denominator { get; init; }
 }
 
 /// <summary>Text with attribution.</summary>
-public sealed class Annotation
+public sealed record Annotation
 {
-    [JsonPropertyName("authorReference")] public ResourceReference? AuthorReference { get; set; }
-    [JsonPropertyName("authorString")] public string? AuthorString { get; set; }
-    [JsonPropertyName("time")] public string? Time { get; set; }
-    [JsonPropertyName("text")] public string? Text { get; set; }
+    [JsonPropertyName("authorReference")] public ResourceReference? AuthorReference { get; init; }
+    [JsonPropertyName("authorString")] public string? AuthorString { get; init; }
+    [JsonPropertyName("time")] public string? Time { get; init; }
+    [JsonPropertyName("text")] public string? Text { get; init; }
 }
 
 /// <summary>A Signature - XML DigSig, JWT, Graphical image of signature, etc.</summary>
-public sealed class Signature
+public sealed record Signature
 {
-    [JsonPropertyName("type")] public List<Coding>? Type { get; set; }
-    [JsonPropertyName("when")] public string? When { get; set; }
-    [JsonPropertyName("who")] public ResourceReference? Who { get; set; }
-    [JsonPropertyName("onBehalfOf")] public ResourceReference? OnBehalfOf { get; set; }
-    [JsonPropertyName("targetFormat")] public string? TargetFormat { get; set; }
-    [JsonPropertyName("sigFormat")] public string? SigFormat { get; set; }
-    [JsonPropertyName("data")] public string? Data { get; set; }
+    [JsonPropertyName("type")] public List<Coding>? Type { get; init; }
+    [JsonPropertyName("when")] public string? When { get; init; }
+    [JsonPropertyName("who")] public ResourceReference? Who { get; init; }
+    [JsonPropertyName("onBehalfOf")] public ResourceReference? OnBehalfOf { get; init; }
+    [JsonPropertyName("targetFormat")] public string? TargetFormat { get; init; }
+    [JsonPropertyName("sigFormat")] public string? SigFormat { get; init; }
+    [JsonPropertyName("data")] public string? Data { get; init; }
 }
 
 /// <summary>A timing schedule that specifies an event that may occur multiple times.</summary>
-public sealed class Timing
+public sealed record Timing
 {
-    [JsonPropertyName("event")] public List<string>? Event { get; set; }
-    [JsonPropertyName("repeat")] public TimingRepeat? Repeat { get; set; }
-    [JsonPropertyName("code")] public CodeableConcept? Code { get; set; }
+    [JsonPropertyName("event")] public List<string>? Event { get; init; }
+    [JsonPropertyName("repeat")] public TimingRepeat? Repeat { get; init; }
+    [JsonPropertyName("code")] public CodeableConcept? Code { get; init; }
 }
 
 /// <summary>Timing repeat component.</summary>
-public sealed class TimingRepeat
+public sealed record TimingRepeat
 {
-    [JsonPropertyName("boundsDuration")] public Duration? BoundsDuration { get; set; }
-    [JsonPropertyName("boundsPeriod")] public Period? BoundsPeriod { get; set; }
-    [JsonPropertyName("count")] public int? Count { get; set; }
-    [JsonPropertyName("duration")] public decimal? Duration_ { get; set; }
-    [JsonPropertyName("durationUnit")] public string? DurationUnit { get; set; }
-    [JsonPropertyName("frequency")] public int? Frequency { get; set; }
-    [JsonPropertyName("period")] public decimal? Period_ { get; set; }
-    [JsonPropertyName("periodUnit")] public string? PeriodUnit { get; set; }
-    [JsonPropertyName("dayOfWeek")] public List<string>? DayOfWeek { get; set; }
-    [JsonPropertyName("timeOfDay")] public List<string>? TimeOfDay { get; set; }
+    [JsonPropertyName("boundsDuration")] public Duration? BoundsDuration { get; init; }
+    [JsonPropertyName("boundsPeriod")] public Period? BoundsPeriod { get; init; }
+    [JsonPropertyName("count")] public int? Count { get; init; }
+    [JsonPropertyName("duration")] public decimal? Duration_ { get; init; }
+    [JsonPropertyName("durationUnit")] public string? DurationUnit { get; init; }
+    [JsonPropertyName("frequency")] public int? Frequency { get; init; }
+    [JsonPropertyName("period")] public decimal? Period_ { get; init; }
+    [JsonPropertyName("periodUnit")] public string? PeriodUnit { get; init; }
+    [JsonPropertyName("dayOfWeek")] public List<string>? DayOfWeek { get; init; }
+    [JsonPropertyName("timeOfDay")] public List<string>? TimeOfDay { get; init; }
 }
 
 /// <summary>A length of time.</summary>
-public sealed class Duration
+public sealed record Duration
 {
-    [JsonPropertyName("value")] public decimal? Value { get; set; }
-    [JsonPropertyName("comparator")] public string? Comparator { get; set; }
-    [JsonPropertyName("unit")] public string? Unit { get; set; }
-    [JsonPropertyName("system")] public string? System { get; set; }
-    [JsonPropertyName("code")] public string? Code { get; set; }
+    [JsonPropertyName("value")] public decimal? Value { get; init; }
+    [JsonPropertyName("comparator")] public string? Comparator { get; init; }
+    [JsonPropertyName("unit")] public string? Unit { get; init; }
+    [JsonPropertyName("system")] public string? System { get; init; }
+    [JsonPropertyName("code")] public string? Code { get; init; }
 }
 
 /// <summary>A duration of time during which an organism has existed.</summary>
-public sealed class Age
+public sealed record Age
 {
-    [JsonPropertyName("value")] public decimal? Value { get; set; }
-    [JsonPropertyName("comparator")] public string? Comparator { get; set; }
-    [JsonPropertyName("unit")] public string? Unit { get; set; }
-    [JsonPropertyName("system")] public string? System { get; set; }
-    [JsonPropertyName("code")] public string? Code { get; set; }
+    [JsonPropertyName("value")] public decimal? Value { get; init; }
+    [JsonPropertyName("comparator")] public string? Comparator { get; init; }
+    [JsonPropertyName("unit")] public string? Unit { get; init; }
+    [JsonPropertyName("system")] public string? System { get; init; }
+    [JsonPropertyName("code")] public string? Code { get; init; }
 }
 
 /// <summary>An amount of economic utility in some recognized currency.</summary>
-public sealed class Money
+public sealed record Money
 {
-    [JsonPropertyName("value")] public decimal? Value { get; set; }
-    [JsonPropertyName("currency")] public string? Currency { get; set; }
+    [JsonPropertyName("value")] public decimal? Value { get; init; }
+    [JsonPropertyName("currency")] public string? Currency { get; init; }
 }
 
 /// <summary>How the medication is/was taken or should be taken.</summary>
-public sealed class Dosage
+public sealed record Dosage
 {
-    [JsonPropertyName("sequence")] public int? Sequence { get; set; }
-    [JsonPropertyName("text")] public string? Text { get; set; }
-    [JsonPropertyName("timing")] public Timing? Timing { get; set; }
-    [JsonPropertyName("asNeededBoolean")] public bool? AsNeededBoolean { get; set; }
-    [JsonPropertyName("asNeededCodeableConcept")] public CodeableConcept? AsNeededCodeableConcept { get; set; }
-    [JsonPropertyName("site")] public CodeableConcept? Site { get; set; }
-    [JsonPropertyName("route")] public CodeableConcept? Route { get; set; }
-    [JsonPropertyName("method")] public CodeableConcept? Method { get; set; }
-    [JsonPropertyName("doseAndRate")] public List<DoseAndRate>? DoseAndRate { get; set; }
+    [JsonPropertyName("sequence")] public int? Sequence { get; init; }
+    [JsonPropertyName("text")] public string? Text { get; init; }
+    [JsonPropertyName("timing")] public Timing? Timing { get; init; }
+    [JsonPropertyName("asNeededBoolean")] public bool? AsNeededBoolean { get; init; }
+    [JsonPropertyName("asNeededCodeableConcept")] public CodeableConcept? AsNeededCodeableConcept { get; init; }
+    [JsonPropertyName("site")] public CodeableConcept? Site { get; init; }
+    [JsonPropertyName("route")] public CodeableConcept? Route { get; init; }
+    [JsonPropertyName("method")] public CodeableConcept? Method { get; init; }
+    [JsonPropertyName("doseAndRate")] public List<DoseAndRate>? DoseAndRate { get; init; }
 }
 
 /// <summary>Amount of medication per dose.</summary>
-public sealed class DoseAndRate
+public sealed record DoseAndRate
 {
-    [JsonPropertyName("type")] public CodeableConcept? Type { get; set; }
-    [JsonPropertyName("doseRange")] public Range? DoseRange { get; set; }
-    [JsonPropertyName("doseQuantity")] public Quantity? DoseQuantity { get; set; }
-    [JsonPropertyName("rateRatio")] public Ratio? RateRatio { get; set; }
-    [JsonPropertyName("rateRange")] public Range? RateRange { get; set; }
-    [JsonPropertyName("rateQuantity")] public Quantity? RateQuantity { get; set; }
+    [JsonPropertyName("type")] public CodeableConcept? Type { get; init; }
+    [JsonPropertyName("doseRange")] public Range? DoseRange { get; init; }
+    [JsonPropertyName("doseQuantity")] public Quantity? DoseQuantity { get; init; }
+    [JsonPropertyName("rateRatio")] public Ratio? RateRatio { get; init; }
+    [JsonPropertyName("rateRange")] public Range? RateRange { get; init; }
+    [JsonPropertyName("rateQuantity")] public Quantity? RateQuantity { get; init; }
 }
-
