@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ncqa.Hedis.Core\Ncqa.Hedis.Core.csproj" />
+    <ProjectReference Include="..\src\Hl7.Fhir.R4\Hl7.Fhir.R4.csproj" />
   </ItemGroup>
 
   <ItemGroup>
