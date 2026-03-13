@@ -41,25 +41,41 @@ class Program
 
     static async Task RunHedisBatchGeneration(string[] args)
     {
-        // Default paths - new year-independent namespace
-        var profilesPath = args.Length > 1 ? args[1] : @"NCQA_Profiles\ncqa.hedis.core";
-        var outputPath = args.Length > 2 ? args[2] : @"..\..\..\..\Ncqa.Hedis.Core";
+        // Resolve defaults relative to this source file so they work regardless of CWD.
+        var generatorDir = Path.GetDirectoryName(Path.GetFullPath(typeof(Program).Assembly.Location))!;
+        var repoRoot = Path.GetFullPath(Path.Combine(generatorDir, @"..\..\..\..\.."));
+        var profilesPath = Path.Combine(repoRoot, @"src\ProfileCodeGenerator\NCQA_Profiles\ncqa.hedis.core");
+        var outputPath = Path.Combine(repoRoot, "Ncqa.Hedis.Core");
         var @namespace = "Ncqa.Hedis.Core";
+        bool mustSupportOnly = false;
 
-        // Parse namespace option
-        for (int i = 3; i < args.Length; i++)
+        // Parse positional path args (skip flags) then named options
+        int positional = 0;
+        for (int i = 1; i < args.Length; i++)
         {
             if (args[i] == "--namespace" && i + 1 < args.Length)
             {
                 @namespace = args[++i];
             }
+            else if (args[i] == "--must-support")
+            {
+                mustSupportOnly = true;
+            }
+            else if (!args[i].StartsWith("--"))
+            {
+                if (positional == 0) profilesPath = args[i];
+                else if (positional == 1) outputPath = args[i];
+                positional++;
+            }
         }
 
         Console.WriteLine("HEDIS Core Profile Batch Generation");
         Console.WriteLine("====================================");
+        if (mustSupportOnly)
+            Console.WriteLine("Mode: MustSupport elements only");
         Console.WriteLine();
 
-        var generator = new HedisProfileBatchGenerator(profilesPath, outputPath, @namespace);
+        var generator = new HedisProfileBatchGenerator(profilesPath, outputPath, @namespace, mustSupportOnly);
         await generator.GenerateAllAsync();
     }
 
@@ -76,8 +92,11 @@ class Program
         Console.WriteLine("  --include-metadata    Include meta, text, contained elements");
         Console.WriteLine();
         Console.WriteLine("HEDIS Batch Mode:");
-        Console.WriteLine("  --hedis [profiles-path] [output-path] [--namespace <ns>]");
+        Console.WriteLine("  --hedis [profiles-path] [output-path] [options]");
         Console.WriteLine("  -h      Same as --hedis");
+        Console.WriteLine();
+        Console.WriteLine("  --namespace <ns>      Set the namespace (default: Ncqa.Hedis.Core)");
+        Console.WriteLine("  --must-support        Only include MustSupport elements");
         Console.WriteLine();
         Console.WriteLine("  Generates DTOs from all HEDIS Core profiles.");
         Console.WriteLine("  Default profiles-path: NCQA_Profiles\\ncqa.hedis.core");

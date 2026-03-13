@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using System.Xml.Linq;
 
 namespace ProfileCodeGenerator;
 
@@ -15,6 +16,7 @@ public class HedisProfileBatchGenerator
     private readonly string _profilesPath;
     private readonly string _outputPath;
     private readonly string _namespace;
+    private readonly bool _mustSupportOnly;
 
     // Tracks all backbone elements found across all profiles, grouped by resource type
     private readonly Dictionary<string, Dictionary<string, BackboneInfo>> _backbonesByResource = new();
@@ -25,11 +27,44 @@ public class HedisProfileBatchGenerator
     // Maps resource type to list of profile URLs
     private readonly Dictionary<string, List<string>> _profilesByResource = new();
 
-    public HedisProfileBatchGenerator(string profilesPath, string outputPath, string @namespace)
+    // Index of all available StructureDefinition profiles from dependency packages (URL -> file path)
+    private readonly Dictionary<string, string> _profileIndex = new(StringComparer.OrdinalIgnoreCase);
+
+    // Tracks profile URLs that have already been analyzed (to prevent re-processing)
+    private readonly HashSet<string> _processedProfileUrls = new(StringComparer.OrdinalIgnoreCase);
+
+    // Tracks dependency URLs that have been enqueued to avoid duplicates
+    private readonly HashSet<string> _enqueuedDependencyUrls = new(StringComparer.OrdinalIgnoreCase);
+
+    // Queue of dependency profile URLs pending analysis
+    private readonly Queue<string> _pendingDependencyUrls = new();
+
+    // Cache of StructureDefinitions extracted from R4 spec XML bundles (URL -> XElement)
+    private readonly Dictionary<string, XElement> _profileXmlCache = new(StringComparer.OrdinalIgnoreCase);
+
+    // Root directory containing all profile packages (parent of _profilesPath)
+    private readonly string _allProfilesRootPath;
+
+    // Abstract FHIR base types and data types that are never standalone Bundle entries
+    private static readonly HashSet<string> _nonFhirResourceTypes = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "Resource", "DomainResource", "Element", "BackboneElement", "Extension", "Quantity"
+    };
+
+    // Structural resource types that bypass MustSupport filtering — their fields are
+    // always required regardless of profile constraints (e.g. Bundle.Entry.Resource).
+    private static readonly HashSet<string> _structuralResourceTypes = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "Bundle"
+    };
+
+    public HedisProfileBatchGenerator(string profilesPath, string outputPath, string @namespace, bool mustSupportOnly = false)
     {
         _profilesPath = profilesPath;
         _outputPath = outputPath;
         _namespace = @namespace;
+        _mustSupportOnly = mustSupportOnly;
+        _allProfilesRootPath = Path.GetDirectoryName(Path.GetFullPath(profilesPath)) ?? profilesPath;
     }
 
     /// <summary>
@@ -54,13 +89,30 @@ public class HedisProfileBatchGenerator
         }
         Console.WriteLine();
 
-        // Create output directories
+        // Create output directories and clean previously generated .cs files
+        // so stale files from prior runs don't cause duplicate type errors.
         Directory.CreateDirectory(_outputPath);
-        Directory.CreateDirectory(Path.Combine(_outputPath, "Resources"));
-        Directory.CreateDirectory(Path.Combine(_outputPath, "Components"));
+        var resourcesDir = Path.Combine(_outputPath, "Resources");
+        var componentsDir = Path.Combine(_outputPath, "Components");
+        Directory.CreateDirectory(resourcesDir);
+        Directory.CreateDirectory(componentsDir);
+        foreach (var stale in Directory.GetFiles(resourcesDir, "*.cs").Concat(Directory.GetFiles(componentsDir, "*.cs")))
+        {
+            File.Delete(stale);
+        }
 
-        // Phase 1: Read all profiles and collect fields/backbones
-        Console.WriteLine("Phase 1: Analyzing all profiles...");
+        // Build profile index from all available dependency packages
+        await BuildProfileIndexAsync();
+
+        // Pre-seed structural resource types so they are resolved from the R4 spec
+        // even if no HEDIS profile directly references them.
+        foreach (var structuralType in _structuralResourceTypes)
+        {
+            EnqueueDependencyUrl($"http://hl7.org/fhir/StructureDefinition/{structuralType}");
+        }
+
+        // Phase 1: Read all HEDIS core profiles and collect fields/backbones
+        Console.WriteLine("Phase 1: Analyzing all HEDIS core profiles...");
         foreach (var profileFile in profileFiles)
         {
             try
@@ -72,6 +124,9 @@ public class HedisProfileBatchGenerator
                 Console.WriteLine($"Error analyzing {Path.GetFileName(profileFile)}: {ex.Message}");
             }
         }
+
+        // Resolve and analyze all transitively dependent profiles
+        await ResolveDependenciesAsync();
 
         // Phase 2: Identify shared backbone components
         Console.WriteLine("\nPhase 2: Identifying shared components...");
@@ -89,7 +144,7 @@ public class HedisProfileBatchGenerator
         // Phase 5: Generate resource files
         Console.WriteLine("\nPhase 5: Generating resource files...");
         var generatedResources = new List<string>();
-        foreach (var resourceType in _fieldsByResource.Keys.OrderBy(k => k))
+        foreach (var resourceType in _fieldsByResource.Keys.Where(t => !_nonFhirResourceTypes.Contains(t)).OrderBy(k => k))
         {
             var fileName = await GenerateResourceFileAsync(resourceType, sharedComponents);
             if (fileName != null)
@@ -98,10 +153,14 @@ public class HedisProfileBatchGenerator
             }
         }
 
+        // Phase 6: Generate HedisResourceConverter (keeps the type registry in sync automatically)
+        await GenerateHedisResourceConverterAsync();
+
         Console.WriteLine();
         Console.WriteLine($"Generated files summary:");
         Console.WriteLine($"  - CommonTypes.cs");
         Console.WriteLine($"  - Components/SharedComponents.cs");
+        Console.WriteLine($"  - HedisResourceConverter.cs");
         foreach (var resource in generatedResources)
         {
             Console.WriteLine($"  - Resources/{resource}");
@@ -113,6 +172,11 @@ public class HedisProfileBatchGenerator
     private async Task AnalyzeProfileAsync(string profilePath)
     {
         var json = await File.ReadAllTextAsync(profilePath);
+        AnalyzeProfileFromJson(json);
+    }
+
+    private void AnalyzeProfileFromJson(string json)
+    {
         var doc = JsonDocument.Parse(json);
         var root = doc.RootElement;
 
@@ -135,6 +199,13 @@ public class HedisProfileBatchGenerator
             _profilesByResource[fhirType] = new List<string>();
         }
         _profilesByResource[fhirType].Add(profileUrl);
+        _processedProfileUrls.Add(profileUrl);
+
+        // Enqueue base definition for transitive dependency resolution
+        if (root.TryGetProperty("baseDefinition", out var baseDefProp))
+        {
+            EnqueueDependencyUrl(baseDefProp.GetString());
+        }
 
         // Get differential elements
         if (!root.TryGetProperty("differential", out var differential) ||
@@ -212,6 +283,21 @@ public class HedisProfileBatchGenerator
 
             if (parts.Length < 2) continue;
 
+            // Collect referenced type profiles for dependency resolution
+            if (element.TryGetProperty("type", out var elementTypes))
+            {
+                foreach (var typeEntry in elementTypes.EnumerateArray())
+                {
+                    if (typeEntry.TryGetProperty("profile", out var profileArr))
+                    {
+                        foreach (var profileEntry in profileArr.EnumerateArray())
+                        {
+                            EnqueueDependencyUrl(profileEntry.GetString());
+                        }
+                    }
+                }
+            }
+
             var propName = NormalizePropertyName(parts[1]);
             if (propName == "extension" || propName == "modifierExtension") continue;
 
@@ -234,10 +320,11 @@ public class HedisProfileBatchGenerator
                 }
                 else
                 {
-                    // Merge: take less restrictive cardinality
+                    // Merge: take less restrictive cardinality; MustSupport is true if any profile marks it so
                     var existing = resourceFields[propName];
                     if (field.Min < existing.Min) existing.Min = field.Min;
                     if (!existing.IsCollection && field.IsCollection) existing.IsCollection = true;
+                    if (field.MustSupport) existing.MustSupport = true;
                 }
             }
             // Backbone child property
@@ -253,9 +340,284 @@ public class HedisProfileBatchGenerator
                     {
                         backbone.Fields[childProp] = field;
                     }
+                    else if (field.MustSupport)
+                    {
+                        backbone.Fields[childProp].MustSupport = true;
+                    }
                 }
             }
         }
+    }
+
+    private async Task BuildProfileIndexAsync()
+    {
+        if (!Directory.Exists(_allProfilesRootPath))
+        {
+            Console.WriteLine($"Warning: Profile packages directory not found: {_allProfilesRootPath}");
+            Console.WriteLine("Dependency resolution will be skipped.");
+            Console.WriteLine();
+            return;
+        }
+
+        Console.WriteLine($"Building profile dependency index from: {_allProfilesRootPath}");
+
+        var normalizedHedisPath = Path.GetFullPath(_profilesPath)
+            .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + Path.DirectorySeparatorChar;
+
+        var jsonFiles = Directory.GetFiles(_allProfilesRootPath, "*.json", SearchOption.AllDirectories)
+            .Where(f => !Path.GetFullPath(f).StartsWith(normalizedHedisPath, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        Console.WriteLine($"  Scanning {jsonFiles.Count} JSON files in dependency packages...");
+
+        int indexed = 0;
+        foreach (var file in jsonFiles)
+        {
+            try
+            {
+                var json = await File.ReadAllTextAsync(file);
+                var doc = JsonDocument.Parse(json);
+                var root = doc.RootElement;
+
+                if (!root.TryGetProperty("resourceType", out var rtProp) ||
+                    rtProp.GetString() != "StructureDefinition")
+                    continue;
+
+                if (!root.TryGetProperty("url", out var urlProp))
+                    continue;
+
+                var url = urlProp.GetString();
+                if (!string.IsNullOrEmpty(url))
+                {
+                    _profileIndex[url] = file;
+                    indexed++;
+                }
+            }
+            catch
+            {
+                // Skip files that cannot be parsed
+            }
+        }
+
+        Console.WriteLine($"  Indexed {indexed} StructureDefinitions from dependency packages");
+
+        await IndexXmlSpecificationBundlesAsync();
+    }
+
+    private async Task ResolveDependenciesAsync()
+    {
+        if (_pendingDependencyUrls.Count == 0)
+        {
+            Console.WriteLine("No resolvable external dependencies found.");
+            Console.WriteLine();
+            return;
+        }
+
+        Console.WriteLine("Resolving dependent profile definitions...");
+        int resolved = 0;
+        int notFound = 0;
+
+        while (_pendingDependencyUrls.Count > 0)
+        {
+            var url = _pendingDependencyUrls.Dequeue();
+
+            if (_processedProfileUrls.Contains(url))
+                continue;
+
+            if (_profileIndex.TryGetValue(url, out var filePath))
+            {
+                try
+                {
+                    await AnalyzeProfileAsync(filePath);
+                    resolved++;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"  Error resolving dependency {url}: {ex.Message}");
+                }
+            }
+            else if (_profileXmlCache.TryGetValue(url, out var sdXmlElement))
+            {
+                try
+                {
+                    var json = ConvertFhirXmlSdToMinimalJson(sdXmlElement);
+                    AnalyzeProfileFromJson(json);
+                    resolved++;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"  Error resolving XML dependency {url}: {ex.Message}");
+                }
+            }
+            else
+            {
+                notFound++;
+            }
+        }
+
+        Console.WriteLine($"  Resolved {resolved} dependent profiles ({notFound} URLs not available locally)");
+        Console.WriteLine();
+    }
+
+    private void EnqueueDependencyUrl(string? url)
+    {
+        if (string.IsNullOrEmpty(url)) return;
+        if (_processedProfileUrls.Contains(url)) return;
+        if (_enqueuedDependencyUrls.Add(url))
+        {
+            _pendingDependencyUrls.Enqueue(url);
+        }
+    }
+
+    private async Task IndexXmlSpecificationBundlesAsync()
+    {
+        var r4SpecPath = Path.Combine(_allProfilesRootPath, "r4-specification");
+        if (!Directory.Exists(r4SpecPath))
+        {
+            Console.WriteLine();
+            return;
+        }
+
+        // Only the FHIR bundle XML files contain StructureDefinitions
+        var xmlBundleFiles = Directory.GetFiles(r4SpecPath, "*.xml")
+            .Where(f =>
+            {
+                var name = Path.GetFileNameWithoutExtension(f);
+                return name.StartsWith("profiles-") || name == "extension-definitions";
+            })
+            .ToList();
+
+        if (xmlBundleFiles.Count == 0)
+        {
+            Console.WriteLine();
+            return;
+        }
+
+        Console.WriteLine($"  Indexing R4 base specification from {xmlBundleFiles.Count} XML bundles...");
+        var fhirNs = XNamespace.Get("http://hl7.org/fhir");
+        int totalIndexed = 0;
+
+        foreach (var xmlFile in xmlBundleFiles)
+        {
+            try
+            {
+                await using var stream = File.OpenRead(xmlFile);
+                var xdoc = await XDocument.LoadAsync(stream, LoadOptions.None, CancellationToken.None);
+                int fileCount = 0;
+
+                foreach (var sd in xdoc.Descendants(fhirNs + "StructureDefinition"))
+                {
+                    var url = sd.Element(fhirNs + "url")?.Attribute("value")?.Value;
+                    if (string.IsNullOrEmpty(url)) continue;
+
+                    _profileXmlCache[url] = sd;
+                    fileCount++;
+                }
+
+                Console.WriteLine($"    {Path.GetFileName(xmlFile)}: {fileCount} StructureDefinitions");
+                totalIndexed += fileCount;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"    Warning: could not parse {Path.GetFileName(xmlFile)}: {ex.Message}");
+            }
+        }
+
+        Console.WriteLine($"  Indexed {totalIndexed} base R4 StructureDefinitions from XML bundles");
+        Console.WriteLine();
+    }
+
+    /// <summary>
+    /// Converts a FHIR XML StructureDefinition element to the minimal JSON subset
+    /// expected by <see cref="AnalyzeProfileFromJson"/>.
+    /// FHIR XML uses <c>value</c> attributes for primitives, e.g. &lt;url value="..."/&gt;.
+    /// </summary>
+    private static string ConvertFhirXmlSdToMinimalJson(XElement sd)
+    {
+        var ns = sd.Name.Namespace;
+
+        using var ms = new MemoryStream();
+        using var writer = new Utf8JsonWriter(ms);
+
+        writer.WriteStartObject();
+        writer.WriteString("resourceType", "StructureDefinition");
+        writer.WriteString("url", sd.Element(ns + "url")?.Attribute("value")?.Value ?? "");
+        writer.WriteString("name", sd.Element(ns + "name")?.Attribute("value")?.Value ?? "");
+        writer.WriteString("type", sd.Element(ns + "type")?.Attribute("value")?.Value ?? "");
+
+        var baseDefinition = sd.Element(ns + "baseDefinition")?.Attribute("value")?.Value;
+        if (!string.IsNullOrEmpty(baseDefinition))
+            writer.WriteString("baseDefinition", baseDefinition);
+
+        var differential = sd.Element(ns + "differential");
+        if (differential != null)
+        {
+            writer.WritePropertyName("differential");
+            writer.WriteStartObject();
+            writer.WritePropertyName("element");
+            writer.WriteStartArray();
+
+            foreach (var element in differential.Elements(ns + "element"))
+            {
+                writer.WriteStartObject();
+
+                var path = element.Element(ns + "path")?.Attribute("value")?.Value;
+                if (path != null) writer.WriteString("path", path);
+
+                var shortDesc = element.Element(ns + "short")?.Attribute("value")?.Value;
+                if (shortDesc != null) writer.WriteString("short", shortDesc);
+
+                if (int.TryParse(element.Element(ns + "min")?.Attribute("value")?.Value, out var minVal))
+                    writer.WriteNumber("min", minVal);
+
+                var maxStr = element.Element(ns + "max")?.Attribute("value")?.Value;
+                if (maxStr != null) writer.WriteString("max", maxStr);
+
+                var mustSupportStr = element.Element(ns + "mustSupport")?.Attribute("value")?.Value;
+                if (mustSupportStr == "true") writer.WriteBoolean("mustSupport", true);
+
+                // Element-level <type> contains child <code> and optional <profile> elements
+                var typeElements = element.Elements(ns + "type").ToList();
+                if (typeElements.Count > 0)
+                {
+                    writer.WritePropertyName("type");
+                    writer.WriteStartArray();
+                    foreach (var typeEl in typeElements)
+                    {
+                        writer.WriteStartObject();
+
+                        var code = typeEl.Element(ns + "code")?.Attribute("value")?.Value;
+                        if (code != null) writer.WriteString("code", code);
+
+                        var profileUrls = typeEl.Elements(ns + "profile")
+                            .Select(p => p.Attribute("value")?.Value)
+                            .Where(p => p != null)
+                            .ToList();
+
+                        if (profileUrls.Count > 0)
+                        {
+                            writer.WritePropertyName("profile");
+                            writer.WriteStartArray();
+                            foreach (var profileUrl in profileUrls)
+                                writer.WriteStringValue(profileUrl);
+                            writer.WriteEndArray();
+                        }
+
+                        writer.WriteEndObject();
+                    }
+                    writer.WriteEndArray();
+                }
+
+                writer.WriteEndObject();
+            }
+
+            writer.WriteEndArray();
+            writer.WriteEndObject();
+        }
+
+        writer.WriteEndObject();
+        writer.Flush();
+        return Encoding.UTF8.GetString(ms.ToArray());
     }
 
     private FieldInfo ExtractFieldInfo(JsonElement element, string propName)
@@ -315,6 +677,11 @@ public class HedisProfileBatchGenerator
             field.Min = min.GetInt32();
         }
 
+        if (element.TryGetProperty("mustSupport", out var mustSupport))
+        {
+            field.MustSupport = mustSupport.GetBoolean();
+        }
+
         return field;
     }
 
@@ -343,7 +710,6 @@ public class HedisProfileBatchGenerator
             "statushistory" => true,
             "stage" => true,
             "evidence" => true,
-            "class" => true,
             "costtobenefit" or "costtobeneficiary" => true,
             "contact" => true,
             "communication" => true,
@@ -1358,6 +1724,64 @@ public class HedisProfileBatchGenerator
         sb.AppendLine("}");
         sb.AppendLine();
 
+        // BundleEntryComponent - used by Bundle
+        sb.AppendLine("/// <summary>Entry in a Bundle — contains a resource and optional request/response metadata.</summary>");
+        sb.AppendLine("public sealed record BundleEntryComponent");
+        sb.AppendLine("{");
+        sb.AppendLine("    [JsonPropertyName(\"fullUrl\")] public string? FullUrl { get; init; }");
+        sb.AppendLine("    [JsonConverter(typeof(HedisResourceConverter))]");
+        sb.AppendLine("    [JsonPropertyName(\"resource\")] public object? Resource { get; init; }");
+        sb.AppendLine("    [JsonPropertyName(\"search\")] public BundleSearchComponent? Search { get; init; }");
+        sb.AppendLine("    [JsonPropertyName(\"request\")] public BundleRequestComponent? Request { get; init; }");
+        sb.AppendLine("    [JsonPropertyName(\"response\")] public BundleResponseComponent? Response { get; init; }");
+        sb.AppendLine("    [JsonPropertyName(\"link\")] public List<BundleLinkComponent>? Link { get; init; }");
+        sb.AppendLine("    /// <summary>Returns the resource as <typeparamref name=\"T\"/>, or null if it is a different type.</summary>");
+        sb.AppendLine("    public T? GetResource<T>() where T : class => Resource as T;");
+        sb.AppendLine("}");
+        sb.AppendLine();
+
+        // BundleLinkComponent - used by Bundle and BundleEntryComponent
+        sb.AppendLine("/// <summary>Links related to this Bundle.</summary>");
+        sb.AppendLine("public sealed record BundleLinkComponent");
+        sb.AppendLine("{");
+        sb.AppendLine("    [JsonPropertyName(\"relation\")] public string? Relation { get; init; }");
+        sb.AppendLine("    [JsonPropertyName(\"url\")] public string? Url { get; init; }");
+        sb.AppendLine("}");
+        sb.AppendLine();
+
+        // BundleSearchComponent - used by BundleEntryComponent
+        sb.AppendLine("/// <summary>Search-related information for a Bundle entry.</summary>");
+        sb.AppendLine("public sealed record BundleSearchComponent");
+        sb.AppendLine("{");
+        sb.AppendLine("    [JsonPropertyName(\"mode\")] public string? Mode { get; init; }");
+        sb.AppendLine("    [JsonPropertyName(\"score\")] public decimal? Score { get; init; }");
+        sb.AppendLine("}");
+        sb.AppendLine();
+
+        // BundleRequestComponent - used by BundleEntryComponent
+        sb.AppendLine("/// <summary>Transaction/batch request details for a Bundle entry.</summary>");
+        sb.AppendLine("public sealed record BundleRequestComponent");
+        sb.AppendLine("{");
+        sb.AppendLine("    [JsonPropertyName(\"method\")] public string? Method { get; init; }");
+        sb.AppendLine("    [JsonPropertyName(\"url\")] public string? Url { get; init; }");
+        sb.AppendLine("    [JsonPropertyName(\"ifNoneMatch\")] public string? IfNoneMatch { get; init; }");
+        sb.AppendLine("    [JsonPropertyName(\"ifModifiedSince\")] public string? IfModifiedSince { get; init; }");
+        sb.AppendLine("    [JsonPropertyName(\"ifMatch\")] public string? IfMatch { get; init; }");
+        sb.AppendLine("    [JsonPropertyName(\"ifNoneExist\")] public string? IfNoneExist { get; init; }");
+        sb.AppendLine("}");
+        sb.AppendLine();
+
+        // BundleResponseComponent - used by BundleEntryComponent
+        sb.AppendLine("/// <summary>Transaction/batch response details for a Bundle entry.</summary>");
+        sb.AppendLine("public sealed record BundleResponseComponent");
+        sb.AppendLine("{");
+        sb.AppendLine("    [JsonPropertyName(\"status\")] public string? Status { get; init; }");
+        sb.AppendLine("    [JsonPropertyName(\"location\")] public string? Location { get; init; }");
+        sb.AppendLine("    [JsonPropertyName(\"etag\")] public string? Etag { get; init; }");
+        sb.AppendLine("    [JsonPropertyName(\"lastModified\")] public string? LastModified { get; init; }");
+        sb.AppendLine("}");
+        sb.AppendLine();
+
         var outputFile = Path.Combine(_outputPath, "Components", "SharedComponents.cs");
         await File.WriteAllTextAsync(outputFile, sb.ToString());
     }
@@ -1399,7 +1823,12 @@ public class HedisProfileBatchGenerator
         sb.AppendLine($"public sealed record {resourceType}");
         sb.AppendLine("{");
 
-        // Standard base fields
+        // Standard base fields always included: resourceType, id, meta, extension.
+        // Extension is always kept because HEDIS profiles use extensions for key data
+        // (race, ethnicity, coverage flags, etc.) — removing it would break access to
+        // all HEDIS-specific extension slices even when they are MustSupport.
+        // The remaining base fields (implicitRules, language, text, contained,
+        // modifierExtension) are omitted in MustSupport-only mode.
         sb.AppendLine($"    /// <summary>The FHIR resource type.</summary>");
         sb.AppendLine($"    [JsonPropertyName(\"resourceType\")] public string ResourceType {{ get; init; }} = \"{resourceType}\";");
         sb.AppendLine();
@@ -1409,32 +1838,43 @@ public class HedisProfileBatchGenerator
         sb.AppendLine($"    /// <summary>Metadata about the resource.</summary>");
         sb.AppendLine($"    [JsonPropertyName(\"meta\")] public Meta? Meta {{ get; init; }}");
         sb.AppendLine();
-        sb.AppendLine($"    /// <summary>A set of rules under which this content was created.</summary>");
-        sb.AppendLine($"    [JsonPropertyName(\"implicitRules\")] public string? ImplicitRules {{ get; init; }}");
-        sb.AppendLine();
-        sb.AppendLine($"    /// <summary>Language of the resource content.</summary>");
-        sb.AppendLine($"    [JsonPropertyName(\"language\")] public string? Language {{ get; init; }}");
-        sb.AppendLine();
-        sb.AppendLine($"    /// <summary>Text summary of the resource.</summary>");
-        sb.AppendLine($"    [JsonPropertyName(\"text\")] public Narrative? Text {{ get; init; }}");
-        sb.AppendLine();
-        sb.AppendLine($"    /// <summary>Contained, inline Resources.</summary>");
-        sb.AppendLine($"    [JsonPropertyName(\"contained\")] public List<object>? Contained {{ get; init; }}");
-        sb.AppendLine();
         sb.AppendLine($"    /// <summary>Additional content defined by implementations.</summary>");
         sb.AppendLine($"    [JsonPropertyName(\"extension\")] public List<Extension>? Extension {{ get; init; }}");
         sb.AppendLine();
-        sb.AppendLine($"    /// <summary>Extensions that cannot be ignored.</summary>");
-        sb.AppendLine($"    [JsonPropertyName(\"modifierExtension\")] public List<Extension>? ModifierExtension {{ get; init; }}");
-        sb.AppendLine();
 
-        // Generate profile-specific fields
         var generatedFields = new HashSet<string> { "id", "meta", "implicitRules", "language", "text", "contained", "extension", "modifierExtension" };
+
+        if (!_mustSupportOnly)
+        {
+            sb.AppendLine($"    /// <summary>A set of rules under which this content was created.</summary>");
+            sb.AppendLine($"    [JsonPropertyName(\"implicitRules\")] public string? ImplicitRules {{ get; init; }}");
+            sb.AppendLine();
+            sb.AppendLine($"    /// <summary>Language of the resource content.</summary>");
+            sb.AppendLine($"    [JsonPropertyName(\"language\")] public string? Language {{ get; init; }}");
+            sb.AppendLine();
+            sb.AppendLine($"    /// <summary>Text summary of the resource.</summary>");
+            sb.AppendLine($"    [JsonPropertyName(\"text\")] public Narrative? Text {{ get; init; }}");
+            sb.AppendLine();
+            sb.AppendLine($"    /// <summary>Contained, inline Resources.</summary>");
+            sb.AppendLine($"    [JsonConverter(typeof(HedisResourceListConverter))]");
+            sb.AppendLine($"    [JsonPropertyName(\"contained\")] public List<object>? Contained {{ get; init; }}");
+            sb.AppendLine();
+            sb.AppendLine($"    /// <summary>Extensions that cannot be ignored.</summary>");
+            sb.AppendLine($"    [JsonPropertyName(\"modifierExtension\")] public List<Extension>? ModifierExtension {{ get; init; }}");
+            sb.AppendLine();
+        }
+
+        // Generate profile-specific fields.
+        // Structural types (e.g. Bundle) bypass MustSupport filtering — all their fields
+        // are required for the system to function regardless of profile constraints.
+        bool applyMustSupportFilter = _mustSupportOnly && !_structuralResourceTypes.Contains(resourceType);
 
         foreach (var (fieldName, field) in fields.OrderBy(f => f.Key))
         {
             if (generatedFields.Contains(fieldName)) continue;
             generatedFields.Add(fieldName);
+
+            if (applyMustSupportFilter && !field.MustSupport) continue;
 
             GenerateField(sb, field, resourceType, sharedComponents);
         }
@@ -1446,6 +1886,126 @@ public class HedisProfileBatchGenerator
         await File.WriteAllTextAsync(outputFile, sb.ToString());
 
         return fileName;
+    }
+
+    private async Task GenerateHedisResourceConverterAsync()
+    {
+        // Only include proper FHIR resource types (exclude abstract base types and data types)
+        var resourceTypes = _fieldsByResource.Keys
+            .Where(t => !_nonFhirResourceTypes.Contains(t))
+            .OrderBy(t => t)
+            .ToList();
+
+        var sb = new StringBuilder();
+        sb.AppendLine("// <auto-generated>");
+        sb.AppendLine("// Polymorphic JSON converters for HEDIS FHIR resources.");
+        sb.AppendLine($"// Generated at: {DateTime.UtcNow:O}");
+        sb.AppendLine("// </auto-generated>");
+        sb.AppendLine();
+        sb.AppendLine("#nullable enable");
+        sb.AppendLine();
+        sb.AppendLine("using System.Text.Json;");
+        sb.AppendLine("using System.Text.Json.Serialization;");
+        sb.AppendLine();
+        sb.AppendLine($"namespace {_namespace};");
+        sb.AppendLine();
+
+        // ── HedisResourceConverter ──────────────────────────────────────────────
+        sb.AppendLine("/// <summary>");
+        sb.AppendLine("/// Polymorphic JSON converter for a single FHIR resource.");
+        sb.AppendLine("/// Reads the <c>resourceType</c> discriminator and deserializes to the");
+        sb.AppendLine("/// matching HEDIS DTO. Unknown types are preserved as <see cref=\"JsonElement\"/>.");
+        sb.AppendLine("/// </summary>");
+        sb.AppendLine("public sealed class HedisResourceConverter : JsonConverter<object>");
+        sb.AppendLine("{");
+        sb.AppendLine("    public override object? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)");
+        sb.AppendLine("    {");
+        sb.AppendLine("        if (reader.TokenType == JsonTokenType.Null)");
+        sb.AppendLine("            return null;");
+        sb.AppendLine();
+        sb.AppendLine("        // Copy the reader (Utf8JsonReader is a value type) to scan for resourceType");
+        sb.AppendLine("        // without consuming the original. This avoids building a JsonDocument DOM");
+        sb.AppendLine("        // (one full allocation per resource entry) and lets us deserialize with a");
+        sb.AppendLine("        // single forward pass via JsonSerializer.Deserialize<T>(ref reader, options).");
+        sb.AppendLine("        var scanReader = reader;");
+        sb.AppendLine("        var resourceType = ScanForResourceType(ref scanReader);");
+        sb.AppendLine();
+        sb.AppendLine("        return resourceType switch");
+        sb.AppendLine("        {");
+
+        int maxLen = resourceTypes.Count > 0 ? resourceTypes.Max(t => t.Length) : 0;
+        foreach (var rt in resourceTypes)
+        {
+            var pad = new string(' ', maxLen - rt.Length + 1);
+            sb.AppendLine($"            \"{rt}\"{pad}=> JsonSerializer.Deserialize<{rt}>(ref reader, options),");
+        }
+        sb.AppendLine($"            {new string(' ', maxLen + 1)}_ => JsonSerializer.Deserialize<JsonElement>(ref reader, options)");
+
+        sb.AppendLine("        };");
+        sb.AppendLine("    }");
+        sb.AppendLine();
+        sb.AppendLine("    /// <summary>");
+        sb.AppendLine("    /// Scans a copy of the reader for the top-level <c>resourceType</c> property");
+        sb.AppendLine("    /// without advancing the original reader. Only examines depth-1 tokens so");
+        sb.AppendLine("    /// nested objects are skipped efficiently.");
+        sb.AppendLine("    /// </summary>");
+        sb.AppendLine("    private static string? ScanForResourceType(ref Utf8JsonReader reader)");
+        sb.AppendLine("    {");
+        sb.AppendLine("        int startDepth = reader.CurrentDepth;");
+        sb.AppendLine("        while (reader.Read())");
+        sb.AppendLine("        {");
+        sb.AppendLine("            if (reader.CurrentDepth == startDepth + 1 &&");
+        sb.AppendLine("                reader.TokenType == JsonTokenType.PropertyName &&");
+        sb.AppendLine("                reader.ValueTextEquals(\"resourceType\"u8))");
+        sb.AppendLine("            {");
+        sb.AppendLine("                return reader.Read() ? reader.GetString() : null;");
+        sb.AppendLine("            }");
+        sb.AppendLine("        }");
+        sb.AppendLine("        return null;");
+        sb.AppendLine("    }");
+        sb.AppendLine();
+        sb.AppendLine("    public override void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)");
+        sb.AppendLine("        => JsonSerializer.Serialize(writer, value, value.GetType(), options);");
+        sb.AppendLine("}");
+        sb.AppendLine();
+
+        // ── HedisResourceListConverter ──────────────────────────────────────────
+        sb.AppendLine("/// <summary>");
+        sb.AppendLine("/// Polymorphic JSON converter for a <see cref=\"List{T}\"/> of FHIR resources.");
+        sb.AppendLine("/// Used on the <c>contained</c> property of domain resources.");
+        sb.AppendLine("/// Delegates each element to <see cref=\"HedisResourceConverter\"/>.");
+        sb.AppendLine("/// </summary>");
+        sb.AppendLine("public sealed class HedisResourceListConverter : JsonConverter<List<object>>");
+        sb.AppendLine("{");
+        sb.AppendLine("    private static readonly HedisResourceConverter ItemConverter = new();");
+        sb.AppendLine();
+        sb.AppendLine("    public override List<object>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)");
+        sb.AppendLine("    {");
+        sb.AppendLine("        if (reader.TokenType == JsonTokenType.Null) return null;");
+        sb.AppendLine("        if (reader.TokenType != JsonTokenType.StartArray)");
+        sb.AppendLine("            throw new JsonException($\"Expected StartArray, got {reader.TokenType}\");");
+        sb.AppendLine();
+        sb.AppendLine("        var list = new List<object>();");
+        sb.AppendLine("        while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)");
+        sb.AppendLine("        {");
+        sb.AppendLine("            var item = ItemConverter.Read(ref reader, typeof(object), options);");
+        sb.AppendLine("            if (item != null) list.Add(item);");
+        sb.AppendLine("        }");
+        sb.AppendLine("        return list;");
+        sb.AppendLine("    }");
+        sb.AppendLine();
+        sb.AppendLine("    public override void Write(Utf8JsonWriter writer, List<object> value, JsonSerializerOptions options)");
+        sb.AppendLine("    {");
+        sb.AppendLine("        writer.WriteStartArray();");
+        sb.AppendLine("        foreach (var item in value)");
+        sb.AppendLine("            ItemConverter.Write(writer, item, options);");
+        sb.AppendLine("        writer.WriteEndArray();");
+        sb.AppendLine("    }");
+        sb.AppendLine("}");
+
+        var outputFile = Path.Combine(_outputPath, "HedisResourceConverter.cs");
+        await File.WriteAllTextAsync(outputFile, sb.ToString());
+        Console.WriteLine("  Generated: HedisResourceConverter.cs");
     }
 
     private void GenerateField(StringBuilder sb, FieldInfo field, string resourceType, Dictionary<string, ComponentInfo> sharedComponents)
@@ -1532,6 +2092,8 @@ public class HedisProfileBatchGenerator
             "costtobenefit" or "costtobeneficiary" => "CostToBeneficiaryComponent",
             "contact" => "ContactComponent",
             "communication" => "CommunicationComponent",
+            "link" when resourceType == "Bundle" => "BundleLinkComponent",
+            "entry" when resourceType == "Bundle" => "BundleEntryComponent",
             "link" => "LinkComponent",
             "reaction" => "ReactionComponent",
             "protocolapplied" => "ProtocolAppliedComponent",
@@ -1747,6 +2309,9 @@ public class HedisProfileBatchGenerator
             "interpretation" => "CodeableConcept",
             "dataabsentreason" => "CodeableConcept",
 
+            // Coded encounter class (Encounter.class is a single Coding in FHIR R4)
+            "class" => "Coding",
+
             // Primitive properties (when profiles constrain child elements)
             "birthdate" => "string",  // date type
             "gender" => "string",     // code type
@@ -1864,6 +2429,7 @@ internal class FieldInfo
     public string Description { get; set; } = "";
     public bool IsCollection { get; set; }
     public int Min { get; set; }
+    public bool MustSupport { get; set; }
     public bool IsChoiceType { get; set; }
     public bool IsBackbone { get; set; }
     public string BackboneName { get; set; } = "";
